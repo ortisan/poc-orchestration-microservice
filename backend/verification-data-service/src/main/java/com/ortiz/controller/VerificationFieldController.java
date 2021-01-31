@@ -1,4 +1,4 @@
-package com.ortiz.web;
+package com.ortiz.controller;
 
 import com.ortiz.business.IVerifiedFieldsService;
 import com.ortiz.dto.VerifiedFieldDTO;
@@ -16,7 +16,7 @@ public class VerificationFieldController {
 
     @GetMapping("/tenant/{tenant_id}/person/{person_id}/fields")
     private List<VerifiedFieldDTO> getFields(@PathVariable(name = "tenant_id") String tenantId, @PathVariable(name = "person_id") String personId) {
-        return verifiedFieldsService.getFields(tenantId, personId);
+        return verifiedFieldsService.getVerifiedFields(tenantId, personId);
     }
 
     @PostMapping("/tenant/{tenant_id}/person/{person_id}/fields")
@@ -26,7 +26,7 @@ public class VerificationFieldController {
             verifiedFieldDTO.setPersonId(personId);
             return verifiedFieldDTO;
         }).collect(Collectors.toList());
-        return verifiedFieldsService.saveFields(listWithTenantAndPersonId);
+        return verifiedFieldsService.saveVerifiedFields(listWithTenantAndPersonId);
     }
 
     @PostMapping("/tenant/{tenant_id}/person/{person_id}")
@@ -36,6 +36,6 @@ public class VerificationFieldController {
             verifiedFieldDTO.setPersonId(personId);
             return verifiedFieldDTO;
         }).collect(Collectors.toList());
-        return verifiedFieldsService.updateFields(listWithTenantAndPersonId);
+        return verifiedFieldsService.updateVerifiedFields(listWithTenantAndPersonId);
     }
 }

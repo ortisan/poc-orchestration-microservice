@@ -11,11 +11,11 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring", config = CentralConfig.class, uses = {IPersonTypeEnumMapper.class, IPhoneBusinessMapper.class})
 public interface IPersonBusinessMapper {
 
-    @Mapping(source = "cpf_cnpj", target = "cpf")
+    @Mapping(source = "cpfCnpj", target = "cpf")
     @Mapping(target = "insert", ignore = true)
     PhysicalPerson dtoToPhisicalPersonDomain(PersonDTO source);
 
-    @Mapping(source = "cpf_cnpj", target = "cnpj")
+    @Mapping(source = "cpfCnpj", target = "cnpj")
     @Mapping(target = "insert", ignore = true)
     CorporatePerson dtoToCorporateDomain(PersonDTO source);
 

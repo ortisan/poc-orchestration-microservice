@@ -1,4 +1,4 @@
-package com.ortiz.web;
+package com.ortiz.controller;
 
 import com.ortiz.business.IPersonService;
 import com.ortiz.dto.PersonDTO;

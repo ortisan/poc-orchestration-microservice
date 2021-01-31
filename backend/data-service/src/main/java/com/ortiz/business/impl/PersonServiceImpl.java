@@ -45,7 +45,7 @@ public class PersonServiceImpl implements IPersonService {
     public PersonDTO updatePerson(PersonDTO personDTO) {
         final Person person = personBusinessMapper.mapToDomain(personDTO);
         personRule.validate(person, false);
-        final Person personSaved = personRepository.savePerson(person);
+        final Person personSaved = personRepository.updatePerson(person);
         return personBusinessMapper.mapToDto(personSaved);
     }
 }
