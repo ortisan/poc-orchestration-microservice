@@ -39,7 +39,7 @@ public class PersonServiceGRPC extends DataServiceGrpc.DataServiceImplBase {
 
     private StatusRuntimeException handleError(Exception exc, Code code, GeneratedMessageV3 request) {
         Status status = Status.newBuilder()
-                .setCode(Code.ABORTED.getNumber())
+                .setCode(code.getNumber())
                 .setMessage(exc.getMessage())
                 .addDetails(Any.pack(request))
                 .build();

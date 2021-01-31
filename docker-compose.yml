@@ -21,3 +21,8 @@ services:
       MYSQL_DATABASE: poc
       MYSQL_USER: poc_user
       MYSQL_PASSWORD: 123456
+  
+  grpc_iu_tester:
+    image: gusaul/grpcox:latest
+    ports:
+      - "6969:6969"
