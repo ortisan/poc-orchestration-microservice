@@ -39,6 +39,7 @@ public class VerifyFieldsServiceImpl implements IVerifiedFieldsService {
 
     @Override
     public List<VerifiedFieldDTO> getVerifiedFields(String tenantId, String personId) {
+        validatePerson(tenantId, personId);
         List<VerifiedFieldDomain> fieldsByPerson = verifyFieldRepository.getVerifiedFieldsByPerson(tenantId, personId);
         return fieldsBusinessMapper.toDtoList(fieldsByPerson);
     }

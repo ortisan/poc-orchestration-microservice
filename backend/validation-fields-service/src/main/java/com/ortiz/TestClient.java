@@ -9,7 +9,7 @@ import io.grpc.ManagedChannelBuilder;
 public class TestClient {
 
     public static void main(String[] args) {
-        ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", 8080)
+        ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", 8090)
                 .usePlaintext()
                 .build();
 
