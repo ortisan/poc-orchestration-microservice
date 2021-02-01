@@ -45,3 +45,4 @@ docker stop $(docker container  ls -aq)
 | Validation-Fields-Service       | 8081        | Spring Boot App |
 | Data-Service-RPC                | 9090        | GRPC            |
 | Envoy GRP Load Balancer         | 8090        | Envoy           |
+| Envoy Admin UI                  | 9901        | Envoy           |
