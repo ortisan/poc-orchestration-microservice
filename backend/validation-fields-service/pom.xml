@@ -9,7 +9,8 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>verification-data-service</artifactId>
+    <artifactId>validation-fields-service</artifactId>
+    <version>1.0.0-snapshot</version>
     <packaging>jar</packaging>
     <properties>
         <java.version>11</java.version>
@@ -80,6 +81,7 @@
         </dependency>
     </dependencies>
     <build>
+        <finalName>validation-fields-service</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

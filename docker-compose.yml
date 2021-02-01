@@ -1,28 +1,81 @@
 version: '2'
+
+networks:
+  poc-network:
+    driver: bridge
+
 services:
 
   mysql-data-service:
     image: mysql:8.0.23
     ports:
-      - "3306:3306"
+      - 3306:3306
     environment:
       MYSQL_ROOT_PASSWORD: 123456
       MYSQL_DATABASE: poc
       MYSQL_USER: poc_user
       MYSQL_PASSWORD: 123456
+    networks:
+      - poc-network
 
-
-  mysql-verification-data-service:
+  mysql-validation-fields-service:
     image: mysql:8.0.23
     ports:
-      - "3307:3306"
+      - 3307:3306
     environment:
       MYSQL_ROOT_PASSWORD: 123456
       MYSQL_DATABASE: poc
       MYSQL_USER: poc_user
       MYSQL_PASSWORD: 123456
-  
-  grpc_iu_tester:
-    image: gusaul/grpcox:latest
+    networks:
+      - poc-network
+
+  data-service:
+    restart: always
+    build: 
+      dockerfile: Dockerfile
+      context: ./backend/data-service
+    volumes:
+      - ./docker/.m2:/root/.m2
+    environment:
+      - MYSQL_HOST=mysql-data-service
+      - MYSQL_PORT=3306
+      - MYSQL_USER=poc_user
+      - MYSQL_PASSWORD=123456
     ports:
-      - "6969:6969"
+      - 8080:8080
+      - 9090:9090
+    networks:
+      - poc-network
+    depends_on: 
+      - mysql-data-service
+
+  validation-fields-service:
+    restart: always
+    build: 
+      dockerfile: Dockerfile
+      context: ./backend/validation-fields-service
+    volumes:
+      - ./docker/.m2:/root/.m2
+    environment:
+      - MYSQL_HOST=mysql-validation-fields-service
+      - MYSQL_PORT=3306
+      - MYSQL_USER=poc_user
+      - MYSQL_PASSWORD=123456
+      - DATA_SERVICE_GRPC_ADDRESS=static://data-service:9090
+    ports:
+      - 8081:8080
+      - 9091:9090
+    networks:
+      - poc-network
+    depends_on:
+      - mysql-validation-fields-service
+      - data-service
+
+
+  # envoy:
+  #   image: envoyproxy/envoy-dev:18db4c90e3295fb2c39bfc7b2ce641cfd6c3fbed
+  #   ports:
+  #     - "10000:10000"
+  #   volumes:
+  #     - ./envoy.yaml:/etc/envoy/envoy.yaml

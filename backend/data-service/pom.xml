@@ -10,6 +10,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>data-service</artifactId>
+    <version>1.0.0-snapshot</version>
     <packaging>jar</packaging>
     <properties>
         <java.version>11</java.version>
@@ -100,6 +101,7 @@
 
     </dependencies>
     <build>
+        <finalName>data-service</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
