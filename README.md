@@ -37,7 +37,7 @@ docker-compose down
 docker stop $(docker container  ls -aq)
 ```
 
-### Services and port numbers
+### Services and port numbers:
 
 | Service                         | Port Number | Type/Tech       |
 | ------------------------------- | ----------- | --------------- |
