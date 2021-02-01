@@ -2,7 +2,7 @@
 
 POC for testing microservices orchestration patterns.
 
-### Pre-Reqs:
+### Run:
 
 Gen the jars of apps:
 
@@ -21,6 +21,8 @@ Start the docker containers:
 ```sh
 docker-compose up
 ```
+
+### Useful commands:
 
 Force container recreation:
 
