@@ -1,0 +1,147 @@
+{
+	"info": {
+		"_postman_id": "4c7af23b-01b6-4a8b-a923-a44942cf06ed",
+		"name": "POC Orch Microservices",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "post user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Marcelo\",\n    \"type\": \"C\",\n    \"cpf_cnpj\": \"20073932000171\",    \n    \"phones\": [\n        {\n            \"ddi\": 55,\n            \"ddd\": 11,\n            \"number\": 123456789,\n            \"extensionLine\": null\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/tenant/1234/person",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"tenant",
+						"1234",
+						"person"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "put user",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Marcelo\",\n    \"type\": \"C\",\n    \"cpf_cnpj\": \"20073932000171\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/tenant/1234/person/1234",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"tenant",
+						"1234",
+						"person",
+						"1234"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get user",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/tenant/1234/person/3a4550e1-dcdb-4bdf-a1ba-203c8033da4e",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"tenant",
+						"1234",
+						"person",
+						"3a4550e1-dcdb-4bdf-a1ba-203c8033da4e"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "post verified field",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[{\n    \"field_name\": \"name\",\n    \"value\": \"Marcelo Ortiz\",\n    \"level\": 400,\n    \"validated\": true,\n    \"created_date\": \"2021-01-02T18:25:43.511Z\"\n}\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/tenant/1234/person/1234/fields",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"tenant",
+						"1234",
+						"person",
+						"1234",
+						"fields"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get verified field - by person",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/tenant/1234/person/3a4550e1-dcdb-4bdf-a1ba-203c8033da4e/fields",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"tenant",
+						"1234",
+						"person",
+						"3a4550e1-dcdb-4bdf-a1ba-203c8033da4e",
+						"fields"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -62,7 +62,7 @@ services:
       - MYSQL_PORT=3306
       - MYSQL_USER=poc_user
       - MYSQL_PASSWORD=123456
-      - DATA_SERVICE_GRPC_ADDRESS=static://data-service:9090
+      - DATA_SERVICE_GRPC_ADDRESS=static://envoy-cluster:8080
     ports:
       - 8081:8080
       - 9091:9090
@@ -72,10 +72,14 @@ services:
       - mysql-validation-fields-service
       - data-service
 
-
-  # envoy:
-  #   image: envoyproxy/envoy-dev:18db4c90e3295fb2c39bfc7b2ce641cfd6c3fbed
-  #   ports:
-  #     - "10000:10000"
-  #   volumes:
-  #     - ./envoy.yaml:/etc/envoy/envoy.yaml
+  envoy-cluster:
+    restart: always
+    image: envoyproxy/envoy-dev:18db4c90e3295fb2c39bfc7b2ce641cfd6c3fbed
+    ports:
+      - "8090:8080"
+      - "9901:9901"
+    volumes:
+      - ./envoy.yaml:/etc/envoy/envoy.yaml
+    networks:
+      - poc-network
+    
