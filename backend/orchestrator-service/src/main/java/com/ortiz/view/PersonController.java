@@ -2,7 +2,6 @@ package com.ortiz.view;
 
 import com.ortiz.business.IPersonService;
 import com.ortiz.dto.PersonDTO;
-import com.ortiz.dto.PhoneDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,5 +28,4 @@ public class PersonController {
         personDTO.setId(personId);
         return personService.updatePerson(personDTO);
     }
-
 }

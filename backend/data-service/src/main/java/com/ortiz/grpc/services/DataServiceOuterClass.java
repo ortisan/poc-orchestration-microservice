@@ -20,10 +20,20 @@ public final class DataServiceOuterClass {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_services_GetPersonRequest_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_services_GetPersonResponse_descriptor;
+    internal_static_services_Phone_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_services_GetPersonResponse_fieldAccessorTable;
+      internal_static_services_Phone_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_services_Person_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_services_Person_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_services_GetPhoneRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_services_GetPhoneRequest_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -35,12 +45,22 @@ public final class DataServiceOuterClass {
     String[] descriptorData = {
       "\n\022data-service.proto\022\010services\"6\n\020GetPer" +
       "sonRequest\022\020\n\010tenantId\030\001 \001(\t\022\020\n\010personId" +
-      "\030\002 \001(\t\"^\n\021GetPersonResponse\022\020\n\010tenantId\030" +
-      "\001 \001(\t\022\n\n\002id\030\002 \001(\t\022\014\n\004name\030\003 \001(\t\022\014\n\004type\030" +
-      "\004 \001(\t\022\017\n\007cpfCnpj\030\005 \001(\t2U\n\013DataService\022F\n" +
-      "\tGetPerson\022\032.services.GetPersonRequest\032\033" +
-      ".services.GetPersonResponse\"\000B\033\n\027com.ort" +
-      "iz.grpc.servicesP\001b\006proto3"
+      "\030\002 \001(\t\"T\n\005Phone\022\n\n\002id\030\001 \001(\t\022\013\n\003ddi\030\002 \001(\005" +
+      "\022\013\n\003ddd\030\003 \001(\005\022\016\n\006number\030\004 \001(\005\022\025\n\rextensi" +
+      "onLine\030\005 \001(\005\"z\n\006Person\022\020\n\010tenantId\030\001 \001(\t" +
+      "\022\020\n\010personId\030\002 \001(\t\022\014\n\004name\030\003 \001(\t\022\014\n\004type" +
+      "\030\004 \001(\t\022\017\n\007cpfCnpj\030\005 \001(\t\022\037\n\006phones\030\006 \003(\0132" +
+      "\017.services.Phone\"\"\n\017GetPhoneRequest\022\017\n\007p" +
+      "honeId\030\001 \001(\t2\322\002\n\013DataService\022;\n\tGetPerso" +
+      "n\022\032.services.GetPersonRequest\032\020.services" +
+      ".Person\"\000\0222\n\nSavePerson\022\020.services.Perso" +
+      "n\032\020.services.Person\"\000\0224\n\014UpdatePerson\022\020." +
+      "services.Person\032\020.services.Person\"\000\0228\n\010G" +
+      "etPhone\022\031.services.GetPhoneRequest\032\017.ser" +
+      "vices.Phone\"\000\022/\n\tSavePhone\022\017.services.Ph" +
+      "one\032\017.services.Phone\"\000\0221\n\013UpdatePhone\022\017." +
+      "services.Phone\032\017.services.Phone\"\000B\033\n\027com" +
+      ".ortiz.grpc.servicesP\001b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -52,12 +72,24 @@ public final class DataServiceOuterClass {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_services_GetPersonRequest_descriptor,
         new String[] { "TenantId", "PersonId", });
-    internal_static_services_GetPersonResponse_descriptor =
+    internal_static_services_Phone_descriptor =
       getDescriptor().getMessageTypes().get(1);
-    internal_static_services_GetPersonResponse_fieldAccessorTable = new
+    internal_static_services_Phone_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_services_GetPersonResponse_descriptor,
-        new String[] { "TenantId", "Id", "Name", "Type", "CpfCnpj", });
+        internal_static_services_Phone_descriptor,
+        new String[] { "Id", "Ddi", "Ddd", "Number", "ExtensionLine", });
+    internal_static_services_Person_descriptor =
+      getDescriptor().getMessageTypes().get(2);
+    internal_static_services_Person_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_services_Person_descriptor,
+        new String[] { "TenantId", "PersonId", "Name", "Type", "CpfCnpj", "Phones", });
+    internal_static_services_GetPhoneRequest_descriptor =
+      getDescriptor().getMessageTypes().get(3);
+    internal_static_services_GetPhoneRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_services_GetPhoneRequest_descriptor,
+        new String[] { "PhoneId", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

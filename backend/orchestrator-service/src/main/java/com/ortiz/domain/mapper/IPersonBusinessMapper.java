@@ -4,6 +4,7 @@ import com.ortiz.domain.CorporatePerson;
 import com.ortiz.domain.Person;
 import com.ortiz.domain.PhysicalPerson;
 import com.ortiz.dto.PersonDTO;
+import com.ortiz.grpc.services.GetPersonResponse;
 import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

@@ -3,13 +3,11 @@ package com.ortiz.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Builder;
 import lombok.Data;
 
 import java.util.List;
 
 @Data
-@Builder
 public class PersonDTO {
     @JsonIgnore
     private String tenantId;
