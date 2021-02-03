@@ -24,7 +24,4 @@ hs_err_pid*
 
 .idea/
 target/
-
-stubs/
-
-validation-fields-service.iml
+data-service-stub.iml

@@ -24,6 +24,11 @@
     </properties>
     <dependencies>
         <dependency>
+            <groupId>com.ortiz</groupId>
+            <artifactId>data-service-stub</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
@@ -69,36 +74,11 @@
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-core</artifactId>
         </dependency>
-
-        <!-- GRPC DEP-->
-        <!-- https://github.com/grpc/grpc-java/blob/master/README.md-->
-<!--        <dependency>-->
-<!--            <groupId>io.grpc</groupId>-->
-<!--            <artifactId>grpc-netty-shaded</artifactId>-->
-<!--            <version>1.35.0</version>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>io.grpc</groupId>-->
-<!--            <artifactId>grpc-protobuf</artifactId>-->
-<!--            <version>1.35.0</version>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>io.grpc</groupId>-->
-<!--            <artifactId>grpc-stub</artifactId>-->
-<!--            <version>1.35.0</version>-->
-<!--        </dependency>-->
-<!--        <dependency> &lt;!&ndash; necessary for Java 9+ &ndash;&gt;-->
-<!--            <groupId>org.apache.tomcat</groupId>-->
-<!--            <artifactId>annotations-api</artifactId>-->
-<!--            <version>6.0.53</version>-->
-<!--            <scope>provided</scope>-->
-<!--        </dependency>-->
         <dependency>
             <groupId>net.devh</groupId>
             <artifactId>grpc-server-spring-boot-starter</artifactId>
             <version>2.10.1.RELEASE</version>
         </dependency>
-
     </dependencies>
     <build>
         <finalName>data-service</finalName>
@@ -140,42 +120,6 @@
                     </compilerArgs>
                 </configuration>
             </plugin>
-
-            <!-- compile proto file into java files. -->
-<!--            <plugin>-->
-<!--                <groupId>com.github.os72</groupId>-->
-<!--                <artifactId>protoc-jar-maven-plugin</artifactId>-->
-<!--                <version>3.11.4</version>-->
-<!--                <executions>-->
-<!--                    <execution>-->
-<!--                        <phase>generate-sources</phase>-->
-<!--                        <goals>-->
-<!--                            <goal>run</goal>-->
-<!--                        </goals>-->
-<!--                        <configuration>-->
-<!--                            <includeMavenTypes>direct</includeMavenTypes>-->
-
-<!--                            <inputDirectories>-->
-<!--                                <include>src/main/resources</include>-->
-<!--                            </inputDirectories>-->
-
-<!--                            <outputTargets>-->
-<!--                                <outputTarget>-->
-<!--                                    <type>java</type>-->
-<!--                                    <outputDirectory>src/main/grpc</outputDirectory>-->
-<!--                                </outputTarget>-->
-<!--                                <outputTarget>-->
-<!--                                    <type>grpc-java</type>-->
-<!--                                    <pluginArtifact>io.grpc:protoc-gen-grpc-java:1.35.0</pluginArtifact>-->
-<!--                                    <outputDirectory>src/main/grpc</outputDirectory>-->
-<!--                                </outputTarget>-->
-<!--                            </outputTargets>-->
-<!--                        </configuration>-->
-<!--                    </execution>-->
-<!--                </executions>-->
-<!--            </plugin>-->
-
-
 
             <!--            <plugin>-->
             <!--                <groupId>org.flywaydb</groupId>-->

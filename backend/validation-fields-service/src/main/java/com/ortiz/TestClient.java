@@ -2,7 +2,7 @@ package com.ortiz;
 
 import com.ortiz.grpc.services.DataServiceGrpc;
 import com.ortiz.grpc.services.GetPersonRequest;
-import com.ortiz.grpc.services.GetPersonResponse;
+import com.ortiz.grpc.services.Person;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 
@@ -16,7 +16,7 @@ public class TestClient {
         DataServiceGrpc.DataServiceBlockingStub stub
                 = DataServiceGrpc.newBlockingStub(channel);
 
-        GetPersonResponse personResponse = stub.getPerson(GetPersonRequest.newBuilder()
+        Person personResponse = stub.getPerson(GetPersonRequest.newBuilder()
                 .setTenantId("123456")
                 .setPersonId("123456")
                 .build());
