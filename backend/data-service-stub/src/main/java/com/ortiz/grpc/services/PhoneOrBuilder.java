@@ -8,38 +8,77 @@ public interface PhoneOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>string id = 1;</code>
+   * <code>.google.protobuf.StringValue id = 1;</code>
+   * @return Whether the id field is set.
+   */
+  boolean hasId();
+  /**
+   * <code>.google.protobuf.StringValue id = 1;</code>
    * @return The id.
    */
-  java.lang.String getId();
+  com.google.protobuf.StringValue getId();
   /**
-   * <code>string id = 1;</code>
-   * @return The bytes for id.
+   * <code>.google.protobuf.StringValue id = 1;</code>
    */
-  com.google.protobuf.ByteString
-      getIdBytes();
+  com.google.protobuf.StringValueOrBuilder getIdOrBuilder();
 
   /**
-   * <code>int32 ddi = 2;</code>
+   * <code>.google.protobuf.Int32Value ddi = 2;</code>
+   * @return Whether the ddi field is set.
+   */
+  boolean hasDdi();
+  /**
+   * <code>.google.protobuf.Int32Value ddi = 2;</code>
    * @return The ddi.
    */
-  int getDdi();
+  com.google.protobuf.Int32Value getDdi();
+  /**
+   * <code>.google.protobuf.Int32Value ddi = 2;</code>
+   */
+  com.google.protobuf.Int32ValueOrBuilder getDdiOrBuilder();
 
   /**
-   * <code>int32 ddd = 3;</code>
+   * <code>.google.protobuf.Int32Value ddd = 3;</code>
+   * @return Whether the ddd field is set.
+   */
+  boolean hasDdd();
+  /**
+   * <code>.google.protobuf.Int32Value ddd = 3;</code>
    * @return The ddd.
    */
-  int getDdd();
+  com.google.protobuf.Int32Value getDdd();
+  /**
+   * <code>.google.protobuf.Int32Value ddd = 3;</code>
+   */
+  com.google.protobuf.Int32ValueOrBuilder getDddOrBuilder();
 
   /**
-   * <code>int32 number = 4;</code>
+   * <code>.google.protobuf.Int32Value number = 4;</code>
+   * @return Whether the number field is set.
+   */
+  boolean hasNumber();
+  /**
+   * <code>.google.protobuf.Int32Value number = 4;</code>
    * @return The number.
    */
-  int getNumber();
+  com.google.protobuf.Int32Value getNumber();
+  /**
+   * <code>.google.protobuf.Int32Value number = 4;</code>
+   */
+  com.google.protobuf.Int32ValueOrBuilder getNumberOrBuilder();
 
   /**
-   * <code>int32 extensionLine = 5;</code>
+   * <code>.google.protobuf.Int32Value extensionLine = 5;</code>
+   * @return Whether the extensionLine field is set.
+   */
+  boolean hasExtensionLine();
+  /**
+   * <code>.google.protobuf.Int32Value extensionLine = 5;</code>
    * @return The extensionLine.
    */
-  int getExtensionLine();
+  com.google.protobuf.Int32Value getExtensionLine();
+  /**
+   * <code>.google.protobuf.Int32Value extensionLine = 5;</code>
+   */
+  com.google.protobuf.Int32ValueOrBuilder getExtensionLineOrBuilder();
 }

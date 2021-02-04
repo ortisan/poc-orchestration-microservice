@@ -6,10 +6,13 @@ import com.ortiz.grpc.services.Person;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 
+import static com.ortiz.poc.commons.FieldUtils.getStringValue;
+
+
 public class TestClient {
 
     public static void main(String[] args) {
-        ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", 8090)
+        ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", 9090)
                 .usePlaintext()
                 .build();
 
@@ -17,12 +20,14 @@ public class TestClient {
                 = DataServiceGrpc.newBlockingStub(channel);
 
         Person personResponse = stub.getPerson(GetPersonRequest.newBuilder()
-                .setTenantId("123456")
-                .setPersonId("123456")
+                .setTenantId(getStringValue("1234"))
+                .setPersonId(getStringValue("5a783ece-0ef5-48f2-a803-df7b5d9adf2e"))
                 .build());
 
-        System.out.println("personResponse = " + personResponse);
 
+        System.out.println("personResponse = " + personResponse);
+        System.out.println("phones = " + personResponse.getPhonesList());
+        System.out.println("extensionLine = " + personResponse.getPhonesList().stream().findFirst().get().getExtensionLine().getValue());
         channel.shutdown();
     }
 }

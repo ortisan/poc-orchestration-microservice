@@ -16,7 +16,6 @@ private static final long serialVersionUID = 0L;
     super(builder);
   }
   private GetPhoneRequest() {
-    phoneId_ = "";
   }
 
   @java.lang.Override
@@ -50,9 +49,16 @@ private static final long serialVersionUID = 0L;
             done = true;
             break;
           case 10: {
-            java.lang.String s = input.readStringRequireUtf8();
+            com.google.protobuf.StringValue.Builder subBuilder = null;
+            if (phoneId_ != null) {
+              subBuilder = phoneId_.toBuilder();
+            }
+            phoneId_ = input.readMessage(com.google.protobuf.StringValue.parser(), extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom(phoneId_);
+              phoneId_ = subBuilder.buildPartial();
+            }
 
-            phoneId_ = s;
             break;
           }
           default: {
@@ -88,41 +94,29 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int PHONEID_FIELD_NUMBER = 1;
-  private volatile java.lang.Object phoneId_;
+  private com.google.protobuf.StringValue phoneId_;
   /**
-   * <code>string phoneId = 1;</code>
+   * <code>.google.protobuf.StringValue phoneId = 1;</code>
+   * @return Whether the phoneId field is set.
+   */
+  @java.lang.Override
+  public boolean hasPhoneId() {
+    return phoneId_ != null;
+  }
+  /**
+   * <code>.google.protobuf.StringValue phoneId = 1;</code>
    * @return The phoneId.
    */
   @java.lang.Override
-  public java.lang.String getPhoneId() {
-    java.lang.Object ref = phoneId_;
-    if (ref instanceof java.lang.String) {
-      return (java.lang.String) ref;
-    } else {
-      com.google.protobuf.ByteString bs = 
-          (com.google.protobuf.ByteString) ref;
-      java.lang.String s = bs.toStringUtf8();
-      phoneId_ = s;
-      return s;
-    }
+  public com.google.protobuf.StringValue getPhoneId() {
+    return phoneId_ == null ? com.google.protobuf.StringValue.getDefaultInstance() : phoneId_;
   }
   /**
-   * <code>string phoneId = 1;</code>
-   * @return The bytes for phoneId.
+   * <code>.google.protobuf.StringValue phoneId = 1;</code>
    */
   @java.lang.Override
-  public com.google.protobuf.ByteString
-      getPhoneIdBytes() {
-    java.lang.Object ref = phoneId_;
-    if (ref instanceof java.lang.String) {
-      com.google.protobuf.ByteString b = 
-          com.google.protobuf.ByteString.copyFromUtf8(
-              (java.lang.String) ref);
-      phoneId_ = b;
-      return b;
-    } else {
-      return (com.google.protobuf.ByteString) ref;
-    }
+  public com.google.protobuf.StringValueOrBuilder getPhoneIdOrBuilder() {
+    return getPhoneId();
   }
 
   private byte memoizedIsInitialized = -1;
@@ -139,8 +133,8 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (!getPhoneIdBytes().isEmpty()) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 1, phoneId_);
+    if (phoneId_ != null) {
+      output.writeMessage(1, getPhoneId());
     }
     unknownFields.writeTo(output);
   }
@@ -151,8 +145,9 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (!getPhoneIdBytes().isEmpty()) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, phoneId_);
+    if (phoneId_ != null) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(1, getPhoneId());
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -169,8 +164,11 @@ private static final long serialVersionUID = 0L;
     }
     com.ortiz.grpc.services.GetPhoneRequest other = (com.ortiz.grpc.services.GetPhoneRequest) obj;
 
-    if (!getPhoneId()
-        .equals(other.getPhoneId())) return false;
+    if (hasPhoneId() != other.hasPhoneId()) return false;
+    if (hasPhoneId()) {
+      if (!getPhoneId()
+          .equals(other.getPhoneId())) return false;
+    }
     if (!unknownFields.equals(other.unknownFields)) return false;
     return true;
   }
@@ -182,8 +180,10 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (37 * hash) + PHONEID_FIELD_NUMBER;
-    hash = (53 * hash) + getPhoneId().hashCode();
+    if (hasPhoneId()) {
+      hash = (37 * hash) + PHONEID_FIELD_NUMBER;
+      hash = (53 * hash) + getPhoneId().hashCode();
+    }
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -317,8 +317,12 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public Builder clear() {
       super.clear();
-      phoneId_ = "";
-
+      if (phoneIdBuilder_ == null) {
+        phoneId_ = null;
+      } else {
+        phoneId_ = null;
+        phoneIdBuilder_ = null;
+      }
       return this;
     }
 
@@ -345,7 +349,11 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public com.ortiz.grpc.services.GetPhoneRequest buildPartial() {
       com.ortiz.grpc.services.GetPhoneRequest result = new com.ortiz.grpc.services.GetPhoneRequest(this);
-      result.phoneId_ = phoneId_;
+      if (phoneIdBuilder_ == null) {
+        result.phoneId_ = phoneId_;
+      } else {
+        result.phoneId_ = phoneIdBuilder_.build();
+      }
       onBuilt();
       return result;
     }
@@ -394,9 +402,8 @@ private static final long serialVersionUID = 0L;
 
     public Builder mergeFrom(com.ortiz.grpc.services.GetPhoneRequest other) {
       if (other == com.ortiz.grpc.services.GetPhoneRequest.getDefaultInstance()) return this;
-      if (!other.getPhoneId().isEmpty()) {
-        phoneId_ = other.phoneId_;
-        onChanged();
+      if (other.hasPhoneId()) {
+        mergePhoneId(other.getPhoneId());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -427,80 +434,123 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private java.lang.Object phoneId_ = "";
+    private com.google.protobuf.StringValue phoneId_;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.google.protobuf.StringValue, com.google.protobuf.StringValue.Builder, com.google.protobuf.StringValueOrBuilder> phoneIdBuilder_;
     /**
-     * <code>string phoneId = 1;</code>
+     * <code>.google.protobuf.StringValue phoneId = 1;</code>
+     * @return Whether the phoneId field is set.
+     */
+    public boolean hasPhoneId() {
+      return phoneIdBuilder_ != null || phoneId_ != null;
+    }
+    /**
+     * <code>.google.protobuf.StringValue phoneId = 1;</code>
      * @return The phoneId.
      */
-    public java.lang.String getPhoneId() {
-      java.lang.Object ref = phoneId_;
-      if (!(ref instanceof java.lang.String)) {
-        com.google.protobuf.ByteString bs =
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        phoneId_ = s;
-        return s;
+    public com.google.protobuf.StringValue getPhoneId() {
+      if (phoneIdBuilder_ == null) {
+        return phoneId_ == null ? com.google.protobuf.StringValue.getDefaultInstance() : phoneId_;
       } else {
-        return (java.lang.String) ref;
+        return phoneIdBuilder_.getMessage();
       }
     }
     /**
-     * <code>string phoneId = 1;</code>
-     * @return The bytes for phoneId.
+     * <code>.google.protobuf.StringValue phoneId = 1;</code>
      */
-    public com.google.protobuf.ByteString
-        getPhoneIdBytes() {
-      java.lang.Object ref = phoneId_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        phoneId_ = b;
-        return b;
+    public Builder setPhoneId(com.google.protobuf.StringValue value) {
+      if (phoneIdBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        phoneId_ = value;
+        onChanged();
       } else {
-        return (com.google.protobuf.ByteString) ref;
+        phoneIdBuilder_.setMessage(value);
       }
+
+      return this;
     }
     /**
-     * <code>string phoneId = 1;</code>
-     * @param value The phoneId to set.
-     * @return This builder for chaining.
+     * <code>.google.protobuf.StringValue phoneId = 1;</code>
      */
     public Builder setPhoneId(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      phoneId_ = value;
-      onChanged();
+        com.google.protobuf.StringValue.Builder builderForValue) {
+      if (phoneIdBuilder_ == null) {
+        phoneId_ = builderForValue.build();
+        onChanged();
+      } else {
+        phoneIdBuilder_.setMessage(builderForValue.build());
+      }
+
       return this;
     }
     /**
-     * <code>string phoneId = 1;</code>
-     * @return This builder for chaining.
+     * <code>.google.protobuf.StringValue phoneId = 1;</code>
+     */
+    public Builder mergePhoneId(com.google.protobuf.StringValue value) {
+      if (phoneIdBuilder_ == null) {
+        if (phoneId_ != null) {
+          phoneId_ =
+            com.google.protobuf.StringValue.newBuilder(phoneId_).mergeFrom(value).buildPartial();
+        } else {
+          phoneId_ = value;
+        }
+        onChanged();
+      } else {
+        phoneIdBuilder_.mergeFrom(value);
+      }
+
+      return this;
+    }
+    /**
+     * <code>.google.protobuf.StringValue phoneId = 1;</code>
      */
     public Builder clearPhoneId() {
-      
-      phoneId_ = getDefaultInstance().getPhoneId();
-      onChanged();
+      if (phoneIdBuilder_ == null) {
+        phoneId_ = null;
+        onChanged();
+      } else {
+        phoneId_ = null;
+        phoneIdBuilder_ = null;
+      }
+
       return this;
     }
     /**
-     * <code>string phoneId = 1;</code>
-     * @param value The bytes for phoneId to set.
-     * @return This builder for chaining.
+     * <code>.google.protobuf.StringValue phoneId = 1;</code>
      */
-    public Builder setPhoneIdBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
+    public com.google.protobuf.StringValue.Builder getPhoneIdBuilder() {
       
-      phoneId_ = value;
       onChanged();
-      return this;
+      return getPhoneIdFieldBuilder().getBuilder();
+    }
+    /**
+     * <code>.google.protobuf.StringValue phoneId = 1;</code>
+     */
+    public com.google.protobuf.StringValueOrBuilder getPhoneIdOrBuilder() {
+      if (phoneIdBuilder_ != null) {
+        return phoneIdBuilder_.getMessageOrBuilder();
+      } else {
+        return phoneId_ == null ?
+            com.google.protobuf.StringValue.getDefaultInstance() : phoneId_;
+      }
+    }
+    /**
+     * <code>.google.protobuf.StringValue phoneId = 1;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.google.protobuf.StringValue, com.google.protobuf.StringValue.Builder, com.google.protobuf.StringValueOrBuilder> 
+        getPhoneIdFieldBuilder() {
+      if (phoneIdBuilder_ == null) {
+        phoneIdBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            com.google.protobuf.StringValue, com.google.protobuf.StringValue.Builder, com.google.protobuf.StringValueOrBuilder>(
+                getPhoneId(),
+                getParentForChildren(),
+                isClean());
+        phoneId_ = null;
+      }
+      return phoneIdBuilder_;
     }
     @java.lang.Override
     public final Builder setUnknownFields(

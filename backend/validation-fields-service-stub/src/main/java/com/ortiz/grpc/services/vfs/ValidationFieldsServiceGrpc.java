@@ -1,11 +1,24 @@
 package com.ortiz.grpc.services.vfs;
 
 import static io.grpc.MethodDescriptor.generateFullMethodName;
+import static io.grpc.stub.ClientCalls.asyncBidiStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncClientStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncServerStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncUnaryCall;
+import static io.grpc.stub.ClientCalls.blockingServerStreamingCall;
+import static io.grpc.stub.ClientCalls.blockingUnaryCall;
+import static io.grpc.stub.ClientCalls.futureUnaryCall;
+import static io.grpc.stub.ServerCalls.asyncBidiStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncClientStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncServerStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncUnaryCall;
+import static io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
 
 /**
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.35.0)",
+    value = "by gRPC proto compiler (version 1.31.0)",
     comments = "Source: validation-fields-service.proto")
 public final class ValidationFieldsServiceGrpc {
 
@@ -97,14 +110,14 @@ public final class ValidationFieldsServiceGrpc {
      */
     public void saveVerifiedFields(com.ortiz.grpc.services.vfs.VerfieldFields request,
         io.grpc.stub.StreamObserver<com.ortiz.grpc.services.vfs.VerfieldFields> responseObserver) {
-      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getSaveVerifiedFieldsMethod(), responseObserver);
+      asyncUnimplementedUnaryCall(getSaveVerifiedFieldsMethod(), responseObserver);
     }
 
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
             getSaveVerifiedFieldsMethod(),
-            io.grpc.stub.ServerCalls.asyncUnaryCall(
+            asyncUnaryCall(
               new MethodHandlers<
                 com.ortiz.grpc.services.vfs.VerfieldFields,
                 com.ortiz.grpc.services.vfs.VerfieldFields>(
@@ -131,7 +144,7 @@ public final class ValidationFieldsServiceGrpc {
      */
     public void saveVerifiedFields(com.ortiz.grpc.services.vfs.VerfieldFields request,
         io.grpc.stub.StreamObserver<com.ortiz.grpc.services.vfs.VerfieldFields> responseObserver) {
-      io.grpc.stub.ClientCalls.asyncUnaryCall(
+      asyncUnaryCall(
           getChannel().newCall(getSaveVerifiedFieldsMethod(), getCallOptions()), request, responseObserver);
     }
   }
@@ -153,7 +166,7 @@ public final class ValidationFieldsServiceGrpc {
     /**
      */
     public com.ortiz.grpc.services.vfs.VerfieldFields saveVerifiedFields(com.ortiz.grpc.services.vfs.VerfieldFields request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+      return blockingUnaryCall(
           getChannel(), getSaveVerifiedFieldsMethod(), getCallOptions(), request);
     }
   }
@@ -176,7 +189,7 @@ public final class ValidationFieldsServiceGrpc {
      */
     public com.google.common.util.concurrent.ListenableFuture<com.ortiz.grpc.services.vfs.VerfieldFields> saveVerifiedFields(
         com.ortiz.grpc.services.vfs.VerfieldFields request) {
-      return io.grpc.stub.ClientCalls.futureUnaryCall(
+      return futureUnaryCall(
           getChannel().newCall(getSaveVerifiedFieldsMethod(), getCallOptions()), request);
     }
   }

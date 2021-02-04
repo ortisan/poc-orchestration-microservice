@@ -16,8 +16,6 @@ private static final long serialVersionUID = 0L;
     super(builder);
   }
   private GetPersonRequest() {
-    tenantId_ = "";
-    personId_ = "";
   }
 
   @java.lang.Override
@@ -51,15 +49,29 @@ private static final long serialVersionUID = 0L;
             done = true;
             break;
           case 10: {
-            java.lang.String s = input.readStringRequireUtf8();
+            com.google.protobuf.StringValue.Builder subBuilder = null;
+            if (tenantId_ != null) {
+              subBuilder = tenantId_.toBuilder();
+            }
+            tenantId_ = input.readMessage(com.google.protobuf.StringValue.parser(), extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom(tenantId_);
+              tenantId_ = subBuilder.buildPartial();
+            }
 
-            tenantId_ = s;
             break;
           }
           case 18: {
-            java.lang.String s = input.readStringRequireUtf8();
+            com.google.protobuf.StringValue.Builder subBuilder = null;
+            if (personId_ != null) {
+              subBuilder = personId_.toBuilder();
+            }
+            personId_ = input.readMessage(com.google.protobuf.StringValue.parser(), extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom(personId_);
+              personId_ = subBuilder.buildPartial();
+            }
 
-            personId_ = s;
             break;
           }
           default: {
@@ -95,79 +107,55 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int TENANTID_FIELD_NUMBER = 1;
-  private volatile java.lang.Object tenantId_;
+  private com.google.protobuf.StringValue tenantId_;
   /**
-   * <code>string tenantId = 1;</code>
+   * <code>.google.protobuf.StringValue tenantId = 1;</code>
+   * @return Whether the tenantId field is set.
+   */
+  @java.lang.Override
+  public boolean hasTenantId() {
+    return tenantId_ != null;
+  }
+  /**
+   * <code>.google.protobuf.StringValue tenantId = 1;</code>
    * @return The tenantId.
    */
   @java.lang.Override
-  public java.lang.String getTenantId() {
-    java.lang.Object ref = tenantId_;
-    if (ref instanceof java.lang.String) {
-      return (java.lang.String) ref;
-    } else {
-      com.google.protobuf.ByteString bs = 
-          (com.google.protobuf.ByteString) ref;
-      java.lang.String s = bs.toStringUtf8();
-      tenantId_ = s;
-      return s;
-    }
+  public com.google.protobuf.StringValue getTenantId() {
+    return tenantId_ == null ? com.google.protobuf.StringValue.getDefaultInstance() : tenantId_;
   }
   /**
-   * <code>string tenantId = 1;</code>
-   * @return The bytes for tenantId.
+   * <code>.google.protobuf.StringValue tenantId = 1;</code>
    */
   @java.lang.Override
-  public com.google.protobuf.ByteString
-      getTenantIdBytes() {
-    java.lang.Object ref = tenantId_;
-    if (ref instanceof java.lang.String) {
-      com.google.protobuf.ByteString b = 
-          com.google.protobuf.ByteString.copyFromUtf8(
-              (java.lang.String) ref);
-      tenantId_ = b;
-      return b;
-    } else {
-      return (com.google.protobuf.ByteString) ref;
-    }
+  public com.google.protobuf.StringValueOrBuilder getTenantIdOrBuilder() {
+    return getTenantId();
   }
 
   public static final int PERSONID_FIELD_NUMBER = 2;
-  private volatile java.lang.Object personId_;
+  private com.google.protobuf.StringValue personId_;
   /**
-   * <code>string personId = 2;</code>
+   * <code>.google.protobuf.StringValue personId = 2;</code>
+   * @return Whether the personId field is set.
+   */
+  @java.lang.Override
+  public boolean hasPersonId() {
+    return personId_ != null;
+  }
+  /**
+   * <code>.google.protobuf.StringValue personId = 2;</code>
    * @return The personId.
    */
   @java.lang.Override
-  public java.lang.String getPersonId() {
-    java.lang.Object ref = personId_;
-    if (ref instanceof java.lang.String) {
-      return (java.lang.String) ref;
-    } else {
-      com.google.protobuf.ByteString bs = 
-          (com.google.protobuf.ByteString) ref;
-      java.lang.String s = bs.toStringUtf8();
-      personId_ = s;
-      return s;
-    }
+  public com.google.protobuf.StringValue getPersonId() {
+    return personId_ == null ? com.google.protobuf.StringValue.getDefaultInstance() : personId_;
   }
   /**
-   * <code>string personId = 2;</code>
-   * @return The bytes for personId.
+   * <code>.google.protobuf.StringValue personId = 2;</code>
    */
   @java.lang.Override
-  public com.google.protobuf.ByteString
-      getPersonIdBytes() {
-    java.lang.Object ref = personId_;
-    if (ref instanceof java.lang.String) {
-      com.google.protobuf.ByteString b = 
-          com.google.protobuf.ByteString.copyFromUtf8(
-              (java.lang.String) ref);
-      personId_ = b;
-      return b;
-    } else {
-      return (com.google.protobuf.ByteString) ref;
-    }
+  public com.google.protobuf.StringValueOrBuilder getPersonIdOrBuilder() {
+    return getPersonId();
   }
 
   private byte memoizedIsInitialized = -1;
@@ -184,11 +172,11 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (!getTenantIdBytes().isEmpty()) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 1, tenantId_);
+    if (tenantId_ != null) {
+      output.writeMessage(1, getTenantId());
     }
-    if (!getPersonIdBytes().isEmpty()) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 2, personId_);
+    if (personId_ != null) {
+      output.writeMessage(2, getPersonId());
     }
     unknownFields.writeTo(output);
   }
@@ -199,11 +187,13 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (!getTenantIdBytes().isEmpty()) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, tenantId_);
+    if (tenantId_ != null) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(1, getTenantId());
     }
-    if (!getPersonIdBytes().isEmpty()) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, personId_);
+    if (personId_ != null) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(2, getPersonId());
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -220,10 +210,16 @@ private static final long serialVersionUID = 0L;
     }
     com.ortiz.grpc.services.GetPersonRequest other = (com.ortiz.grpc.services.GetPersonRequest) obj;
 
-    if (!getTenantId()
-        .equals(other.getTenantId())) return false;
-    if (!getPersonId()
-        .equals(other.getPersonId())) return false;
+    if (hasTenantId() != other.hasTenantId()) return false;
+    if (hasTenantId()) {
+      if (!getTenantId()
+          .equals(other.getTenantId())) return false;
+    }
+    if (hasPersonId() != other.hasPersonId()) return false;
+    if (hasPersonId()) {
+      if (!getPersonId()
+          .equals(other.getPersonId())) return false;
+    }
     if (!unknownFields.equals(other.unknownFields)) return false;
     return true;
   }
@@ -235,10 +231,14 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (37 * hash) + TENANTID_FIELD_NUMBER;
-    hash = (53 * hash) + getTenantId().hashCode();
-    hash = (37 * hash) + PERSONID_FIELD_NUMBER;
-    hash = (53 * hash) + getPersonId().hashCode();
+    if (hasTenantId()) {
+      hash = (37 * hash) + TENANTID_FIELD_NUMBER;
+      hash = (53 * hash) + getTenantId().hashCode();
+    }
+    if (hasPersonId()) {
+      hash = (37 * hash) + PERSONID_FIELD_NUMBER;
+      hash = (53 * hash) + getPersonId().hashCode();
+    }
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -372,10 +372,18 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public Builder clear() {
       super.clear();
-      tenantId_ = "";
-
-      personId_ = "";
-
+      if (tenantIdBuilder_ == null) {
+        tenantId_ = null;
+      } else {
+        tenantId_ = null;
+        tenantIdBuilder_ = null;
+      }
+      if (personIdBuilder_ == null) {
+        personId_ = null;
+      } else {
+        personId_ = null;
+        personIdBuilder_ = null;
+      }
       return this;
     }
 
@@ -402,8 +410,16 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public com.ortiz.grpc.services.GetPersonRequest buildPartial() {
       com.ortiz.grpc.services.GetPersonRequest result = new com.ortiz.grpc.services.GetPersonRequest(this);
-      result.tenantId_ = tenantId_;
-      result.personId_ = personId_;
+      if (tenantIdBuilder_ == null) {
+        result.tenantId_ = tenantId_;
+      } else {
+        result.tenantId_ = tenantIdBuilder_.build();
+      }
+      if (personIdBuilder_ == null) {
+        result.personId_ = personId_;
+      } else {
+        result.personId_ = personIdBuilder_.build();
+      }
       onBuilt();
       return result;
     }
@@ -452,13 +468,11 @@ private static final long serialVersionUID = 0L;
 
     public Builder mergeFrom(com.ortiz.grpc.services.GetPersonRequest other) {
       if (other == com.ortiz.grpc.services.GetPersonRequest.getDefaultInstance()) return this;
-      if (!other.getTenantId().isEmpty()) {
-        tenantId_ = other.tenantId_;
-        onChanged();
+      if (other.hasTenantId()) {
+        mergeTenantId(other.getTenantId());
       }
-      if (!other.getPersonId().isEmpty()) {
-        personId_ = other.personId_;
-        onChanged();
+      if (other.hasPersonId()) {
+        mergePersonId(other.getPersonId());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -489,156 +503,242 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private java.lang.Object tenantId_ = "";
+    private com.google.protobuf.StringValue tenantId_;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.google.protobuf.StringValue, com.google.protobuf.StringValue.Builder, com.google.protobuf.StringValueOrBuilder> tenantIdBuilder_;
     /**
-     * <code>string tenantId = 1;</code>
+     * <code>.google.protobuf.StringValue tenantId = 1;</code>
+     * @return Whether the tenantId field is set.
+     */
+    public boolean hasTenantId() {
+      return tenantIdBuilder_ != null || tenantId_ != null;
+    }
+    /**
+     * <code>.google.protobuf.StringValue tenantId = 1;</code>
      * @return The tenantId.
      */
-    public java.lang.String getTenantId() {
-      java.lang.Object ref = tenantId_;
-      if (!(ref instanceof java.lang.String)) {
-        com.google.protobuf.ByteString bs =
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        tenantId_ = s;
-        return s;
+    public com.google.protobuf.StringValue getTenantId() {
+      if (tenantIdBuilder_ == null) {
+        return tenantId_ == null ? com.google.protobuf.StringValue.getDefaultInstance() : tenantId_;
       } else {
-        return (java.lang.String) ref;
+        return tenantIdBuilder_.getMessage();
       }
     }
     /**
-     * <code>string tenantId = 1;</code>
-     * @return The bytes for tenantId.
+     * <code>.google.protobuf.StringValue tenantId = 1;</code>
      */
-    public com.google.protobuf.ByteString
-        getTenantIdBytes() {
-      java.lang.Object ref = tenantId_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        tenantId_ = b;
-        return b;
+    public Builder setTenantId(com.google.protobuf.StringValue value) {
+      if (tenantIdBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        tenantId_ = value;
+        onChanged();
       } else {
-        return (com.google.protobuf.ByteString) ref;
+        tenantIdBuilder_.setMessage(value);
       }
+
+      return this;
     }
     /**
-     * <code>string tenantId = 1;</code>
-     * @param value The tenantId to set.
-     * @return This builder for chaining.
+     * <code>.google.protobuf.StringValue tenantId = 1;</code>
      */
     public Builder setTenantId(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      tenantId_ = value;
-      onChanged();
+        com.google.protobuf.StringValue.Builder builderForValue) {
+      if (tenantIdBuilder_ == null) {
+        tenantId_ = builderForValue.build();
+        onChanged();
+      } else {
+        tenantIdBuilder_.setMessage(builderForValue.build());
+      }
+
       return this;
     }
     /**
-     * <code>string tenantId = 1;</code>
-     * @return This builder for chaining.
+     * <code>.google.protobuf.StringValue tenantId = 1;</code>
+     */
+    public Builder mergeTenantId(com.google.protobuf.StringValue value) {
+      if (tenantIdBuilder_ == null) {
+        if (tenantId_ != null) {
+          tenantId_ =
+            com.google.protobuf.StringValue.newBuilder(tenantId_).mergeFrom(value).buildPartial();
+        } else {
+          tenantId_ = value;
+        }
+        onChanged();
+      } else {
+        tenantIdBuilder_.mergeFrom(value);
+      }
+
+      return this;
+    }
+    /**
+     * <code>.google.protobuf.StringValue tenantId = 1;</code>
      */
     public Builder clearTenantId() {
-      
-      tenantId_ = getDefaultInstance().getTenantId();
-      onChanged();
+      if (tenantIdBuilder_ == null) {
+        tenantId_ = null;
+        onChanged();
+      } else {
+        tenantId_ = null;
+        tenantIdBuilder_ = null;
+      }
+
       return this;
     }
     /**
-     * <code>string tenantId = 1;</code>
-     * @param value The bytes for tenantId to set.
-     * @return This builder for chaining.
+     * <code>.google.protobuf.StringValue tenantId = 1;</code>
      */
-    public Builder setTenantIdBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
+    public com.google.protobuf.StringValue.Builder getTenantIdBuilder() {
       
-      tenantId_ = value;
       onChanged();
-      return this;
+      return getTenantIdFieldBuilder().getBuilder();
+    }
+    /**
+     * <code>.google.protobuf.StringValue tenantId = 1;</code>
+     */
+    public com.google.protobuf.StringValueOrBuilder getTenantIdOrBuilder() {
+      if (tenantIdBuilder_ != null) {
+        return tenantIdBuilder_.getMessageOrBuilder();
+      } else {
+        return tenantId_ == null ?
+            com.google.protobuf.StringValue.getDefaultInstance() : tenantId_;
+      }
+    }
+    /**
+     * <code>.google.protobuf.StringValue tenantId = 1;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.google.protobuf.StringValue, com.google.protobuf.StringValue.Builder, com.google.protobuf.StringValueOrBuilder> 
+        getTenantIdFieldBuilder() {
+      if (tenantIdBuilder_ == null) {
+        tenantIdBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            com.google.protobuf.StringValue, com.google.protobuf.StringValue.Builder, com.google.protobuf.StringValueOrBuilder>(
+                getTenantId(),
+                getParentForChildren(),
+                isClean());
+        tenantId_ = null;
+      }
+      return tenantIdBuilder_;
     }
 
-    private java.lang.Object personId_ = "";
+    private com.google.protobuf.StringValue personId_;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.google.protobuf.StringValue, com.google.protobuf.StringValue.Builder, com.google.protobuf.StringValueOrBuilder> personIdBuilder_;
     /**
-     * <code>string personId = 2;</code>
+     * <code>.google.protobuf.StringValue personId = 2;</code>
+     * @return Whether the personId field is set.
+     */
+    public boolean hasPersonId() {
+      return personIdBuilder_ != null || personId_ != null;
+    }
+    /**
+     * <code>.google.protobuf.StringValue personId = 2;</code>
      * @return The personId.
      */
-    public java.lang.String getPersonId() {
-      java.lang.Object ref = personId_;
-      if (!(ref instanceof java.lang.String)) {
-        com.google.protobuf.ByteString bs =
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        personId_ = s;
-        return s;
+    public com.google.protobuf.StringValue getPersonId() {
+      if (personIdBuilder_ == null) {
+        return personId_ == null ? com.google.protobuf.StringValue.getDefaultInstance() : personId_;
       } else {
-        return (java.lang.String) ref;
+        return personIdBuilder_.getMessage();
       }
     }
     /**
-     * <code>string personId = 2;</code>
-     * @return The bytes for personId.
+     * <code>.google.protobuf.StringValue personId = 2;</code>
      */
-    public com.google.protobuf.ByteString
-        getPersonIdBytes() {
-      java.lang.Object ref = personId_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        personId_ = b;
-        return b;
+    public Builder setPersonId(com.google.protobuf.StringValue value) {
+      if (personIdBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        personId_ = value;
+        onChanged();
       } else {
-        return (com.google.protobuf.ByteString) ref;
+        personIdBuilder_.setMessage(value);
       }
+
+      return this;
     }
     /**
-     * <code>string personId = 2;</code>
-     * @param value The personId to set.
-     * @return This builder for chaining.
+     * <code>.google.protobuf.StringValue personId = 2;</code>
      */
     public Builder setPersonId(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      personId_ = value;
-      onChanged();
+        com.google.protobuf.StringValue.Builder builderForValue) {
+      if (personIdBuilder_ == null) {
+        personId_ = builderForValue.build();
+        onChanged();
+      } else {
+        personIdBuilder_.setMessage(builderForValue.build());
+      }
+
       return this;
     }
     /**
-     * <code>string personId = 2;</code>
-     * @return This builder for chaining.
+     * <code>.google.protobuf.StringValue personId = 2;</code>
+     */
+    public Builder mergePersonId(com.google.protobuf.StringValue value) {
+      if (personIdBuilder_ == null) {
+        if (personId_ != null) {
+          personId_ =
+            com.google.protobuf.StringValue.newBuilder(personId_).mergeFrom(value).buildPartial();
+        } else {
+          personId_ = value;
+        }
+        onChanged();
+      } else {
+        personIdBuilder_.mergeFrom(value);
+      }
+
+      return this;
+    }
+    /**
+     * <code>.google.protobuf.StringValue personId = 2;</code>
      */
     public Builder clearPersonId() {
-      
-      personId_ = getDefaultInstance().getPersonId();
-      onChanged();
+      if (personIdBuilder_ == null) {
+        personId_ = null;
+        onChanged();
+      } else {
+        personId_ = null;
+        personIdBuilder_ = null;
+      }
+
       return this;
     }
     /**
-     * <code>string personId = 2;</code>
-     * @param value The bytes for personId to set.
-     * @return This builder for chaining.
+     * <code>.google.protobuf.StringValue personId = 2;</code>
      */
-    public Builder setPersonIdBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
+    public com.google.protobuf.StringValue.Builder getPersonIdBuilder() {
       
-      personId_ = value;
       onChanged();
-      return this;
+      return getPersonIdFieldBuilder().getBuilder();
+    }
+    /**
+     * <code>.google.protobuf.StringValue personId = 2;</code>
+     */
+    public com.google.protobuf.StringValueOrBuilder getPersonIdOrBuilder() {
+      if (personIdBuilder_ != null) {
+        return personIdBuilder_.getMessageOrBuilder();
+      } else {
+        return personId_ == null ?
+            com.google.protobuf.StringValue.getDefaultInstance() : personId_;
+      }
+    }
+    /**
+     * <code>.google.protobuf.StringValue personId = 2;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.google.protobuf.StringValue, com.google.protobuf.StringValue.Builder, com.google.protobuf.StringValueOrBuilder> 
+        getPersonIdFieldBuilder() {
+      if (personIdBuilder_ == null) {
+        personIdBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            com.google.protobuf.StringValue, com.google.protobuf.StringValue.Builder, com.google.protobuf.StringValueOrBuilder>(
+                getPersonId(),
+                getParentForChildren(),
+                isClean());
+        personId_ = null;
+      }
+      return personIdBuilder_;
     }
     @java.lang.Override
     public final Builder setUnknownFields(

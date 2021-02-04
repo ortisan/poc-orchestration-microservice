@@ -16,7 +16,6 @@ private static final long serialVersionUID = 0L;
     super(builder);
   }
   private Phone() {
-    id_ = "";
   }
 
   @java.lang.Override
@@ -50,29 +49,68 @@ private static final long serialVersionUID = 0L;
             done = true;
             break;
           case 10: {
-            java.lang.String s = input.readStringRequireUtf8();
+            com.google.protobuf.StringValue.Builder subBuilder = null;
+            if (id_ != null) {
+              subBuilder = id_.toBuilder();
+            }
+            id_ = input.readMessage(com.google.protobuf.StringValue.parser(), extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom(id_);
+              id_ = subBuilder.buildPartial();
+            }
 
-            id_ = s;
             break;
           }
-          case 16: {
+          case 18: {
+            com.google.protobuf.Int32Value.Builder subBuilder = null;
+            if (ddi_ != null) {
+              subBuilder = ddi_.toBuilder();
+            }
+            ddi_ = input.readMessage(com.google.protobuf.Int32Value.parser(), extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom(ddi_);
+              ddi_ = subBuilder.buildPartial();
+            }
 
-            ddi_ = input.readInt32();
             break;
           }
-          case 24: {
+          case 26: {
+            com.google.protobuf.Int32Value.Builder subBuilder = null;
+            if (ddd_ != null) {
+              subBuilder = ddd_.toBuilder();
+            }
+            ddd_ = input.readMessage(com.google.protobuf.Int32Value.parser(), extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom(ddd_);
+              ddd_ = subBuilder.buildPartial();
+            }
 
-            ddd_ = input.readInt32();
             break;
           }
-          case 32: {
+          case 34: {
+            com.google.protobuf.Int32Value.Builder subBuilder = null;
+            if (number_ != null) {
+              subBuilder = number_.toBuilder();
+            }
+            number_ = input.readMessage(com.google.protobuf.Int32Value.parser(), extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom(number_);
+              number_ = subBuilder.buildPartial();
+            }
 
-            number_ = input.readInt32();
             break;
           }
-          case 40: {
+          case 42: {
+            com.google.protobuf.Int32Value.Builder subBuilder = null;
+            if (extensionLine_ != null) {
+              subBuilder = extensionLine_.toBuilder();
+            }
+            extensionLine_ = input.readMessage(com.google.protobuf.Int32Value.parser(), extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom(extensionLine_);
+              extensionLine_ = subBuilder.buildPartial();
+            }
 
-            extensionLine_ = input.readInt32();
             break;
           }
           default: {
@@ -108,85 +146,133 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int ID_FIELD_NUMBER = 1;
-  private volatile java.lang.Object id_;
+  private com.google.protobuf.StringValue id_;
   /**
-   * <code>string id = 1;</code>
+   * <code>.google.protobuf.StringValue id = 1;</code>
+   * @return Whether the id field is set.
+   */
+  @java.lang.Override
+  public boolean hasId() {
+    return id_ != null;
+  }
+  /**
+   * <code>.google.protobuf.StringValue id = 1;</code>
    * @return The id.
    */
   @java.lang.Override
-  public java.lang.String getId() {
-    java.lang.Object ref = id_;
-    if (ref instanceof java.lang.String) {
-      return (java.lang.String) ref;
-    } else {
-      com.google.protobuf.ByteString bs = 
-          (com.google.protobuf.ByteString) ref;
-      java.lang.String s = bs.toStringUtf8();
-      id_ = s;
-      return s;
-    }
+  public com.google.protobuf.StringValue getId() {
+    return id_ == null ? com.google.protobuf.StringValue.getDefaultInstance() : id_;
   }
   /**
-   * <code>string id = 1;</code>
-   * @return The bytes for id.
+   * <code>.google.protobuf.StringValue id = 1;</code>
    */
   @java.lang.Override
-  public com.google.protobuf.ByteString
-      getIdBytes() {
-    java.lang.Object ref = id_;
-    if (ref instanceof java.lang.String) {
-      com.google.protobuf.ByteString b = 
-          com.google.protobuf.ByteString.copyFromUtf8(
-              (java.lang.String) ref);
-      id_ = b;
-      return b;
-    } else {
-      return (com.google.protobuf.ByteString) ref;
-    }
+  public com.google.protobuf.StringValueOrBuilder getIdOrBuilder() {
+    return getId();
   }
 
   public static final int DDI_FIELD_NUMBER = 2;
-  private int ddi_;
+  private com.google.protobuf.Int32Value ddi_;
   /**
-   * <code>int32 ddi = 2;</code>
+   * <code>.google.protobuf.Int32Value ddi = 2;</code>
+   * @return Whether the ddi field is set.
+   */
+  @java.lang.Override
+  public boolean hasDdi() {
+    return ddi_ != null;
+  }
+  /**
+   * <code>.google.protobuf.Int32Value ddi = 2;</code>
    * @return The ddi.
    */
   @java.lang.Override
-  public int getDdi() {
-    return ddi_;
+  public com.google.protobuf.Int32Value getDdi() {
+    return ddi_ == null ? com.google.protobuf.Int32Value.getDefaultInstance() : ddi_;
+  }
+  /**
+   * <code>.google.protobuf.Int32Value ddi = 2;</code>
+   */
+  @java.lang.Override
+  public com.google.protobuf.Int32ValueOrBuilder getDdiOrBuilder() {
+    return getDdi();
   }
 
   public static final int DDD_FIELD_NUMBER = 3;
-  private int ddd_;
+  private com.google.protobuf.Int32Value ddd_;
   /**
-   * <code>int32 ddd = 3;</code>
+   * <code>.google.protobuf.Int32Value ddd = 3;</code>
+   * @return Whether the ddd field is set.
+   */
+  @java.lang.Override
+  public boolean hasDdd() {
+    return ddd_ != null;
+  }
+  /**
+   * <code>.google.protobuf.Int32Value ddd = 3;</code>
    * @return The ddd.
    */
   @java.lang.Override
-  public int getDdd() {
-    return ddd_;
+  public com.google.protobuf.Int32Value getDdd() {
+    return ddd_ == null ? com.google.protobuf.Int32Value.getDefaultInstance() : ddd_;
+  }
+  /**
+   * <code>.google.protobuf.Int32Value ddd = 3;</code>
+   */
+  @java.lang.Override
+  public com.google.protobuf.Int32ValueOrBuilder getDddOrBuilder() {
+    return getDdd();
   }
 
   public static final int NUMBER_FIELD_NUMBER = 4;
-  private int number_;
+  private com.google.protobuf.Int32Value number_;
   /**
-   * <code>int32 number = 4;</code>
+   * <code>.google.protobuf.Int32Value number = 4;</code>
+   * @return Whether the number field is set.
+   */
+  @java.lang.Override
+  public boolean hasNumber() {
+    return number_ != null;
+  }
+  /**
+   * <code>.google.protobuf.Int32Value number = 4;</code>
    * @return The number.
    */
   @java.lang.Override
-  public int getNumber() {
-    return number_;
+  public com.google.protobuf.Int32Value getNumber() {
+    return number_ == null ? com.google.protobuf.Int32Value.getDefaultInstance() : number_;
+  }
+  /**
+   * <code>.google.protobuf.Int32Value number = 4;</code>
+   */
+  @java.lang.Override
+  public com.google.protobuf.Int32ValueOrBuilder getNumberOrBuilder() {
+    return getNumber();
   }
 
   public static final int EXTENSIONLINE_FIELD_NUMBER = 5;
-  private int extensionLine_;
+  private com.google.protobuf.Int32Value extensionLine_;
   /**
-   * <code>int32 extensionLine = 5;</code>
+   * <code>.google.protobuf.Int32Value extensionLine = 5;</code>
+   * @return Whether the extensionLine field is set.
+   */
+  @java.lang.Override
+  public boolean hasExtensionLine() {
+    return extensionLine_ != null;
+  }
+  /**
+   * <code>.google.protobuf.Int32Value extensionLine = 5;</code>
    * @return The extensionLine.
    */
   @java.lang.Override
-  public int getExtensionLine() {
-    return extensionLine_;
+  public com.google.protobuf.Int32Value getExtensionLine() {
+    return extensionLine_ == null ? com.google.protobuf.Int32Value.getDefaultInstance() : extensionLine_;
+  }
+  /**
+   * <code>.google.protobuf.Int32Value extensionLine = 5;</code>
+   */
+  @java.lang.Override
+  public com.google.protobuf.Int32ValueOrBuilder getExtensionLineOrBuilder() {
+    return getExtensionLine();
   }
 
   private byte memoizedIsInitialized = -1;
@@ -203,20 +289,20 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (!getIdBytes().isEmpty()) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 1, id_);
+    if (id_ != null) {
+      output.writeMessage(1, getId());
     }
-    if (ddi_ != 0) {
-      output.writeInt32(2, ddi_);
+    if (ddi_ != null) {
+      output.writeMessage(2, getDdi());
     }
-    if (ddd_ != 0) {
-      output.writeInt32(3, ddd_);
+    if (ddd_ != null) {
+      output.writeMessage(3, getDdd());
     }
-    if (number_ != 0) {
-      output.writeInt32(4, number_);
+    if (number_ != null) {
+      output.writeMessage(4, getNumber());
     }
-    if (extensionLine_ != 0) {
-      output.writeInt32(5, extensionLine_);
+    if (extensionLine_ != null) {
+      output.writeMessage(5, getExtensionLine());
     }
     unknownFields.writeTo(output);
   }
@@ -227,24 +313,25 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (!getIdBytes().isEmpty()) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, id_);
-    }
-    if (ddi_ != 0) {
+    if (id_ != null) {
       size += com.google.protobuf.CodedOutputStream
-        .computeInt32Size(2, ddi_);
+        .computeMessageSize(1, getId());
     }
-    if (ddd_ != 0) {
+    if (ddi_ != null) {
       size += com.google.protobuf.CodedOutputStream
-        .computeInt32Size(3, ddd_);
+        .computeMessageSize(2, getDdi());
     }
-    if (number_ != 0) {
+    if (ddd_ != null) {
       size += com.google.protobuf.CodedOutputStream
-        .computeInt32Size(4, number_);
+        .computeMessageSize(3, getDdd());
     }
-    if (extensionLine_ != 0) {
+    if (number_ != null) {
       size += com.google.protobuf.CodedOutputStream
-        .computeInt32Size(5, extensionLine_);
+        .computeMessageSize(4, getNumber());
+    }
+    if (extensionLine_ != null) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(5, getExtensionLine());
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -261,16 +348,31 @@ private static final long serialVersionUID = 0L;
     }
     com.ortiz.grpc.services.Phone other = (com.ortiz.grpc.services.Phone) obj;
 
-    if (!getId()
-        .equals(other.getId())) return false;
-    if (getDdi()
-        != other.getDdi()) return false;
-    if (getDdd()
-        != other.getDdd()) return false;
-    if (getNumber()
-        != other.getNumber()) return false;
-    if (getExtensionLine()
-        != other.getExtensionLine()) return false;
+    if (hasId() != other.hasId()) return false;
+    if (hasId()) {
+      if (!getId()
+          .equals(other.getId())) return false;
+    }
+    if (hasDdi() != other.hasDdi()) return false;
+    if (hasDdi()) {
+      if (!getDdi()
+          .equals(other.getDdi())) return false;
+    }
+    if (hasDdd() != other.hasDdd()) return false;
+    if (hasDdd()) {
+      if (!getDdd()
+          .equals(other.getDdd())) return false;
+    }
+    if (hasNumber() != other.hasNumber()) return false;
+    if (hasNumber()) {
+      if (!getNumber()
+          .equals(other.getNumber())) return false;
+    }
+    if (hasExtensionLine() != other.hasExtensionLine()) return false;
+    if (hasExtensionLine()) {
+      if (!getExtensionLine()
+          .equals(other.getExtensionLine())) return false;
+    }
     if (!unknownFields.equals(other.unknownFields)) return false;
     return true;
   }
@@ -282,16 +384,26 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (37 * hash) + ID_FIELD_NUMBER;
-    hash = (53 * hash) + getId().hashCode();
-    hash = (37 * hash) + DDI_FIELD_NUMBER;
-    hash = (53 * hash) + getDdi();
-    hash = (37 * hash) + DDD_FIELD_NUMBER;
-    hash = (53 * hash) + getDdd();
-    hash = (37 * hash) + NUMBER_FIELD_NUMBER;
-    hash = (53 * hash) + getNumber();
-    hash = (37 * hash) + EXTENSIONLINE_FIELD_NUMBER;
-    hash = (53 * hash) + getExtensionLine();
+    if (hasId()) {
+      hash = (37 * hash) + ID_FIELD_NUMBER;
+      hash = (53 * hash) + getId().hashCode();
+    }
+    if (hasDdi()) {
+      hash = (37 * hash) + DDI_FIELD_NUMBER;
+      hash = (53 * hash) + getDdi().hashCode();
+    }
+    if (hasDdd()) {
+      hash = (37 * hash) + DDD_FIELD_NUMBER;
+      hash = (53 * hash) + getDdd().hashCode();
+    }
+    if (hasNumber()) {
+      hash = (37 * hash) + NUMBER_FIELD_NUMBER;
+      hash = (53 * hash) + getNumber().hashCode();
+    }
+    if (hasExtensionLine()) {
+      hash = (37 * hash) + EXTENSIONLINE_FIELD_NUMBER;
+      hash = (53 * hash) + getExtensionLine().hashCode();
+    }
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -425,16 +537,36 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public Builder clear() {
       super.clear();
-      id_ = "";
-
-      ddi_ = 0;
-
-      ddd_ = 0;
-
-      number_ = 0;
-
-      extensionLine_ = 0;
-
+      if (idBuilder_ == null) {
+        id_ = null;
+      } else {
+        id_ = null;
+        idBuilder_ = null;
+      }
+      if (ddiBuilder_ == null) {
+        ddi_ = null;
+      } else {
+        ddi_ = null;
+        ddiBuilder_ = null;
+      }
+      if (dddBuilder_ == null) {
+        ddd_ = null;
+      } else {
+        ddd_ = null;
+        dddBuilder_ = null;
+      }
+      if (numberBuilder_ == null) {
+        number_ = null;
+      } else {
+        number_ = null;
+        numberBuilder_ = null;
+      }
+      if (extensionLineBuilder_ == null) {
+        extensionLine_ = null;
+      } else {
+        extensionLine_ = null;
+        extensionLineBuilder_ = null;
+      }
       return this;
     }
 
@@ -461,11 +593,31 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public com.ortiz.grpc.services.Phone buildPartial() {
       com.ortiz.grpc.services.Phone result = new com.ortiz.grpc.services.Phone(this);
-      result.id_ = id_;
-      result.ddi_ = ddi_;
-      result.ddd_ = ddd_;
-      result.number_ = number_;
-      result.extensionLine_ = extensionLine_;
+      if (idBuilder_ == null) {
+        result.id_ = id_;
+      } else {
+        result.id_ = idBuilder_.build();
+      }
+      if (ddiBuilder_ == null) {
+        result.ddi_ = ddi_;
+      } else {
+        result.ddi_ = ddiBuilder_.build();
+      }
+      if (dddBuilder_ == null) {
+        result.ddd_ = ddd_;
+      } else {
+        result.ddd_ = dddBuilder_.build();
+      }
+      if (numberBuilder_ == null) {
+        result.number_ = number_;
+      } else {
+        result.number_ = numberBuilder_.build();
+      }
+      if (extensionLineBuilder_ == null) {
+        result.extensionLine_ = extensionLine_;
+      } else {
+        result.extensionLine_ = extensionLineBuilder_.build();
+      }
       onBuilt();
       return result;
     }
@@ -514,21 +666,20 @@ private static final long serialVersionUID = 0L;
 
     public Builder mergeFrom(com.ortiz.grpc.services.Phone other) {
       if (other == com.ortiz.grpc.services.Phone.getDefaultInstance()) return this;
-      if (!other.getId().isEmpty()) {
-        id_ = other.id_;
-        onChanged();
+      if (other.hasId()) {
+        mergeId(other.getId());
       }
-      if (other.getDdi() != 0) {
-        setDdi(other.getDdi());
+      if (other.hasDdi()) {
+        mergeDdi(other.getDdi());
       }
-      if (other.getDdd() != 0) {
-        setDdd(other.getDdd());
+      if (other.hasDdd()) {
+        mergeDdd(other.getDdd());
       }
-      if (other.getNumber() != 0) {
-        setNumber(other.getNumber());
+      if (other.hasNumber()) {
+        mergeNumber(other.getNumber());
       }
-      if (other.getExtensionLine() != 0) {
-        setExtensionLine(other.getExtensionLine());
+      if (other.hasExtensionLine()) {
+        mergeExtensionLine(other.getExtensionLine());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -559,204 +710,599 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private java.lang.Object id_ = "";
+    private com.google.protobuf.StringValue id_;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.google.protobuf.StringValue, com.google.protobuf.StringValue.Builder, com.google.protobuf.StringValueOrBuilder> idBuilder_;
     /**
-     * <code>string id = 1;</code>
+     * <code>.google.protobuf.StringValue id = 1;</code>
+     * @return Whether the id field is set.
+     */
+    public boolean hasId() {
+      return idBuilder_ != null || id_ != null;
+    }
+    /**
+     * <code>.google.protobuf.StringValue id = 1;</code>
      * @return The id.
      */
-    public java.lang.String getId() {
-      java.lang.Object ref = id_;
-      if (!(ref instanceof java.lang.String)) {
-        com.google.protobuf.ByteString bs =
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        id_ = s;
-        return s;
+    public com.google.protobuf.StringValue getId() {
+      if (idBuilder_ == null) {
+        return id_ == null ? com.google.protobuf.StringValue.getDefaultInstance() : id_;
       } else {
-        return (java.lang.String) ref;
+        return idBuilder_.getMessage();
       }
     }
     /**
-     * <code>string id = 1;</code>
-     * @return The bytes for id.
+     * <code>.google.protobuf.StringValue id = 1;</code>
      */
-    public com.google.protobuf.ByteString
-        getIdBytes() {
-      java.lang.Object ref = id_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        id_ = b;
-        return b;
+    public Builder setId(com.google.protobuf.StringValue value) {
+      if (idBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        id_ = value;
+        onChanged();
       } else {
-        return (com.google.protobuf.ByteString) ref;
+        idBuilder_.setMessage(value);
       }
+
+      return this;
     }
     /**
-     * <code>string id = 1;</code>
-     * @param value The id to set.
-     * @return This builder for chaining.
+     * <code>.google.protobuf.StringValue id = 1;</code>
      */
     public Builder setId(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      id_ = value;
-      onChanged();
+        com.google.protobuf.StringValue.Builder builderForValue) {
+      if (idBuilder_ == null) {
+        id_ = builderForValue.build();
+        onChanged();
+      } else {
+        idBuilder_.setMessage(builderForValue.build());
+      }
+
       return this;
     }
     /**
-     * <code>string id = 1;</code>
-     * @return This builder for chaining.
+     * <code>.google.protobuf.StringValue id = 1;</code>
+     */
+    public Builder mergeId(com.google.protobuf.StringValue value) {
+      if (idBuilder_ == null) {
+        if (id_ != null) {
+          id_ =
+            com.google.protobuf.StringValue.newBuilder(id_).mergeFrom(value).buildPartial();
+        } else {
+          id_ = value;
+        }
+        onChanged();
+      } else {
+        idBuilder_.mergeFrom(value);
+      }
+
+      return this;
+    }
+    /**
+     * <code>.google.protobuf.StringValue id = 1;</code>
      */
     public Builder clearId() {
-      
-      id_ = getDefaultInstance().getId();
-      onChanged();
+      if (idBuilder_ == null) {
+        id_ = null;
+        onChanged();
+      } else {
+        id_ = null;
+        idBuilder_ = null;
+      }
+
       return this;
     }
     /**
-     * <code>string id = 1;</code>
-     * @param value The bytes for id to set.
-     * @return This builder for chaining.
+     * <code>.google.protobuf.StringValue id = 1;</code>
      */
-    public Builder setIdBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
+    public com.google.protobuf.StringValue.Builder getIdBuilder() {
       
-      id_ = value;
       onChanged();
-      return this;
+      return getIdFieldBuilder().getBuilder();
+    }
+    /**
+     * <code>.google.protobuf.StringValue id = 1;</code>
+     */
+    public com.google.protobuf.StringValueOrBuilder getIdOrBuilder() {
+      if (idBuilder_ != null) {
+        return idBuilder_.getMessageOrBuilder();
+      } else {
+        return id_ == null ?
+            com.google.protobuf.StringValue.getDefaultInstance() : id_;
+      }
+    }
+    /**
+     * <code>.google.protobuf.StringValue id = 1;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.google.protobuf.StringValue, com.google.protobuf.StringValue.Builder, com.google.protobuf.StringValueOrBuilder> 
+        getIdFieldBuilder() {
+      if (idBuilder_ == null) {
+        idBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            com.google.protobuf.StringValue, com.google.protobuf.StringValue.Builder, com.google.protobuf.StringValueOrBuilder>(
+                getId(),
+                getParentForChildren(),
+                isClean());
+        id_ = null;
+      }
+      return idBuilder_;
     }
 
-    private int ddi_ ;
+    private com.google.protobuf.Int32Value ddi_;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.google.protobuf.Int32Value, com.google.protobuf.Int32Value.Builder, com.google.protobuf.Int32ValueOrBuilder> ddiBuilder_;
     /**
-     * <code>int32 ddi = 2;</code>
+     * <code>.google.protobuf.Int32Value ddi = 2;</code>
+     * @return Whether the ddi field is set.
+     */
+    public boolean hasDdi() {
+      return ddiBuilder_ != null || ddi_ != null;
+    }
+    /**
+     * <code>.google.protobuf.Int32Value ddi = 2;</code>
      * @return The ddi.
      */
-    @java.lang.Override
-    public int getDdi() {
-      return ddi_;
+    public com.google.protobuf.Int32Value getDdi() {
+      if (ddiBuilder_ == null) {
+        return ddi_ == null ? com.google.protobuf.Int32Value.getDefaultInstance() : ddi_;
+      } else {
+        return ddiBuilder_.getMessage();
+      }
     }
     /**
-     * <code>int32 ddi = 2;</code>
-     * @param value The ddi to set.
-     * @return This builder for chaining.
+     * <code>.google.protobuf.Int32Value ddi = 2;</code>
      */
-    public Builder setDdi(int value) {
-      
-      ddi_ = value;
-      onChanged();
+    public Builder setDdi(com.google.protobuf.Int32Value value) {
+      if (ddiBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        ddi_ = value;
+        onChanged();
+      } else {
+        ddiBuilder_.setMessage(value);
+      }
+
       return this;
     }
     /**
-     * <code>int32 ddi = 2;</code>
-     * @return This builder for chaining.
+     * <code>.google.protobuf.Int32Value ddi = 2;</code>
+     */
+    public Builder setDdi(
+        com.google.protobuf.Int32Value.Builder builderForValue) {
+      if (ddiBuilder_ == null) {
+        ddi_ = builderForValue.build();
+        onChanged();
+      } else {
+        ddiBuilder_.setMessage(builderForValue.build());
+      }
+
+      return this;
+    }
+    /**
+     * <code>.google.protobuf.Int32Value ddi = 2;</code>
+     */
+    public Builder mergeDdi(com.google.protobuf.Int32Value value) {
+      if (ddiBuilder_ == null) {
+        if (ddi_ != null) {
+          ddi_ =
+            com.google.protobuf.Int32Value.newBuilder(ddi_).mergeFrom(value).buildPartial();
+        } else {
+          ddi_ = value;
+        }
+        onChanged();
+      } else {
+        ddiBuilder_.mergeFrom(value);
+      }
+
+      return this;
+    }
+    /**
+     * <code>.google.protobuf.Int32Value ddi = 2;</code>
      */
     public Builder clearDdi() {
-      
-      ddi_ = 0;
-      onChanged();
+      if (ddiBuilder_ == null) {
+        ddi_ = null;
+        onChanged();
+      } else {
+        ddi_ = null;
+        ddiBuilder_ = null;
+      }
+
       return this;
     }
-
-    private int ddd_ ;
     /**
-     * <code>int32 ddd = 3;</code>
+     * <code>.google.protobuf.Int32Value ddi = 2;</code>
+     */
+    public com.google.protobuf.Int32Value.Builder getDdiBuilder() {
+      
+      onChanged();
+      return getDdiFieldBuilder().getBuilder();
+    }
+    /**
+     * <code>.google.protobuf.Int32Value ddi = 2;</code>
+     */
+    public com.google.protobuf.Int32ValueOrBuilder getDdiOrBuilder() {
+      if (ddiBuilder_ != null) {
+        return ddiBuilder_.getMessageOrBuilder();
+      } else {
+        return ddi_ == null ?
+            com.google.protobuf.Int32Value.getDefaultInstance() : ddi_;
+      }
+    }
+    /**
+     * <code>.google.protobuf.Int32Value ddi = 2;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.google.protobuf.Int32Value, com.google.protobuf.Int32Value.Builder, com.google.protobuf.Int32ValueOrBuilder> 
+        getDdiFieldBuilder() {
+      if (ddiBuilder_ == null) {
+        ddiBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            com.google.protobuf.Int32Value, com.google.protobuf.Int32Value.Builder, com.google.protobuf.Int32ValueOrBuilder>(
+                getDdi(),
+                getParentForChildren(),
+                isClean());
+        ddi_ = null;
+      }
+      return ddiBuilder_;
+    }
+
+    private com.google.protobuf.Int32Value ddd_;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.google.protobuf.Int32Value, com.google.protobuf.Int32Value.Builder, com.google.protobuf.Int32ValueOrBuilder> dddBuilder_;
+    /**
+     * <code>.google.protobuf.Int32Value ddd = 3;</code>
+     * @return Whether the ddd field is set.
+     */
+    public boolean hasDdd() {
+      return dddBuilder_ != null || ddd_ != null;
+    }
+    /**
+     * <code>.google.protobuf.Int32Value ddd = 3;</code>
      * @return The ddd.
      */
-    @java.lang.Override
-    public int getDdd() {
-      return ddd_;
+    public com.google.protobuf.Int32Value getDdd() {
+      if (dddBuilder_ == null) {
+        return ddd_ == null ? com.google.protobuf.Int32Value.getDefaultInstance() : ddd_;
+      } else {
+        return dddBuilder_.getMessage();
+      }
     }
     /**
-     * <code>int32 ddd = 3;</code>
-     * @param value The ddd to set.
-     * @return This builder for chaining.
+     * <code>.google.protobuf.Int32Value ddd = 3;</code>
      */
-    public Builder setDdd(int value) {
-      
-      ddd_ = value;
-      onChanged();
+    public Builder setDdd(com.google.protobuf.Int32Value value) {
+      if (dddBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        ddd_ = value;
+        onChanged();
+      } else {
+        dddBuilder_.setMessage(value);
+      }
+
       return this;
     }
     /**
-     * <code>int32 ddd = 3;</code>
-     * @return This builder for chaining.
+     * <code>.google.protobuf.Int32Value ddd = 3;</code>
+     */
+    public Builder setDdd(
+        com.google.protobuf.Int32Value.Builder builderForValue) {
+      if (dddBuilder_ == null) {
+        ddd_ = builderForValue.build();
+        onChanged();
+      } else {
+        dddBuilder_.setMessage(builderForValue.build());
+      }
+
+      return this;
+    }
+    /**
+     * <code>.google.protobuf.Int32Value ddd = 3;</code>
+     */
+    public Builder mergeDdd(com.google.protobuf.Int32Value value) {
+      if (dddBuilder_ == null) {
+        if (ddd_ != null) {
+          ddd_ =
+            com.google.protobuf.Int32Value.newBuilder(ddd_).mergeFrom(value).buildPartial();
+        } else {
+          ddd_ = value;
+        }
+        onChanged();
+      } else {
+        dddBuilder_.mergeFrom(value);
+      }
+
+      return this;
+    }
+    /**
+     * <code>.google.protobuf.Int32Value ddd = 3;</code>
      */
     public Builder clearDdd() {
-      
-      ddd_ = 0;
-      onChanged();
+      if (dddBuilder_ == null) {
+        ddd_ = null;
+        onChanged();
+      } else {
+        ddd_ = null;
+        dddBuilder_ = null;
+      }
+
       return this;
     }
-
-    private int number_ ;
     /**
-     * <code>int32 number = 4;</code>
+     * <code>.google.protobuf.Int32Value ddd = 3;</code>
+     */
+    public com.google.protobuf.Int32Value.Builder getDddBuilder() {
+      
+      onChanged();
+      return getDddFieldBuilder().getBuilder();
+    }
+    /**
+     * <code>.google.protobuf.Int32Value ddd = 3;</code>
+     */
+    public com.google.protobuf.Int32ValueOrBuilder getDddOrBuilder() {
+      if (dddBuilder_ != null) {
+        return dddBuilder_.getMessageOrBuilder();
+      } else {
+        return ddd_ == null ?
+            com.google.protobuf.Int32Value.getDefaultInstance() : ddd_;
+      }
+    }
+    /**
+     * <code>.google.protobuf.Int32Value ddd = 3;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.google.protobuf.Int32Value, com.google.protobuf.Int32Value.Builder, com.google.protobuf.Int32ValueOrBuilder> 
+        getDddFieldBuilder() {
+      if (dddBuilder_ == null) {
+        dddBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            com.google.protobuf.Int32Value, com.google.protobuf.Int32Value.Builder, com.google.protobuf.Int32ValueOrBuilder>(
+                getDdd(),
+                getParentForChildren(),
+                isClean());
+        ddd_ = null;
+      }
+      return dddBuilder_;
+    }
+
+    private com.google.protobuf.Int32Value number_;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.google.protobuf.Int32Value, com.google.protobuf.Int32Value.Builder, com.google.protobuf.Int32ValueOrBuilder> numberBuilder_;
+    /**
+     * <code>.google.protobuf.Int32Value number = 4;</code>
+     * @return Whether the number field is set.
+     */
+    public boolean hasNumber() {
+      return numberBuilder_ != null || number_ != null;
+    }
+    /**
+     * <code>.google.protobuf.Int32Value number = 4;</code>
      * @return The number.
      */
-    @java.lang.Override
-    public int getNumber() {
-      return number_;
+    public com.google.protobuf.Int32Value getNumber() {
+      if (numberBuilder_ == null) {
+        return number_ == null ? com.google.protobuf.Int32Value.getDefaultInstance() : number_;
+      } else {
+        return numberBuilder_.getMessage();
+      }
     }
     /**
-     * <code>int32 number = 4;</code>
-     * @param value The number to set.
-     * @return This builder for chaining.
+     * <code>.google.protobuf.Int32Value number = 4;</code>
      */
-    public Builder setNumber(int value) {
-      
-      number_ = value;
-      onChanged();
+    public Builder setNumber(com.google.protobuf.Int32Value value) {
+      if (numberBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        number_ = value;
+        onChanged();
+      } else {
+        numberBuilder_.setMessage(value);
+      }
+
       return this;
     }
     /**
-     * <code>int32 number = 4;</code>
-     * @return This builder for chaining.
+     * <code>.google.protobuf.Int32Value number = 4;</code>
+     */
+    public Builder setNumber(
+        com.google.protobuf.Int32Value.Builder builderForValue) {
+      if (numberBuilder_ == null) {
+        number_ = builderForValue.build();
+        onChanged();
+      } else {
+        numberBuilder_.setMessage(builderForValue.build());
+      }
+
+      return this;
+    }
+    /**
+     * <code>.google.protobuf.Int32Value number = 4;</code>
+     */
+    public Builder mergeNumber(com.google.protobuf.Int32Value value) {
+      if (numberBuilder_ == null) {
+        if (number_ != null) {
+          number_ =
+            com.google.protobuf.Int32Value.newBuilder(number_).mergeFrom(value).buildPartial();
+        } else {
+          number_ = value;
+        }
+        onChanged();
+      } else {
+        numberBuilder_.mergeFrom(value);
+      }
+
+      return this;
+    }
+    /**
+     * <code>.google.protobuf.Int32Value number = 4;</code>
      */
     public Builder clearNumber() {
-      
-      number_ = 0;
-      onChanged();
+      if (numberBuilder_ == null) {
+        number_ = null;
+        onChanged();
+      } else {
+        number_ = null;
+        numberBuilder_ = null;
+      }
+
       return this;
+    }
+    /**
+     * <code>.google.protobuf.Int32Value number = 4;</code>
+     */
+    public com.google.protobuf.Int32Value.Builder getNumberBuilder() {
+      
+      onChanged();
+      return getNumberFieldBuilder().getBuilder();
+    }
+    /**
+     * <code>.google.protobuf.Int32Value number = 4;</code>
+     */
+    public com.google.protobuf.Int32ValueOrBuilder getNumberOrBuilder() {
+      if (numberBuilder_ != null) {
+        return numberBuilder_.getMessageOrBuilder();
+      } else {
+        return number_ == null ?
+            com.google.protobuf.Int32Value.getDefaultInstance() : number_;
+      }
+    }
+    /**
+     * <code>.google.protobuf.Int32Value number = 4;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.google.protobuf.Int32Value, com.google.protobuf.Int32Value.Builder, com.google.protobuf.Int32ValueOrBuilder> 
+        getNumberFieldBuilder() {
+      if (numberBuilder_ == null) {
+        numberBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            com.google.protobuf.Int32Value, com.google.protobuf.Int32Value.Builder, com.google.protobuf.Int32ValueOrBuilder>(
+                getNumber(),
+                getParentForChildren(),
+                isClean());
+        number_ = null;
+      }
+      return numberBuilder_;
     }
 
-    private int extensionLine_ ;
+    private com.google.protobuf.Int32Value extensionLine_;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.google.protobuf.Int32Value, com.google.protobuf.Int32Value.Builder, com.google.protobuf.Int32ValueOrBuilder> extensionLineBuilder_;
     /**
-     * <code>int32 extensionLine = 5;</code>
+     * <code>.google.protobuf.Int32Value extensionLine = 5;</code>
+     * @return Whether the extensionLine field is set.
+     */
+    public boolean hasExtensionLine() {
+      return extensionLineBuilder_ != null || extensionLine_ != null;
+    }
+    /**
+     * <code>.google.protobuf.Int32Value extensionLine = 5;</code>
      * @return The extensionLine.
      */
-    @java.lang.Override
-    public int getExtensionLine() {
-      return extensionLine_;
+    public com.google.protobuf.Int32Value getExtensionLine() {
+      if (extensionLineBuilder_ == null) {
+        return extensionLine_ == null ? com.google.protobuf.Int32Value.getDefaultInstance() : extensionLine_;
+      } else {
+        return extensionLineBuilder_.getMessage();
+      }
     }
     /**
-     * <code>int32 extensionLine = 5;</code>
-     * @param value The extensionLine to set.
-     * @return This builder for chaining.
+     * <code>.google.protobuf.Int32Value extensionLine = 5;</code>
      */
-    public Builder setExtensionLine(int value) {
-      
-      extensionLine_ = value;
-      onChanged();
+    public Builder setExtensionLine(com.google.protobuf.Int32Value value) {
+      if (extensionLineBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        extensionLine_ = value;
+        onChanged();
+      } else {
+        extensionLineBuilder_.setMessage(value);
+      }
+
       return this;
     }
     /**
-     * <code>int32 extensionLine = 5;</code>
-     * @return This builder for chaining.
+     * <code>.google.protobuf.Int32Value extensionLine = 5;</code>
+     */
+    public Builder setExtensionLine(
+        com.google.protobuf.Int32Value.Builder builderForValue) {
+      if (extensionLineBuilder_ == null) {
+        extensionLine_ = builderForValue.build();
+        onChanged();
+      } else {
+        extensionLineBuilder_.setMessage(builderForValue.build());
+      }
+
+      return this;
+    }
+    /**
+     * <code>.google.protobuf.Int32Value extensionLine = 5;</code>
+     */
+    public Builder mergeExtensionLine(com.google.protobuf.Int32Value value) {
+      if (extensionLineBuilder_ == null) {
+        if (extensionLine_ != null) {
+          extensionLine_ =
+            com.google.protobuf.Int32Value.newBuilder(extensionLine_).mergeFrom(value).buildPartial();
+        } else {
+          extensionLine_ = value;
+        }
+        onChanged();
+      } else {
+        extensionLineBuilder_.mergeFrom(value);
+      }
+
+      return this;
+    }
+    /**
+     * <code>.google.protobuf.Int32Value extensionLine = 5;</code>
      */
     public Builder clearExtensionLine() {
-      
-      extensionLine_ = 0;
-      onChanged();
+      if (extensionLineBuilder_ == null) {
+        extensionLine_ = null;
+        onChanged();
+      } else {
+        extensionLine_ = null;
+        extensionLineBuilder_ = null;
+      }
+
       return this;
+    }
+    /**
+     * <code>.google.protobuf.Int32Value extensionLine = 5;</code>
+     */
+    public com.google.protobuf.Int32Value.Builder getExtensionLineBuilder() {
+      
+      onChanged();
+      return getExtensionLineFieldBuilder().getBuilder();
+    }
+    /**
+     * <code>.google.protobuf.Int32Value extensionLine = 5;</code>
+     */
+    public com.google.protobuf.Int32ValueOrBuilder getExtensionLineOrBuilder() {
+      if (extensionLineBuilder_ != null) {
+        return extensionLineBuilder_.getMessageOrBuilder();
+      } else {
+        return extensionLine_ == null ?
+            com.google.protobuf.Int32Value.getDefaultInstance() : extensionLine_;
+      }
+    }
+    /**
+     * <code>.google.protobuf.Int32Value extensionLine = 5;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.google.protobuf.Int32Value, com.google.protobuf.Int32Value.Builder, com.google.protobuf.Int32ValueOrBuilder> 
+        getExtensionLineFieldBuilder() {
+      if (extensionLineBuilder_ == null) {
+        extensionLineBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            com.google.protobuf.Int32Value, com.google.protobuf.Int32Value.Builder, com.google.protobuf.Int32ValueOrBuilder>(
+                getExtensionLine(),
+                getParentForChildren(),
+                isClean());
+        extensionLine_ = null;
+      }
+      return extensionLineBuilder_;
     }
     @java.lang.Override
     public final Builder setUnknownFields(

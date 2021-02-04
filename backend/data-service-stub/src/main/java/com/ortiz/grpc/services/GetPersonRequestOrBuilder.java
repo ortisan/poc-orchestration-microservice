@@ -8,26 +8,32 @@ public interface GetPersonRequestOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>string tenantId = 1;</code>
+   * <code>.google.protobuf.StringValue tenantId = 1;</code>
+   * @return Whether the tenantId field is set.
+   */
+  boolean hasTenantId();
+  /**
+   * <code>.google.protobuf.StringValue tenantId = 1;</code>
    * @return The tenantId.
    */
-  java.lang.String getTenantId();
+  com.google.protobuf.StringValue getTenantId();
   /**
-   * <code>string tenantId = 1;</code>
-   * @return The bytes for tenantId.
+   * <code>.google.protobuf.StringValue tenantId = 1;</code>
    */
-  com.google.protobuf.ByteString
-      getTenantIdBytes();
+  com.google.protobuf.StringValueOrBuilder getTenantIdOrBuilder();
 
   /**
-   * <code>string personId = 2;</code>
+   * <code>.google.protobuf.StringValue personId = 2;</code>
+   * @return Whether the personId field is set.
+   */
+  boolean hasPersonId();
+  /**
+   * <code>.google.protobuf.StringValue personId = 2;</code>
    * @return The personId.
    */
-  java.lang.String getPersonId();
+  com.google.protobuf.StringValue getPersonId();
   /**
-   * <code>string personId = 2;</code>
-   * @return The bytes for personId.
+   * <code>.google.protobuf.StringValue personId = 2;</code>
    */
-  com.google.protobuf.ByteString
-      getPersonIdBytes();
+  com.google.protobuf.StringValueOrBuilder getPersonIdOrBuilder();
 }

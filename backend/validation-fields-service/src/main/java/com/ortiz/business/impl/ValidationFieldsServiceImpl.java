@@ -20,6 +20,9 @@ import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static com.ortiz.poc.commons.FieldUtils.getStringValue;
+
+
 @Service
 public class ValidationFieldsServiceImpl implements IValidationFieldsService {
 
@@ -66,7 +69,7 @@ public class ValidationFieldsServiceImpl implements IValidationFieldsService {
     }
 
     private void validatePerson(String tenantId, String personId) {
-        GetPersonRequest personRequest = GetPersonRequest.newBuilder().setTenantId(tenantId).setPersonId(personId).build();
+        GetPersonRequest personRequest = GetPersonRequest.newBuilder().setTenantId(getStringValue(tenantId)).setPersonId(getStringValue(personId)).build();
         try {
             Person personResponse = dataServiceStub.getPerson(personRequest);
         } catch (StatusRuntimeException exc) {
@@ -75,7 +78,6 @@ public class ValidationFieldsServiceImpl implements IValidationFieldsService {
             }
             throw exc;
         }
-
     }
 
     private void validateFields(List<VerifiedFieldDTO> verifiedFieldDTOS) {

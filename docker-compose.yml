@@ -30,56 +30,56 @@ services:
     networks:
       - poc-network
 
-  data-service:
-    restart: always
-    build: 
-      dockerfile: Dockerfile
-      context: ./backend/data-service
-    volumes:
-      - ./docker/.m2:/root/.m2
-    environment:
-      - MYSQL_HOST=mysql-data-service
-      - MYSQL_PORT=3306
-      - MYSQL_USER=poc_user
-      - MYSQL_PASSWORD=123456
-    ports:
-      - 8080:8080
-      - 9090:9090
-    networks:
-      - poc-network
-    depends_on: 
-      - mysql-data-service
+  # data-service:
+  #   restart: always
+  #   build: 
+  #     dockerfile: Dockerfile
+  #     context: ./backend/data-service
+  #   volumes:
+  #     - ./docker/.m2:/root/.m2
+  #   environment:
+  #     - MYSQL_HOST=mysql-data-service
+  #     - MYSQL_PORT=3306
+  #     - MYSQL_USER=poc_user
+  #     - MYSQL_PASSWORD=123456
+  #   ports:
+  #     - 8080:8080
+  #     - 9090:9090
+  #   networks:
+  #     - poc-network
+  #   depends_on: 
+  #     - mysql-data-service
 
-  validation-fields-service:
-    restart: always
-    build: 
-      dockerfile: Dockerfile
-      context: ./backend/validation-fields-service
-    volumes:
-      - ./docker/.m2:/root/.m2
-    environment:
-      - MYSQL_HOST=mysql-validation-fields-service
-      - MYSQL_PORT=3306
-      - MYSQL_USER=poc_user
-      - MYSQL_PASSWORD=123456
-      - DATA_SERVICE_GRPC_ADDRESS=static://envoy-cluster:8080
-    ports:
-      - 8081:8080
-      - 9091:9090
-    networks:
-      - poc-network
-    depends_on:
-      - mysql-validation-fields-service
-      - data-service
+  # validation-fields-service:
+  #   restart: always
+  #   build: 
+  #     dockerfile: Dockerfile
+  #     context: ./backend/validation-fields-service
+  #   volumes:
+  #     - ./docker/.m2:/root/.m2
+  #   environment:
+  #     - MYSQL_HOST=mysql-validation-fields-service
+  #     - MYSQL_PORT=3306
+  #     - MYSQL_USER=poc_user
+  #     - MYSQL_PASSWORD=123456
+  #     - DATA_SERVICE_GRPC_ADDRESS=static://envoy-cluster:8080
+  #   ports:
+  #     - 8081:8080
+  #     - 9091:9090
+  #   networks:
+  #     - poc-network
+  #   depends_on:
+  #     - mysql-validation-fields-service
+  #     - data-service
 
-  envoy-cluster:
-    restart: always
-    image: envoyproxy/envoy-dev:18db4c90e3295fb2c39bfc7b2ce641cfd6c3fbed
-    ports:
-      - "8090:8080"
-      - "9901:9901"
-    volumes:
-      - ./envoy.yaml:/etc/envoy/envoy.yaml
-    networks:
-      - poc-network
+  # envoy-cluster:
+  #   restart: always
+  #   image: envoyproxy/envoy-dev:18db4c90e3295fb2c39bfc7b2ce641cfd6c3fbed
+  #   ports:
+  #     - "8090:8080"
+  #     - "9901:9901"
+  #   volumes:
+  #     - ./envoy.yaml:/etc/envoy/envoy.yaml
+  #   networks:
+  #     - poc-network
     

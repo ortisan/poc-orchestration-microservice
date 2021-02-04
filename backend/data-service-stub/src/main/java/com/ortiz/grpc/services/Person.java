@@ -16,11 +16,6 @@ private static final long serialVersionUID = 0L;
     super(builder);
   }
   private Person() {
-    tenantId_ = "";
-    personId_ = "";
-    name_ = "";
-    type_ = "";
-    cpfCnpj_ = "";
     phones_ = java.util.Collections.emptyList();
   }
 
@@ -56,33 +51,68 @@ private static final long serialVersionUID = 0L;
             done = true;
             break;
           case 10: {
-            java.lang.String s = input.readStringRequireUtf8();
+            com.google.protobuf.StringValue.Builder subBuilder = null;
+            if (tenantId_ != null) {
+              subBuilder = tenantId_.toBuilder();
+            }
+            tenantId_ = input.readMessage(com.google.protobuf.StringValue.parser(), extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom(tenantId_);
+              tenantId_ = subBuilder.buildPartial();
+            }
 
-            tenantId_ = s;
             break;
           }
           case 18: {
-            java.lang.String s = input.readStringRequireUtf8();
+            com.google.protobuf.StringValue.Builder subBuilder = null;
+            if (personId_ != null) {
+              subBuilder = personId_.toBuilder();
+            }
+            personId_ = input.readMessage(com.google.protobuf.StringValue.parser(), extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom(personId_);
+              personId_ = subBuilder.buildPartial();
+            }
 
-            personId_ = s;
             break;
           }
           case 26: {
-            java.lang.String s = input.readStringRequireUtf8();
+            com.google.protobuf.StringValue.Builder subBuilder = null;
+            if (name_ != null) {
+              subBuilder = name_.toBuilder();
+            }
+            name_ = input.readMessage(com.google.protobuf.StringValue.parser(), extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom(name_);
+              name_ = subBuilder.buildPartial();
+            }
 
-            name_ = s;
             break;
           }
           case 34: {
-            java.lang.String s = input.readStringRequireUtf8();
+            com.google.protobuf.StringValue.Builder subBuilder = null;
+            if (type_ != null) {
+              subBuilder = type_.toBuilder();
+            }
+            type_ = input.readMessage(com.google.protobuf.StringValue.parser(), extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom(type_);
+              type_ = subBuilder.buildPartial();
+            }
 
-            type_ = s;
             break;
           }
           case 42: {
-            java.lang.String s = input.readStringRequireUtf8();
+            com.google.protobuf.StringValue.Builder subBuilder = null;
+            if (cpfCnpj_ != null) {
+              subBuilder = cpfCnpj_.toBuilder();
+            }
+            cpfCnpj_ = input.readMessage(com.google.protobuf.StringValue.parser(), extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom(cpfCnpj_);
+              cpfCnpj_ = subBuilder.buildPartial();
+            }
 
-            cpfCnpj_ = s;
             break;
           }
           case 50: {
@@ -130,193 +160,133 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int TENANTID_FIELD_NUMBER = 1;
-  private volatile java.lang.Object tenantId_;
+  private com.google.protobuf.StringValue tenantId_;
   /**
-   * <code>string tenantId = 1;</code>
+   * <code>.google.protobuf.StringValue tenantId = 1;</code>
+   * @return Whether the tenantId field is set.
+   */
+  @java.lang.Override
+  public boolean hasTenantId() {
+    return tenantId_ != null;
+  }
+  /**
+   * <code>.google.protobuf.StringValue tenantId = 1;</code>
    * @return The tenantId.
    */
   @java.lang.Override
-  public java.lang.String getTenantId() {
-    java.lang.Object ref = tenantId_;
-    if (ref instanceof java.lang.String) {
-      return (java.lang.String) ref;
-    } else {
-      com.google.protobuf.ByteString bs = 
-          (com.google.protobuf.ByteString) ref;
-      java.lang.String s = bs.toStringUtf8();
-      tenantId_ = s;
-      return s;
-    }
+  public com.google.protobuf.StringValue getTenantId() {
+    return tenantId_ == null ? com.google.protobuf.StringValue.getDefaultInstance() : tenantId_;
   }
   /**
-   * <code>string tenantId = 1;</code>
-   * @return The bytes for tenantId.
+   * <code>.google.protobuf.StringValue tenantId = 1;</code>
    */
   @java.lang.Override
-  public com.google.protobuf.ByteString
-      getTenantIdBytes() {
-    java.lang.Object ref = tenantId_;
-    if (ref instanceof java.lang.String) {
-      com.google.protobuf.ByteString b = 
-          com.google.protobuf.ByteString.copyFromUtf8(
-              (java.lang.String) ref);
-      tenantId_ = b;
-      return b;
-    } else {
-      return (com.google.protobuf.ByteString) ref;
-    }
+  public com.google.protobuf.StringValueOrBuilder getTenantIdOrBuilder() {
+    return getTenantId();
   }
 
   public static final int PERSONID_FIELD_NUMBER = 2;
-  private volatile java.lang.Object personId_;
+  private com.google.protobuf.StringValue personId_;
   /**
-   * <code>string personId = 2;</code>
+   * <code>.google.protobuf.StringValue personId = 2;</code>
+   * @return Whether the personId field is set.
+   */
+  @java.lang.Override
+  public boolean hasPersonId() {
+    return personId_ != null;
+  }
+  /**
+   * <code>.google.protobuf.StringValue personId = 2;</code>
    * @return The personId.
    */
   @java.lang.Override
-  public java.lang.String getPersonId() {
-    java.lang.Object ref = personId_;
-    if (ref instanceof java.lang.String) {
-      return (java.lang.String) ref;
-    } else {
-      com.google.protobuf.ByteString bs = 
-          (com.google.protobuf.ByteString) ref;
-      java.lang.String s = bs.toStringUtf8();
-      personId_ = s;
-      return s;
-    }
+  public com.google.protobuf.StringValue getPersonId() {
+    return personId_ == null ? com.google.protobuf.StringValue.getDefaultInstance() : personId_;
   }
   /**
-   * <code>string personId = 2;</code>
-   * @return The bytes for personId.
+   * <code>.google.protobuf.StringValue personId = 2;</code>
    */
   @java.lang.Override
-  public com.google.protobuf.ByteString
-      getPersonIdBytes() {
-    java.lang.Object ref = personId_;
-    if (ref instanceof java.lang.String) {
-      com.google.protobuf.ByteString b = 
-          com.google.protobuf.ByteString.copyFromUtf8(
-              (java.lang.String) ref);
-      personId_ = b;
-      return b;
-    } else {
-      return (com.google.protobuf.ByteString) ref;
-    }
+  public com.google.protobuf.StringValueOrBuilder getPersonIdOrBuilder() {
+    return getPersonId();
   }
 
   public static final int NAME_FIELD_NUMBER = 3;
-  private volatile java.lang.Object name_;
+  private com.google.protobuf.StringValue name_;
   /**
-   * <code>string name = 3;</code>
+   * <code>.google.protobuf.StringValue name = 3;</code>
+   * @return Whether the name field is set.
+   */
+  @java.lang.Override
+  public boolean hasName() {
+    return name_ != null;
+  }
+  /**
+   * <code>.google.protobuf.StringValue name = 3;</code>
    * @return The name.
    */
   @java.lang.Override
-  public java.lang.String getName() {
-    java.lang.Object ref = name_;
-    if (ref instanceof java.lang.String) {
-      return (java.lang.String) ref;
-    } else {
-      com.google.protobuf.ByteString bs = 
-          (com.google.protobuf.ByteString) ref;
-      java.lang.String s = bs.toStringUtf8();
-      name_ = s;
-      return s;
-    }
+  public com.google.protobuf.StringValue getName() {
+    return name_ == null ? com.google.protobuf.StringValue.getDefaultInstance() : name_;
   }
   /**
-   * <code>string name = 3;</code>
-   * @return The bytes for name.
+   * <code>.google.protobuf.StringValue name = 3;</code>
    */
   @java.lang.Override
-  public com.google.protobuf.ByteString
-      getNameBytes() {
-    java.lang.Object ref = name_;
-    if (ref instanceof java.lang.String) {
-      com.google.protobuf.ByteString b = 
-          com.google.protobuf.ByteString.copyFromUtf8(
-              (java.lang.String) ref);
-      name_ = b;
-      return b;
-    } else {
-      return (com.google.protobuf.ByteString) ref;
-    }
+  public com.google.protobuf.StringValueOrBuilder getNameOrBuilder() {
+    return getName();
   }
 
   public static final int TYPE_FIELD_NUMBER = 4;
-  private volatile java.lang.Object type_;
+  private com.google.protobuf.StringValue type_;
   /**
-   * <code>string type = 4;</code>
+   * <code>.google.protobuf.StringValue type = 4;</code>
+   * @return Whether the type field is set.
+   */
+  @java.lang.Override
+  public boolean hasType() {
+    return type_ != null;
+  }
+  /**
+   * <code>.google.protobuf.StringValue type = 4;</code>
    * @return The type.
    */
   @java.lang.Override
-  public java.lang.String getType() {
-    java.lang.Object ref = type_;
-    if (ref instanceof java.lang.String) {
-      return (java.lang.String) ref;
-    } else {
-      com.google.protobuf.ByteString bs = 
-          (com.google.protobuf.ByteString) ref;
-      java.lang.String s = bs.toStringUtf8();
-      type_ = s;
-      return s;
-    }
+  public com.google.protobuf.StringValue getType() {
+    return type_ == null ? com.google.protobuf.StringValue.getDefaultInstance() : type_;
   }
   /**
-   * <code>string type = 4;</code>
-   * @return The bytes for type.
+   * <code>.google.protobuf.StringValue type = 4;</code>
    */
   @java.lang.Override
-  public com.google.protobuf.ByteString
-      getTypeBytes() {
-    java.lang.Object ref = type_;
-    if (ref instanceof java.lang.String) {
-      com.google.protobuf.ByteString b = 
-          com.google.protobuf.ByteString.copyFromUtf8(
-              (java.lang.String) ref);
-      type_ = b;
-      return b;
-    } else {
-      return (com.google.protobuf.ByteString) ref;
-    }
+  public com.google.protobuf.StringValueOrBuilder getTypeOrBuilder() {
+    return getType();
   }
 
   public static final int CPFCNPJ_FIELD_NUMBER = 5;
-  private volatile java.lang.Object cpfCnpj_;
+  private com.google.protobuf.StringValue cpfCnpj_;
   /**
-   * <code>string cpfCnpj = 5;</code>
+   * <code>.google.protobuf.StringValue cpfCnpj = 5;</code>
+   * @return Whether the cpfCnpj field is set.
+   */
+  @java.lang.Override
+  public boolean hasCpfCnpj() {
+    return cpfCnpj_ != null;
+  }
+  /**
+   * <code>.google.protobuf.StringValue cpfCnpj = 5;</code>
    * @return The cpfCnpj.
    */
   @java.lang.Override
-  public java.lang.String getCpfCnpj() {
-    java.lang.Object ref = cpfCnpj_;
-    if (ref instanceof java.lang.String) {
-      return (java.lang.String) ref;
-    } else {
-      com.google.protobuf.ByteString bs = 
-          (com.google.protobuf.ByteString) ref;
-      java.lang.String s = bs.toStringUtf8();
-      cpfCnpj_ = s;
-      return s;
-    }
+  public com.google.protobuf.StringValue getCpfCnpj() {
+    return cpfCnpj_ == null ? com.google.protobuf.StringValue.getDefaultInstance() : cpfCnpj_;
   }
   /**
-   * <code>string cpfCnpj = 5;</code>
-   * @return The bytes for cpfCnpj.
+   * <code>.google.protobuf.StringValue cpfCnpj = 5;</code>
    */
   @java.lang.Override
-  public com.google.protobuf.ByteString
-      getCpfCnpjBytes() {
-    java.lang.Object ref = cpfCnpj_;
-    if (ref instanceof java.lang.String) {
-      com.google.protobuf.ByteString b = 
-          com.google.protobuf.ByteString.copyFromUtf8(
-              (java.lang.String) ref);
-      cpfCnpj_ = b;
-      return b;
-    } else {
-      return (com.google.protobuf.ByteString) ref;
-    }
+  public com.google.protobuf.StringValueOrBuilder getCpfCnpjOrBuilder() {
+    return getCpfCnpj();
   }
 
   public static final int PHONES_FIELD_NUMBER = 6;
@@ -373,20 +343,20 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (!getTenantIdBytes().isEmpty()) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 1, tenantId_);
+    if (tenantId_ != null) {
+      output.writeMessage(1, getTenantId());
     }
-    if (!getPersonIdBytes().isEmpty()) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 2, personId_);
+    if (personId_ != null) {
+      output.writeMessage(2, getPersonId());
     }
-    if (!getNameBytes().isEmpty()) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 3, name_);
+    if (name_ != null) {
+      output.writeMessage(3, getName());
     }
-    if (!getTypeBytes().isEmpty()) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 4, type_);
+    if (type_ != null) {
+      output.writeMessage(4, getType());
     }
-    if (!getCpfCnpjBytes().isEmpty()) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 5, cpfCnpj_);
+    if (cpfCnpj_ != null) {
+      output.writeMessage(5, getCpfCnpj());
     }
     for (int i = 0; i < phones_.size(); i++) {
       output.writeMessage(6, phones_.get(i));
@@ -400,20 +370,25 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (!getTenantIdBytes().isEmpty()) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, tenantId_);
+    if (tenantId_ != null) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(1, getTenantId());
     }
-    if (!getPersonIdBytes().isEmpty()) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, personId_);
+    if (personId_ != null) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(2, getPersonId());
     }
-    if (!getNameBytes().isEmpty()) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, name_);
+    if (name_ != null) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(3, getName());
     }
-    if (!getTypeBytes().isEmpty()) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, type_);
+    if (type_ != null) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(4, getType());
     }
-    if (!getCpfCnpjBytes().isEmpty()) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, cpfCnpj_);
+    if (cpfCnpj_ != null) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(5, getCpfCnpj());
     }
     for (int i = 0; i < phones_.size(); i++) {
       size += com.google.protobuf.CodedOutputStream
@@ -434,16 +409,31 @@ private static final long serialVersionUID = 0L;
     }
     com.ortiz.grpc.services.Person other = (com.ortiz.grpc.services.Person) obj;
 
-    if (!getTenantId()
-        .equals(other.getTenantId())) return false;
-    if (!getPersonId()
-        .equals(other.getPersonId())) return false;
-    if (!getName()
-        .equals(other.getName())) return false;
-    if (!getType()
-        .equals(other.getType())) return false;
-    if (!getCpfCnpj()
-        .equals(other.getCpfCnpj())) return false;
+    if (hasTenantId() != other.hasTenantId()) return false;
+    if (hasTenantId()) {
+      if (!getTenantId()
+          .equals(other.getTenantId())) return false;
+    }
+    if (hasPersonId() != other.hasPersonId()) return false;
+    if (hasPersonId()) {
+      if (!getPersonId()
+          .equals(other.getPersonId())) return false;
+    }
+    if (hasName() != other.hasName()) return false;
+    if (hasName()) {
+      if (!getName()
+          .equals(other.getName())) return false;
+    }
+    if (hasType() != other.hasType()) return false;
+    if (hasType()) {
+      if (!getType()
+          .equals(other.getType())) return false;
+    }
+    if (hasCpfCnpj() != other.hasCpfCnpj()) return false;
+    if (hasCpfCnpj()) {
+      if (!getCpfCnpj()
+          .equals(other.getCpfCnpj())) return false;
+    }
     if (!getPhonesList()
         .equals(other.getPhonesList())) return false;
     if (!unknownFields.equals(other.unknownFields)) return false;
@@ -457,16 +447,26 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (37 * hash) + TENANTID_FIELD_NUMBER;
-    hash = (53 * hash) + getTenantId().hashCode();
-    hash = (37 * hash) + PERSONID_FIELD_NUMBER;
-    hash = (53 * hash) + getPersonId().hashCode();
-    hash = (37 * hash) + NAME_FIELD_NUMBER;
-    hash = (53 * hash) + getName().hashCode();
-    hash = (37 * hash) + TYPE_FIELD_NUMBER;
-    hash = (53 * hash) + getType().hashCode();
-    hash = (37 * hash) + CPFCNPJ_FIELD_NUMBER;
-    hash = (53 * hash) + getCpfCnpj().hashCode();
+    if (hasTenantId()) {
+      hash = (37 * hash) + TENANTID_FIELD_NUMBER;
+      hash = (53 * hash) + getTenantId().hashCode();
+    }
+    if (hasPersonId()) {
+      hash = (37 * hash) + PERSONID_FIELD_NUMBER;
+      hash = (53 * hash) + getPersonId().hashCode();
+    }
+    if (hasName()) {
+      hash = (37 * hash) + NAME_FIELD_NUMBER;
+      hash = (53 * hash) + getName().hashCode();
+    }
+    if (hasType()) {
+      hash = (37 * hash) + TYPE_FIELD_NUMBER;
+      hash = (53 * hash) + getType().hashCode();
+    }
+    if (hasCpfCnpj()) {
+      hash = (37 * hash) + CPFCNPJ_FIELD_NUMBER;
+      hash = (53 * hash) + getCpfCnpj().hashCode();
+    }
     if (getPhonesCount() > 0) {
       hash = (37 * hash) + PHONES_FIELD_NUMBER;
       hash = (53 * hash) + getPhonesList().hashCode();
@@ -605,16 +605,36 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public Builder clear() {
       super.clear();
-      tenantId_ = "";
-
-      personId_ = "";
-
-      name_ = "";
-
-      type_ = "";
-
-      cpfCnpj_ = "";
-
+      if (tenantIdBuilder_ == null) {
+        tenantId_ = null;
+      } else {
+        tenantId_ = null;
+        tenantIdBuilder_ = null;
+      }
+      if (personIdBuilder_ == null) {
+        personId_ = null;
+      } else {
+        personId_ = null;
+        personIdBuilder_ = null;
+      }
+      if (nameBuilder_ == null) {
+        name_ = null;
+      } else {
+        name_ = null;
+        nameBuilder_ = null;
+      }
+      if (typeBuilder_ == null) {
+        type_ = null;
+      } else {
+        type_ = null;
+        typeBuilder_ = null;
+      }
+      if (cpfCnpjBuilder_ == null) {
+        cpfCnpj_ = null;
+      } else {
+        cpfCnpj_ = null;
+        cpfCnpjBuilder_ = null;
+      }
       if (phonesBuilder_ == null) {
         phones_ = java.util.Collections.emptyList();
         bitField0_ = (bitField0_ & ~0x00000001);
@@ -648,11 +668,31 @@ private static final long serialVersionUID = 0L;
     public com.ortiz.grpc.services.Person buildPartial() {
       com.ortiz.grpc.services.Person result = new com.ortiz.grpc.services.Person(this);
       int from_bitField0_ = bitField0_;
-      result.tenantId_ = tenantId_;
-      result.personId_ = personId_;
-      result.name_ = name_;
-      result.type_ = type_;
-      result.cpfCnpj_ = cpfCnpj_;
+      if (tenantIdBuilder_ == null) {
+        result.tenantId_ = tenantId_;
+      } else {
+        result.tenantId_ = tenantIdBuilder_.build();
+      }
+      if (personIdBuilder_ == null) {
+        result.personId_ = personId_;
+      } else {
+        result.personId_ = personIdBuilder_.build();
+      }
+      if (nameBuilder_ == null) {
+        result.name_ = name_;
+      } else {
+        result.name_ = nameBuilder_.build();
+      }
+      if (typeBuilder_ == null) {
+        result.type_ = type_;
+      } else {
+        result.type_ = typeBuilder_.build();
+      }
+      if (cpfCnpjBuilder_ == null) {
+        result.cpfCnpj_ = cpfCnpj_;
+      } else {
+        result.cpfCnpj_ = cpfCnpjBuilder_.build();
+      }
       if (phonesBuilder_ == null) {
         if (((bitField0_ & 0x00000001) != 0)) {
           phones_ = java.util.Collections.unmodifiableList(phones_);
@@ -710,25 +750,20 @@ private static final long serialVersionUID = 0L;
 
     public Builder mergeFrom(com.ortiz.grpc.services.Person other) {
       if (other == com.ortiz.grpc.services.Person.getDefaultInstance()) return this;
-      if (!other.getTenantId().isEmpty()) {
-        tenantId_ = other.tenantId_;
-        onChanged();
+      if (other.hasTenantId()) {
+        mergeTenantId(other.getTenantId());
       }
-      if (!other.getPersonId().isEmpty()) {
-        personId_ = other.personId_;
-        onChanged();
+      if (other.hasPersonId()) {
+        mergePersonId(other.getPersonId());
       }
-      if (!other.getName().isEmpty()) {
-        name_ = other.name_;
-        onChanged();
+      if (other.hasName()) {
+        mergeName(other.getName());
       }
-      if (!other.getType().isEmpty()) {
-        type_ = other.type_;
-        onChanged();
+      if (other.hasType()) {
+        mergeType(other.getType());
       }
-      if (!other.getCpfCnpj().isEmpty()) {
-        cpfCnpj_ = other.cpfCnpj_;
-        onChanged();
+      if (other.hasCpfCnpj()) {
+        mergeCpfCnpj(other.getCpfCnpj());
       }
       if (phonesBuilder_ == null) {
         if (!other.phones_.isEmpty()) {
@@ -786,384 +821,599 @@ private static final long serialVersionUID = 0L;
     }
     private int bitField0_;
 
-    private java.lang.Object tenantId_ = "";
+    private com.google.protobuf.StringValue tenantId_;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.google.protobuf.StringValue, com.google.protobuf.StringValue.Builder, com.google.protobuf.StringValueOrBuilder> tenantIdBuilder_;
     /**
-     * <code>string tenantId = 1;</code>
+     * <code>.google.protobuf.StringValue tenantId = 1;</code>
+     * @return Whether the tenantId field is set.
+     */
+    public boolean hasTenantId() {
+      return tenantIdBuilder_ != null || tenantId_ != null;
+    }
+    /**
+     * <code>.google.protobuf.StringValue tenantId = 1;</code>
      * @return The tenantId.
      */
-    public java.lang.String getTenantId() {
-      java.lang.Object ref = tenantId_;
-      if (!(ref instanceof java.lang.String)) {
-        com.google.protobuf.ByteString bs =
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        tenantId_ = s;
-        return s;
+    public com.google.protobuf.StringValue getTenantId() {
+      if (tenantIdBuilder_ == null) {
+        return tenantId_ == null ? com.google.protobuf.StringValue.getDefaultInstance() : tenantId_;
       } else {
-        return (java.lang.String) ref;
+        return tenantIdBuilder_.getMessage();
       }
     }
     /**
-     * <code>string tenantId = 1;</code>
-     * @return The bytes for tenantId.
+     * <code>.google.protobuf.StringValue tenantId = 1;</code>
      */
-    public com.google.protobuf.ByteString
-        getTenantIdBytes() {
-      java.lang.Object ref = tenantId_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        tenantId_ = b;
-        return b;
+    public Builder setTenantId(com.google.protobuf.StringValue value) {
+      if (tenantIdBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        tenantId_ = value;
+        onChanged();
       } else {
-        return (com.google.protobuf.ByteString) ref;
+        tenantIdBuilder_.setMessage(value);
       }
+
+      return this;
     }
     /**
-     * <code>string tenantId = 1;</code>
-     * @param value The tenantId to set.
-     * @return This builder for chaining.
+     * <code>.google.protobuf.StringValue tenantId = 1;</code>
      */
     public Builder setTenantId(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      tenantId_ = value;
-      onChanged();
+        com.google.protobuf.StringValue.Builder builderForValue) {
+      if (tenantIdBuilder_ == null) {
+        tenantId_ = builderForValue.build();
+        onChanged();
+      } else {
+        tenantIdBuilder_.setMessage(builderForValue.build());
+      }
+
       return this;
     }
     /**
-     * <code>string tenantId = 1;</code>
-     * @return This builder for chaining.
+     * <code>.google.protobuf.StringValue tenantId = 1;</code>
+     */
+    public Builder mergeTenantId(com.google.protobuf.StringValue value) {
+      if (tenantIdBuilder_ == null) {
+        if (tenantId_ != null) {
+          tenantId_ =
+            com.google.protobuf.StringValue.newBuilder(tenantId_).mergeFrom(value).buildPartial();
+        } else {
+          tenantId_ = value;
+        }
+        onChanged();
+      } else {
+        tenantIdBuilder_.mergeFrom(value);
+      }
+
+      return this;
+    }
+    /**
+     * <code>.google.protobuf.StringValue tenantId = 1;</code>
      */
     public Builder clearTenantId() {
-      
-      tenantId_ = getDefaultInstance().getTenantId();
-      onChanged();
+      if (tenantIdBuilder_ == null) {
+        tenantId_ = null;
+        onChanged();
+      } else {
+        tenantId_ = null;
+        tenantIdBuilder_ = null;
+      }
+
       return this;
     }
     /**
-     * <code>string tenantId = 1;</code>
-     * @param value The bytes for tenantId to set.
-     * @return This builder for chaining.
+     * <code>.google.protobuf.StringValue tenantId = 1;</code>
      */
-    public Builder setTenantIdBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
+    public com.google.protobuf.StringValue.Builder getTenantIdBuilder() {
       
-      tenantId_ = value;
       onChanged();
-      return this;
+      return getTenantIdFieldBuilder().getBuilder();
+    }
+    /**
+     * <code>.google.protobuf.StringValue tenantId = 1;</code>
+     */
+    public com.google.protobuf.StringValueOrBuilder getTenantIdOrBuilder() {
+      if (tenantIdBuilder_ != null) {
+        return tenantIdBuilder_.getMessageOrBuilder();
+      } else {
+        return tenantId_ == null ?
+            com.google.protobuf.StringValue.getDefaultInstance() : tenantId_;
+      }
+    }
+    /**
+     * <code>.google.protobuf.StringValue tenantId = 1;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.google.protobuf.StringValue, com.google.protobuf.StringValue.Builder, com.google.protobuf.StringValueOrBuilder> 
+        getTenantIdFieldBuilder() {
+      if (tenantIdBuilder_ == null) {
+        tenantIdBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            com.google.protobuf.StringValue, com.google.protobuf.StringValue.Builder, com.google.protobuf.StringValueOrBuilder>(
+                getTenantId(),
+                getParentForChildren(),
+                isClean());
+        tenantId_ = null;
+      }
+      return tenantIdBuilder_;
     }
 
-    private java.lang.Object personId_ = "";
+    private com.google.protobuf.StringValue personId_;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.google.protobuf.StringValue, com.google.protobuf.StringValue.Builder, com.google.protobuf.StringValueOrBuilder> personIdBuilder_;
     /**
-     * <code>string personId = 2;</code>
+     * <code>.google.protobuf.StringValue personId = 2;</code>
+     * @return Whether the personId field is set.
+     */
+    public boolean hasPersonId() {
+      return personIdBuilder_ != null || personId_ != null;
+    }
+    /**
+     * <code>.google.protobuf.StringValue personId = 2;</code>
      * @return The personId.
      */
-    public java.lang.String getPersonId() {
-      java.lang.Object ref = personId_;
-      if (!(ref instanceof java.lang.String)) {
-        com.google.protobuf.ByteString bs =
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        personId_ = s;
-        return s;
+    public com.google.protobuf.StringValue getPersonId() {
+      if (personIdBuilder_ == null) {
+        return personId_ == null ? com.google.protobuf.StringValue.getDefaultInstance() : personId_;
       } else {
-        return (java.lang.String) ref;
+        return personIdBuilder_.getMessage();
       }
     }
     /**
-     * <code>string personId = 2;</code>
-     * @return The bytes for personId.
+     * <code>.google.protobuf.StringValue personId = 2;</code>
      */
-    public com.google.protobuf.ByteString
-        getPersonIdBytes() {
-      java.lang.Object ref = personId_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        personId_ = b;
-        return b;
+    public Builder setPersonId(com.google.protobuf.StringValue value) {
+      if (personIdBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        personId_ = value;
+        onChanged();
       } else {
-        return (com.google.protobuf.ByteString) ref;
+        personIdBuilder_.setMessage(value);
       }
+
+      return this;
     }
     /**
-     * <code>string personId = 2;</code>
-     * @param value The personId to set.
-     * @return This builder for chaining.
+     * <code>.google.protobuf.StringValue personId = 2;</code>
      */
     public Builder setPersonId(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      personId_ = value;
-      onChanged();
+        com.google.protobuf.StringValue.Builder builderForValue) {
+      if (personIdBuilder_ == null) {
+        personId_ = builderForValue.build();
+        onChanged();
+      } else {
+        personIdBuilder_.setMessage(builderForValue.build());
+      }
+
       return this;
     }
     /**
-     * <code>string personId = 2;</code>
-     * @return This builder for chaining.
+     * <code>.google.protobuf.StringValue personId = 2;</code>
+     */
+    public Builder mergePersonId(com.google.protobuf.StringValue value) {
+      if (personIdBuilder_ == null) {
+        if (personId_ != null) {
+          personId_ =
+            com.google.protobuf.StringValue.newBuilder(personId_).mergeFrom(value).buildPartial();
+        } else {
+          personId_ = value;
+        }
+        onChanged();
+      } else {
+        personIdBuilder_.mergeFrom(value);
+      }
+
+      return this;
+    }
+    /**
+     * <code>.google.protobuf.StringValue personId = 2;</code>
      */
     public Builder clearPersonId() {
-      
-      personId_ = getDefaultInstance().getPersonId();
-      onChanged();
+      if (personIdBuilder_ == null) {
+        personId_ = null;
+        onChanged();
+      } else {
+        personId_ = null;
+        personIdBuilder_ = null;
+      }
+
       return this;
     }
     /**
-     * <code>string personId = 2;</code>
-     * @param value The bytes for personId to set.
-     * @return This builder for chaining.
+     * <code>.google.protobuf.StringValue personId = 2;</code>
      */
-    public Builder setPersonIdBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
+    public com.google.protobuf.StringValue.Builder getPersonIdBuilder() {
       
-      personId_ = value;
       onChanged();
-      return this;
+      return getPersonIdFieldBuilder().getBuilder();
+    }
+    /**
+     * <code>.google.protobuf.StringValue personId = 2;</code>
+     */
+    public com.google.protobuf.StringValueOrBuilder getPersonIdOrBuilder() {
+      if (personIdBuilder_ != null) {
+        return personIdBuilder_.getMessageOrBuilder();
+      } else {
+        return personId_ == null ?
+            com.google.protobuf.StringValue.getDefaultInstance() : personId_;
+      }
+    }
+    /**
+     * <code>.google.protobuf.StringValue personId = 2;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.google.protobuf.StringValue, com.google.protobuf.StringValue.Builder, com.google.protobuf.StringValueOrBuilder> 
+        getPersonIdFieldBuilder() {
+      if (personIdBuilder_ == null) {
+        personIdBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            com.google.protobuf.StringValue, com.google.protobuf.StringValue.Builder, com.google.protobuf.StringValueOrBuilder>(
+                getPersonId(),
+                getParentForChildren(),
+                isClean());
+        personId_ = null;
+      }
+      return personIdBuilder_;
     }
 
-    private java.lang.Object name_ = "";
+    private com.google.protobuf.StringValue name_;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.google.protobuf.StringValue, com.google.protobuf.StringValue.Builder, com.google.protobuf.StringValueOrBuilder> nameBuilder_;
     /**
-     * <code>string name = 3;</code>
+     * <code>.google.protobuf.StringValue name = 3;</code>
+     * @return Whether the name field is set.
+     */
+    public boolean hasName() {
+      return nameBuilder_ != null || name_ != null;
+    }
+    /**
+     * <code>.google.protobuf.StringValue name = 3;</code>
      * @return The name.
      */
-    public java.lang.String getName() {
-      java.lang.Object ref = name_;
-      if (!(ref instanceof java.lang.String)) {
-        com.google.protobuf.ByteString bs =
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        name_ = s;
-        return s;
+    public com.google.protobuf.StringValue getName() {
+      if (nameBuilder_ == null) {
+        return name_ == null ? com.google.protobuf.StringValue.getDefaultInstance() : name_;
       } else {
-        return (java.lang.String) ref;
+        return nameBuilder_.getMessage();
       }
     }
     /**
-     * <code>string name = 3;</code>
-     * @return The bytes for name.
+     * <code>.google.protobuf.StringValue name = 3;</code>
      */
-    public com.google.protobuf.ByteString
-        getNameBytes() {
-      java.lang.Object ref = name_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        name_ = b;
-        return b;
+    public Builder setName(com.google.protobuf.StringValue value) {
+      if (nameBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        name_ = value;
+        onChanged();
       } else {
-        return (com.google.protobuf.ByteString) ref;
+        nameBuilder_.setMessage(value);
       }
+
+      return this;
     }
     /**
-     * <code>string name = 3;</code>
-     * @param value The name to set.
-     * @return This builder for chaining.
+     * <code>.google.protobuf.StringValue name = 3;</code>
      */
     public Builder setName(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      name_ = value;
-      onChanged();
+        com.google.protobuf.StringValue.Builder builderForValue) {
+      if (nameBuilder_ == null) {
+        name_ = builderForValue.build();
+        onChanged();
+      } else {
+        nameBuilder_.setMessage(builderForValue.build());
+      }
+
       return this;
     }
     /**
-     * <code>string name = 3;</code>
-     * @return This builder for chaining.
+     * <code>.google.protobuf.StringValue name = 3;</code>
+     */
+    public Builder mergeName(com.google.protobuf.StringValue value) {
+      if (nameBuilder_ == null) {
+        if (name_ != null) {
+          name_ =
+            com.google.protobuf.StringValue.newBuilder(name_).mergeFrom(value).buildPartial();
+        } else {
+          name_ = value;
+        }
+        onChanged();
+      } else {
+        nameBuilder_.mergeFrom(value);
+      }
+
+      return this;
+    }
+    /**
+     * <code>.google.protobuf.StringValue name = 3;</code>
      */
     public Builder clearName() {
-      
-      name_ = getDefaultInstance().getName();
-      onChanged();
+      if (nameBuilder_ == null) {
+        name_ = null;
+        onChanged();
+      } else {
+        name_ = null;
+        nameBuilder_ = null;
+      }
+
       return this;
     }
     /**
-     * <code>string name = 3;</code>
-     * @param value The bytes for name to set.
-     * @return This builder for chaining.
+     * <code>.google.protobuf.StringValue name = 3;</code>
      */
-    public Builder setNameBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
+    public com.google.protobuf.StringValue.Builder getNameBuilder() {
       
-      name_ = value;
       onChanged();
-      return this;
+      return getNameFieldBuilder().getBuilder();
+    }
+    /**
+     * <code>.google.protobuf.StringValue name = 3;</code>
+     */
+    public com.google.protobuf.StringValueOrBuilder getNameOrBuilder() {
+      if (nameBuilder_ != null) {
+        return nameBuilder_.getMessageOrBuilder();
+      } else {
+        return name_ == null ?
+            com.google.protobuf.StringValue.getDefaultInstance() : name_;
+      }
+    }
+    /**
+     * <code>.google.protobuf.StringValue name = 3;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.google.protobuf.StringValue, com.google.protobuf.StringValue.Builder, com.google.protobuf.StringValueOrBuilder> 
+        getNameFieldBuilder() {
+      if (nameBuilder_ == null) {
+        nameBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            com.google.protobuf.StringValue, com.google.protobuf.StringValue.Builder, com.google.protobuf.StringValueOrBuilder>(
+                getName(),
+                getParentForChildren(),
+                isClean());
+        name_ = null;
+      }
+      return nameBuilder_;
     }
 
-    private java.lang.Object type_ = "";
+    private com.google.protobuf.StringValue type_;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.google.protobuf.StringValue, com.google.protobuf.StringValue.Builder, com.google.protobuf.StringValueOrBuilder> typeBuilder_;
     /**
-     * <code>string type = 4;</code>
+     * <code>.google.protobuf.StringValue type = 4;</code>
+     * @return Whether the type field is set.
+     */
+    public boolean hasType() {
+      return typeBuilder_ != null || type_ != null;
+    }
+    /**
+     * <code>.google.protobuf.StringValue type = 4;</code>
      * @return The type.
      */
-    public java.lang.String getType() {
-      java.lang.Object ref = type_;
-      if (!(ref instanceof java.lang.String)) {
-        com.google.protobuf.ByteString bs =
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        type_ = s;
-        return s;
+    public com.google.protobuf.StringValue getType() {
+      if (typeBuilder_ == null) {
+        return type_ == null ? com.google.protobuf.StringValue.getDefaultInstance() : type_;
       } else {
-        return (java.lang.String) ref;
+        return typeBuilder_.getMessage();
       }
     }
     /**
-     * <code>string type = 4;</code>
-     * @return The bytes for type.
+     * <code>.google.protobuf.StringValue type = 4;</code>
      */
-    public com.google.protobuf.ByteString
-        getTypeBytes() {
-      java.lang.Object ref = type_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        type_ = b;
-        return b;
+    public Builder setType(com.google.protobuf.StringValue value) {
+      if (typeBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        type_ = value;
+        onChanged();
       } else {
-        return (com.google.protobuf.ByteString) ref;
+        typeBuilder_.setMessage(value);
       }
+
+      return this;
     }
     /**
-     * <code>string type = 4;</code>
-     * @param value The type to set.
-     * @return This builder for chaining.
+     * <code>.google.protobuf.StringValue type = 4;</code>
      */
     public Builder setType(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      type_ = value;
-      onChanged();
+        com.google.protobuf.StringValue.Builder builderForValue) {
+      if (typeBuilder_ == null) {
+        type_ = builderForValue.build();
+        onChanged();
+      } else {
+        typeBuilder_.setMessage(builderForValue.build());
+      }
+
       return this;
     }
     /**
-     * <code>string type = 4;</code>
-     * @return This builder for chaining.
+     * <code>.google.protobuf.StringValue type = 4;</code>
+     */
+    public Builder mergeType(com.google.protobuf.StringValue value) {
+      if (typeBuilder_ == null) {
+        if (type_ != null) {
+          type_ =
+            com.google.protobuf.StringValue.newBuilder(type_).mergeFrom(value).buildPartial();
+        } else {
+          type_ = value;
+        }
+        onChanged();
+      } else {
+        typeBuilder_.mergeFrom(value);
+      }
+
+      return this;
+    }
+    /**
+     * <code>.google.protobuf.StringValue type = 4;</code>
      */
     public Builder clearType() {
-      
-      type_ = getDefaultInstance().getType();
-      onChanged();
+      if (typeBuilder_ == null) {
+        type_ = null;
+        onChanged();
+      } else {
+        type_ = null;
+        typeBuilder_ = null;
+      }
+
       return this;
     }
     /**
-     * <code>string type = 4;</code>
-     * @param value The bytes for type to set.
-     * @return This builder for chaining.
+     * <code>.google.protobuf.StringValue type = 4;</code>
      */
-    public Builder setTypeBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
+    public com.google.protobuf.StringValue.Builder getTypeBuilder() {
       
-      type_ = value;
       onChanged();
-      return this;
+      return getTypeFieldBuilder().getBuilder();
+    }
+    /**
+     * <code>.google.protobuf.StringValue type = 4;</code>
+     */
+    public com.google.protobuf.StringValueOrBuilder getTypeOrBuilder() {
+      if (typeBuilder_ != null) {
+        return typeBuilder_.getMessageOrBuilder();
+      } else {
+        return type_ == null ?
+            com.google.protobuf.StringValue.getDefaultInstance() : type_;
+      }
+    }
+    /**
+     * <code>.google.protobuf.StringValue type = 4;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.google.protobuf.StringValue, com.google.protobuf.StringValue.Builder, com.google.protobuf.StringValueOrBuilder> 
+        getTypeFieldBuilder() {
+      if (typeBuilder_ == null) {
+        typeBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            com.google.protobuf.StringValue, com.google.protobuf.StringValue.Builder, com.google.protobuf.StringValueOrBuilder>(
+                getType(),
+                getParentForChildren(),
+                isClean());
+        type_ = null;
+      }
+      return typeBuilder_;
     }
 
-    private java.lang.Object cpfCnpj_ = "";
+    private com.google.protobuf.StringValue cpfCnpj_;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.google.protobuf.StringValue, com.google.protobuf.StringValue.Builder, com.google.protobuf.StringValueOrBuilder> cpfCnpjBuilder_;
     /**
-     * <code>string cpfCnpj = 5;</code>
+     * <code>.google.protobuf.StringValue cpfCnpj = 5;</code>
+     * @return Whether the cpfCnpj field is set.
+     */
+    public boolean hasCpfCnpj() {
+      return cpfCnpjBuilder_ != null || cpfCnpj_ != null;
+    }
+    /**
+     * <code>.google.protobuf.StringValue cpfCnpj = 5;</code>
      * @return The cpfCnpj.
      */
-    public java.lang.String getCpfCnpj() {
-      java.lang.Object ref = cpfCnpj_;
-      if (!(ref instanceof java.lang.String)) {
-        com.google.protobuf.ByteString bs =
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        cpfCnpj_ = s;
-        return s;
+    public com.google.protobuf.StringValue getCpfCnpj() {
+      if (cpfCnpjBuilder_ == null) {
+        return cpfCnpj_ == null ? com.google.protobuf.StringValue.getDefaultInstance() : cpfCnpj_;
       } else {
-        return (java.lang.String) ref;
+        return cpfCnpjBuilder_.getMessage();
       }
     }
     /**
-     * <code>string cpfCnpj = 5;</code>
-     * @return The bytes for cpfCnpj.
+     * <code>.google.protobuf.StringValue cpfCnpj = 5;</code>
      */
-    public com.google.protobuf.ByteString
-        getCpfCnpjBytes() {
-      java.lang.Object ref = cpfCnpj_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        cpfCnpj_ = b;
-        return b;
+    public Builder setCpfCnpj(com.google.protobuf.StringValue value) {
+      if (cpfCnpjBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        cpfCnpj_ = value;
+        onChanged();
       } else {
-        return (com.google.protobuf.ByteString) ref;
+        cpfCnpjBuilder_.setMessage(value);
       }
+
+      return this;
     }
     /**
-     * <code>string cpfCnpj = 5;</code>
-     * @param value The cpfCnpj to set.
-     * @return This builder for chaining.
+     * <code>.google.protobuf.StringValue cpfCnpj = 5;</code>
      */
     public Builder setCpfCnpj(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      cpfCnpj_ = value;
-      onChanged();
+        com.google.protobuf.StringValue.Builder builderForValue) {
+      if (cpfCnpjBuilder_ == null) {
+        cpfCnpj_ = builderForValue.build();
+        onChanged();
+      } else {
+        cpfCnpjBuilder_.setMessage(builderForValue.build());
+      }
+
       return this;
     }
     /**
-     * <code>string cpfCnpj = 5;</code>
-     * @return This builder for chaining.
+     * <code>.google.protobuf.StringValue cpfCnpj = 5;</code>
+     */
+    public Builder mergeCpfCnpj(com.google.protobuf.StringValue value) {
+      if (cpfCnpjBuilder_ == null) {
+        if (cpfCnpj_ != null) {
+          cpfCnpj_ =
+            com.google.protobuf.StringValue.newBuilder(cpfCnpj_).mergeFrom(value).buildPartial();
+        } else {
+          cpfCnpj_ = value;
+        }
+        onChanged();
+      } else {
+        cpfCnpjBuilder_.mergeFrom(value);
+      }
+
+      return this;
+    }
+    /**
+     * <code>.google.protobuf.StringValue cpfCnpj = 5;</code>
      */
     public Builder clearCpfCnpj() {
-      
-      cpfCnpj_ = getDefaultInstance().getCpfCnpj();
-      onChanged();
+      if (cpfCnpjBuilder_ == null) {
+        cpfCnpj_ = null;
+        onChanged();
+      } else {
+        cpfCnpj_ = null;
+        cpfCnpjBuilder_ = null;
+      }
+
       return this;
     }
     /**
-     * <code>string cpfCnpj = 5;</code>
-     * @param value The bytes for cpfCnpj to set.
-     * @return This builder for chaining.
+     * <code>.google.protobuf.StringValue cpfCnpj = 5;</code>
      */
-    public Builder setCpfCnpjBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
+    public com.google.protobuf.StringValue.Builder getCpfCnpjBuilder() {
       
-      cpfCnpj_ = value;
       onChanged();
-      return this;
+      return getCpfCnpjFieldBuilder().getBuilder();
+    }
+    /**
+     * <code>.google.protobuf.StringValue cpfCnpj = 5;</code>
+     */
+    public com.google.protobuf.StringValueOrBuilder getCpfCnpjOrBuilder() {
+      if (cpfCnpjBuilder_ != null) {
+        return cpfCnpjBuilder_.getMessageOrBuilder();
+      } else {
+        return cpfCnpj_ == null ?
+            com.google.protobuf.StringValue.getDefaultInstance() : cpfCnpj_;
+      }
+    }
+    /**
+     * <code>.google.protobuf.StringValue cpfCnpj = 5;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.google.protobuf.StringValue, com.google.protobuf.StringValue.Builder, com.google.protobuf.StringValueOrBuilder> 
+        getCpfCnpjFieldBuilder() {
+      if (cpfCnpjBuilder_ == null) {
+        cpfCnpjBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            com.google.protobuf.StringValue, com.google.protobuf.StringValue.Builder, com.google.protobuf.StringValueOrBuilder>(
+                getCpfCnpj(),
+                getParentForChildren(),
+                isClean());
+        cpfCnpj_ = null;
+      }
+      return cpfCnpjBuilder_;
     }
 
     private java.util.List<com.ortiz.grpc.services.Phone> phones_ =

@@ -8,64 +8,79 @@ public interface PersonOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>string tenantId = 1;</code>
+   * <code>.google.protobuf.StringValue tenantId = 1;</code>
+   * @return Whether the tenantId field is set.
+   */
+  boolean hasTenantId();
+  /**
+   * <code>.google.protobuf.StringValue tenantId = 1;</code>
    * @return The tenantId.
    */
-  java.lang.String getTenantId();
+  com.google.protobuf.StringValue getTenantId();
   /**
-   * <code>string tenantId = 1;</code>
-   * @return The bytes for tenantId.
+   * <code>.google.protobuf.StringValue tenantId = 1;</code>
    */
-  com.google.protobuf.ByteString
-      getTenantIdBytes();
+  com.google.protobuf.StringValueOrBuilder getTenantIdOrBuilder();
 
   /**
-   * <code>string personId = 2;</code>
+   * <code>.google.protobuf.StringValue personId = 2;</code>
+   * @return Whether the personId field is set.
+   */
+  boolean hasPersonId();
+  /**
+   * <code>.google.protobuf.StringValue personId = 2;</code>
    * @return The personId.
    */
-  java.lang.String getPersonId();
+  com.google.protobuf.StringValue getPersonId();
   /**
-   * <code>string personId = 2;</code>
-   * @return The bytes for personId.
+   * <code>.google.protobuf.StringValue personId = 2;</code>
    */
-  com.google.protobuf.ByteString
-      getPersonIdBytes();
+  com.google.protobuf.StringValueOrBuilder getPersonIdOrBuilder();
 
   /**
-   * <code>string name = 3;</code>
+   * <code>.google.protobuf.StringValue name = 3;</code>
+   * @return Whether the name field is set.
+   */
+  boolean hasName();
+  /**
+   * <code>.google.protobuf.StringValue name = 3;</code>
    * @return The name.
    */
-  java.lang.String getName();
+  com.google.protobuf.StringValue getName();
   /**
-   * <code>string name = 3;</code>
-   * @return The bytes for name.
+   * <code>.google.protobuf.StringValue name = 3;</code>
    */
-  com.google.protobuf.ByteString
-      getNameBytes();
+  com.google.protobuf.StringValueOrBuilder getNameOrBuilder();
 
   /**
-   * <code>string type = 4;</code>
+   * <code>.google.protobuf.StringValue type = 4;</code>
+   * @return Whether the type field is set.
+   */
+  boolean hasType();
+  /**
+   * <code>.google.protobuf.StringValue type = 4;</code>
    * @return The type.
    */
-  java.lang.String getType();
+  com.google.protobuf.StringValue getType();
   /**
-   * <code>string type = 4;</code>
-   * @return The bytes for type.
+   * <code>.google.protobuf.StringValue type = 4;</code>
    */
-  com.google.protobuf.ByteString
-      getTypeBytes();
+  com.google.protobuf.StringValueOrBuilder getTypeOrBuilder();
 
   /**
-   * <code>string cpfCnpj = 5;</code>
+   * <code>.google.protobuf.StringValue cpfCnpj = 5;</code>
+   * @return Whether the cpfCnpj field is set.
+   */
+  boolean hasCpfCnpj();
+  /**
+   * <code>.google.protobuf.StringValue cpfCnpj = 5;</code>
    * @return The cpfCnpj.
    */
-  java.lang.String getCpfCnpj();
+  com.google.protobuf.StringValue getCpfCnpj();
   /**
-   * <code>string cpfCnpj = 5;</code>
-   * @return The bytes for cpfCnpj.
+   * <code>.google.protobuf.StringValue cpfCnpj = 5;</code>
    */
-  com.google.protobuf.ByteString
-      getCpfCnpjBytes();
+  com.google.protobuf.StringValueOrBuilder getCpfCnpjOrBuilder();
 
   /**
    * <code>repeated .services.Phone phones = 6;</code>

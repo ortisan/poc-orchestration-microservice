@@ -14,6 +14,6 @@ public abstract class Person {
     private PersonId personId;
     private String type;
     private String name;
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Phone> phones;
 }

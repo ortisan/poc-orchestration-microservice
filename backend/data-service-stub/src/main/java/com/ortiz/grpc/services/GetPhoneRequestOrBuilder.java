@@ -8,14 +8,17 @@ public interface GetPhoneRequestOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>string phoneId = 1;</code>
+   * <code>.google.protobuf.StringValue phoneId = 1;</code>
+   * @return Whether the phoneId field is set.
+   */
+  boolean hasPhoneId();
+  /**
+   * <code>.google.protobuf.StringValue phoneId = 1;</code>
    * @return The phoneId.
    */
-  java.lang.String getPhoneId();
+  com.google.protobuf.StringValue getPhoneId();
   /**
-   * <code>string phoneId = 1;</code>
-   * @return The bytes for phoneId.
+   * <code>.google.protobuf.StringValue phoneId = 1;</code>
    */
-  com.google.protobuf.ByteString
-      getPhoneIdBytes();
+  com.google.protobuf.StringValueOrBuilder getPhoneIdOrBuilder();
 }

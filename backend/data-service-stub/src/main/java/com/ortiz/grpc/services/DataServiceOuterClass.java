@@ -43,28 +43,40 @@ public final class DataServiceOuterClass {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\022data-service.proto\022\010services\"6\n\020GetPer" +
-      "sonRequest\022\020\n\010tenantId\030\001 \001(\t\022\020\n\010personId" +
-      "\030\002 \001(\t\"T\n\005Phone\022\n\n\002id\030\001 \001(\t\022\013\n\003ddi\030\002 \001(\005" +
-      "\022\013\n\003ddd\030\003 \001(\005\022\016\n\006number\030\004 \001(\005\022\025\n\rextensi" +
-      "onLine\030\005 \001(\005\"z\n\006Person\022\020\n\010tenantId\030\001 \001(\t" +
-      "\022\020\n\010personId\030\002 \001(\t\022\014\n\004name\030\003 \001(\t\022\014\n\004type" +
-      "\030\004 \001(\t\022\017\n\007cpfCnpj\030\005 \001(\t\022\037\n\006phones\030\006 \003(\0132" +
-      "\017.services.Phone\"\"\n\017GetPhoneRequest\022\017\n\007p" +
-      "honeId\030\001 \001(\t2\322\002\n\013DataService\022;\n\tGetPerso" +
-      "n\022\032.services.GetPersonRequest\032\020.services" +
-      ".Person\"\000\0222\n\nSavePerson\022\020.services.Perso" +
-      "n\032\020.services.Person\"\000\0224\n\014UpdatePerson\022\020." +
-      "services.Person\032\020.services.Person\"\000\0228\n\010G" +
-      "etPhone\022\031.services.GetPhoneRequest\032\017.ser" +
-      "vices.Phone\"\000\022/\n\tSavePhone\022\017.services.Ph" +
-      "one\032\017.services.Phone\"\000\0221\n\013UpdatePhone\022\017." +
-      "services.Phone\032\017.services.Phone\"\000B\033\n\027com" +
-      ".ortiz.grpc.servicesP\001b\006proto3"
+      "\n\022data-service.proto\022\010services\032\036google/p" +
+      "rotobuf/wrappers.proto\"r\n\020GetPersonReque" +
+      "st\022.\n\010tenantId\030\001 \001(\0132\034.google.protobuf.S" +
+      "tringValue\022.\n\010personId\030\002 \001(\0132\034.google.pr" +
+      "otobuf.StringValue\"\346\001\n\005Phone\022(\n\002id\030\001 \001(\013" +
+      "2\034.google.protobuf.StringValue\022(\n\003ddi\030\002 " +
+      "\001(\0132\033.google.protobuf.Int32Value\022(\n\003ddd\030" +
+      "\003 \001(\0132\033.google.protobuf.Int32Value\022+\n\006nu" +
+      "mber\030\004 \001(\0132\033.google.protobuf.Int32Value\022" +
+      "2\n\rextensionLine\030\005 \001(\0132\033.google.protobuf" +
+      ".Int32Value\"\220\002\n\006Person\022.\n\010tenantId\030\001 \001(\013" +
+      "2\034.google.protobuf.StringValue\022.\n\010person" +
+      "Id\030\002 \001(\0132\034.google.protobuf.StringValue\022*" +
+      "\n\004name\030\003 \001(\0132\034.google.protobuf.StringVal" +
+      "ue\022*\n\004type\030\004 \001(\0132\034.google.protobuf.Strin" +
+      "gValue\022-\n\007cpfCnpj\030\005 \001(\0132\034.google.protobu" +
+      "f.StringValue\022\037\n\006phones\030\006 \003(\0132\017.services" +
+      ".Phone\"@\n\017GetPhoneRequest\022-\n\007phoneId\030\001 \001" +
+      "(\0132\034.google.protobuf.StringValue2\322\002\n\013Dat" +
+      "aService\022;\n\tGetPerson\022\032.services.GetPers" +
+      "onRequest\032\020.services.Person\"\000\0222\n\nSavePer" +
+      "son\022\020.services.Person\032\020.services.Person\"" +
+      "\000\0224\n\014UpdatePerson\022\020.services.Person\032\020.se" +
+      "rvices.Person\"\000\0228\n\010GetPhone\022\031.services.G" +
+      "etPhoneRequest\032\017.services.Phone\"\000\022/\n\tSav" +
+      "ePhone\022\017.services.Phone\032\017.services.Phone" +
+      "\"\000\0221\n\013UpdatePhone\022\017.services.Phone\032\017.ser" +
+      "vices.Phone\"\000B\033\n\027com.ortiz.grpc.services" +
+      "P\001b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
+          com.google.protobuf.WrappersProto.getDescriptor(),
         });
     internal_static_services_GetPersonRequest_descriptor =
       getDescriptor().getMessageTypes().get(0);
@@ -90,6 +102,7 @@ public final class DataServiceOuterClass {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_services_GetPhoneRequest_descriptor,
         new java.lang.String[] { "PhoneId", });
+    com.google.protobuf.WrappersProto.getDescriptor();
   }
 
   // @@protoc_insertion_point(outer_class_scope)
