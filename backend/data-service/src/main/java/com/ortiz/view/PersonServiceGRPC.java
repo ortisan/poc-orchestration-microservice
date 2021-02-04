@@ -19,6 +19,9 @@ import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static com.ortiz.poc.commons.FieldUtils.getInteger32Value;
+import static com.ortiz.poc.commons.FieldUtils.getStringValue;
+
 @GrpcService
 public class PersonServiceGRPC extends DataServiceGrpc.DataServiceImplBase {
 
@@ -31,8 +34,9 @@ public class PersonServiceGRPC extends DataServiceGrpc.DataServiceImplBase {
     @Override
     public void getPerson(GetPersonRequest request, StreamObserver<Person> responseObserver) {
         try {
-            PersonDTO person = personService.getPerson(request.getTenantId(), request.getPersonId());
-            Person response = Person.newBuilder().setTenantId(person.getTenantId()).setPersonId(person.getId()).setCpfCnpj(person.getCpfCnpj()).setName(person.getName()).setType(person.getType()).build();
+            PersonDTO personDTO = personService.getPerson(request.getTenantId().getValue(), request.getPersonId().getValue());
+            List<Phone> phones = personDTO.getPhones().stream().map(phoneDTO -> Phone.newBuilder().setId(getStringValue(phoneDTO.getId())).setDdi(getInteger32Value(phoneDTO.getDdi())).setDdd(getInteger32Value(phoneDTO.getDdd())).setNumber(getInteger32Value(phoneDTO.getNumber())).setExtensionLine(getInteger32Value(phoneDTO.getExtensionLine())).build()).collect(Collectors.toList());
+            Person response = Person.newBuilder().setTenantId(getStringValue(personDTO.getTenantId())).setPersonId(getStringValue(personDTO.getId())).setCpfCnpj(getStringValue(personDTO.getCpfCnpj())).setName(getStringValue(personDTO.getName())).setType(getStringValue(personDTO.getType())).addAllPhones(phones).build();
             responseObserver.onNext(response);
             responseObserver.onCompleted();
         } catch (EntityNotFoundException exc) {
@@ -45,12 +49,12 @@ public class PersonServiceGRPC extends DataServiceGrpc.DataServiceImplBase {
     @Override
     public void savePerson(Person request, StreamObserver<Person> responseObserver) {
         try {
-            List<PhoneDTO> phoneDTOS = request.getPhonesList().stream().map(phone -> PhoneDTO.builder().ddi(phone.getDdi()).ddd(phone.getDdd()).number(phone.getNumber()).extensionLine(phone.getExtensionLine()).build()).collect(Collectors.toList());
-            PersonDTO personDTO = PersonDTO.builder().tenantId(request.getTenantId()).id(request.getPersonId()).cpfCnpj(request.getCpfCnpj())
-                    .name(request.getName()).type(request.getType()).cpfCnpj(request.getCpfCnpj()).phones(phoneDTOS).build();
+            List<PhoneDTO> phoneDTOS = request.getPhonesList().stream().map(phone -> PhoneDTO.builder().ddi(phone.getDdi().getValue()).ddd(phone.getDdd().getValue()).number(phone.getNumber().getValue()).extensionLine(phone.getExtensionLine().getValue()).build()).collect(Collectors.toList());
+            PersonDTO personDTO = PersonDTO.builder().tenantId(request.getTenantId().getValue()).id(request.getPersonId().getValue()).cpfCnpj(request.getCpfCnpj().getValue())
+                    .name(request.getName().getValue()).type(request.getType().getValue()).cpfCnpj(request.getCpfCnpj().getValue()).phones(phoneDTOS).build();
             PersonDTO personPersisted = personService.savePerson(personDTO);
-            List<Phone> phones = personDTO.getPhones().stream().map(phoneDTO -> Phone.newBuilder().setId(phoneDTO.getId()).setDdi(phoneDTO.getDdi()).setDdd(phoneDTO.getDdd()).setNumber(phoneDTO.getNumber()).setExtensionLine(phoneDTO.getExtensionLine()).build()).collect(Collectors.toList());
-            Person response = Person.newBuilder().setTenantId(personPersisted.getTenantId()).setPersonId(personPersisted.getId()).setCpfCnpj(personPersisted.getCpfCnpj()).setName(personPersisted.getName()).setType(personPersisted.getType()).addAllPhones(phones).build();
+            List<Phone> phones = personDTO.getPhones().stream().map(phoneDTO -> Phone.newBuilder().setId(getStringValue(phoneDTO.getId())).setDdi(getInteger32Value(phoneDTO.getDdi())).setDdd(getInteger32Value(phoneDTO.getDdd())).setNumber(getInteger32Value(phoneDTO.getNumber())).setExtensionLine(getInteger32Value(phoneDTO.getExtensionLine())).build()).collect(Collectors.toList());
+            Person response = Person.newBuilder().setTenantId(getStringValue(personPersisted.getTenantId())).setPersonId(getStringValue(personPersisted.getId())).setCpfCnpj(getStringValue(personPersisted.getCpfCnpj())).setName(getStringValue(personPersisted.getName())).setType(getStringValue(personPersisted.getType())).addAllPhones(phones).build();
             responseObserver.onNext(response);
             responseObserver.onCompleted();
         } catch (EntityNotFoundException exc) {
@@ -63,12 +67,12 @@ public class PersonServiceGRPC extends DataServiceGrpc.DataServiceImplBase {
     @Override
     public void updatePerson(Person request, StreamObserver<Person> responseObserver) {
         try {
-            List<PhoneDTO> phoneDTOS = request.getPhonesList().stream().map(phone -> PhoneDTO.builder().ddi(phone.getDdi()).ddd(phone.getDdd()).number(phone.getNumber()).extensionLine(phone.getExtensionLine()).build()).collect(Collectors.toList());
-            PersonDTO personDTO = PersonDTO.builder().tenantId(request.getTenantId()).id(request.getPersonId()).cpfCnpj(request.getCpfCnpj())
-                    .name(request.getName()).type(request.getType()).cpfCnpj(request.getCpfCnpj()).phones(phoneDTOS).build();
+            List<PhoneDTO> phoneDTOS = request.getPhonesList().stream().map(phone -> PhoneDTO.builder().ddi(phone.getDdi().getValue()).ddd(phone.getDdd().getValue()).number(phone.getNumber().getValue()).extensionLine(phone.getExtensionLine().getValue()).build()).collect(Collectors.toList());
+            PersonDTO personDTO = PersonDTO.builder().tenantId(request.getTenantId().getValue()).id(request.getPersonId().getValue()).cpfCnpj(request.getCpfCnpj().getValue())
+                    .name(request.getName().getValue()).type(request.getType().getValue()).cpfCnpj(request.getCpfCnpj().getValue()).phones(phoneDTOS).build();
             PersonDTO personPersisted = personService.updatePerson(personDTO);
-            List<Phone> phones = personDTO.getPhones().stream().map(phoneDTO -> Phone.newBuilder().setId(phoneDTO.getId()).setDdi(phoneDTO.getDdi()).setDdd(phoneDTO.getDdd()).setNumber(phoneDTO.getNumber()).setExtensionLine(phoneDTO.getExtensionLine()).build()).collect(Collectors.toList());
-            Person response = Person.newBuilder().setTenantId(personPersisted.getTenantId()).setPersonId(personPersisted.getId()).setCpfCnpj(personPersisted.getCpfCnpj()).setName(personPersisted.getName()).setType(personPersisted.getType()).addAllPhones(phones).build();
+            List<Phone> phones = personDTO.getPhones().stream().map(phoneDTO -> Phone.newBuilder().setId(getStringValue(phoneDTO.getId())).setDdi(getInteger32Value(phoneDTO.getDdi())).setDdd(getInteger32Value(phoneDTO.getDdd())).setNumber(getInteger32Value(phoneDTO.getNumber())).setExtensionLine(getInteger32Value(phoneDTO.getExtensionLine())).build()).collect(Collectors.toList());
+            Person response = Person.newBuilder().setTenantId(getStringValue(personPersisted.getTenantId())).setPersonId(getStringValue(personPersisted.getId())).setCpfCnpj(getStringValue(personPersisted.getCpfCnpj())).setName(getStringValue(personPersisted.getName())).setType(getStringValue(personPersisted.getType())).addAllPhones(phones).build();
             responseObserver.onNext(response);
             responseObserver.onCompleted();
         } catch (EntityNotFoundException exc) {
@@ -81,8 +85,8 @@ public class PersonServiceGRPC extends DataServiceGrpc.DataServiceImplBase {
     @Override
     public void getPhone(GetPhoneRequest request, StreamObserver<Phone> responseObserver) {
         try {
-            PhoneDTO phoneDTO = phoneService.getPhone(request.getPhoneId());
-            Phone response = Phone.newBuilder().setId(phoneDTO.getId()).setDdi(phoneDTO.getDdi()).setDdd(phoneDTO.getDdd()).setNumber(phoneDTO.getNumber()).setExtensionLine(phoneDTO.getExtensionLine()).build();
+            PhoneDTO phoneDTO = phoneService.getPhone(request.getPhoneId().getValue());
+            Phone response = Phone.newBuilder().setId(getStringValue(phoneDTO.getId())).setDdi(getInteger32Value(phoneDTO.getDdi())).setDdd(getInteger32Value(phoneDTO.getDdd())).setNumber(getInteger32Value(phoneDTO.getNumber())).setExtensionLine(getInteger32Value(phoneDTO.getExtensionLine())).build();
             responseObserver.onNext(response);
             responseObserver.onCompleted();
         } catch (EntityNotFoundException exc) {
@@ -95,9 +99,9 @@ public class PersonServiceGRPC extends DataServiceGrpc.DataServiceImplBase {
     @Override
     public void savePhone(Phone request, StreamObserver<Phone> responseObserver) {
         try {
-            PhoneDTO phoneDTO = PhoneDTO.builder().ddi(request.getDdi()).ddd(request.getDdd()).number(request.getNumber()).extensionLine(request.getExtensionLine()).build();
+            PhoneDTO phoneDTO = PhoneDTO.builder().ddi(request.getDdi().getValue()).ddd(request.getDdd().getValue()).number(request.getNumber().getValue()).extensionLine(request.getExtensionLine().getValue()).build();
             PhoneDTO phonePersisted = phoneService.savePhone(phoneDTO);
-            Phone response = Phone.newBuilder().setId(phonePersisted.getId()).setDdi(phonePersisted.getDdi()).setDdd(phonePersisted.getDdd()).setNumber(phonePersisted.getNumber()).setExtensionLine(phonePersisted.getExtensionLine()).build();
+            Phone response = Phone.newBuilder().setId(getStringValue(phonePersisted.getId())).setDdi(getInteger32Value(phonePersisted.getDdi())).setDdd(getInteger32Value(phonePersisted.getDdd())).setNumber(getInteger32Value(phonePersisted.getNumber())).setExtensionLine(getInteger32Value(phonePersisted.getExtensionLine())).build();
             responseObserver.onNext(response);
             responseObserver.onCompleted();
         } catch (EntityNotFoundException exc) {
@@ -110,9 +114,9 @@ public class PersonServiceGRPC extends DataServiceGrpc.DataServiceImplBase {
     @Override
     public void updatePhone(Phone request, StreamObserver<Phone> responseObserver) {
         try {
-            PhoneDTO phoneDTO = PhoneDTO.builder().ddi(request.getDdi()).ddd(request.getDdd()).number(request.getNumber()).extensionLine(request.getExtensionLine()).build();
+            PhoneDTO phoneDTO = PhoneDTO.builder().ddi(request.getDdi().getValue()).ddd(request.getDdd().getValue()).number(request.getNumber().getValue()).extensionLine(request.getExtensionLine().getValue()).build();
             PhoneDTO phonePersisted = phoneService.updatePhone(phoneDTO);
-            Phone response = Phone.newBuilder().setId(phonePersisted.getId()).setDdi(phonePersisted.getDdi()).setDdd(phonePersisted.getDdd()).setNumber(phonePersisted.getNumber()).setExtensionLine(phonePersisted.getExtensionLine()).build();
+            Phone response = Phone.newBuilder().setId(getStringValue(phonePersisted.getId())).setDdi(getInteger32Value(phonePersisted.getDdi())).setDdd(getInteger32Value(phonePersisted.getDdd())).setNumber(getInteger32Value(phonePersisted.getNumber())).setExtensionLine(getInteger32Value(phonePersisted.getExtensionLine())).build();
             responseObserver.onNext(response);
             responseObserver.onCompleted();
         } catch (EntityNotFoundException exc) {

@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.ortiz.grpc.services.vfs";
+
+package services;
+
+import "google/protobuf/timestamp.proto";
+
+service ValidationFieldsService {
+  rpc SaveVerifiedFields (VerfieldFields) returns (VerfieldFields) {}
+}
+
+message VerfieldFields {
+  repeated VerifiedField verifiedFields = 1;
+}
+
+message VerifiedField {
+  int64 id = 1;
+  string tenantId = 2;
+  string personId = 3;
+  string fieldName = 4;
+  string fieldValue = 5;
+  int32 level = 6;
+  bool validated = 7;
+  google.protobuf.Timestamp createdDate = 8;
+}
