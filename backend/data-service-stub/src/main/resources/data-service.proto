@@ -8,7 +8,9 @@ package services;
 
 service DataService {
   rpc GetPerson (GetPersonRequest) returns (Person) {}
+  rpc ValidateSavePerson (Person) returns (Person) {}
   rpc SavePerson (Person) returns (Person) {}
+  rpc ValidateUpdatePerson (Person) returns (Person) {}
   rpc UpdatePerson (Person) returns (Person) {}
 
   rpc GetPhone (GetPhoneRequest) returns (Phone) {}

@@ -1,4 +1,4 @@
-package com.ortiz.controller;
+package com.ortiz.view;
 
 import com.ortiz.business.IValidationFieldsService;
 import com.ortiz.dto.VerifiedFieldDTO;

@@ -3,8 +3,8 @@
 
 package com.ortiz.grpc.services.vfs;
 
-public interface VerfieldFieldsOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:services.VerfieldFields)
+public interface VerifiedFieldsOrBuilder extends
+    // @@protoc_insertion_point(interface_extends:services.VerifiedFields)
     com.google.protobuf.MessageOrBuilder {
 
   /**

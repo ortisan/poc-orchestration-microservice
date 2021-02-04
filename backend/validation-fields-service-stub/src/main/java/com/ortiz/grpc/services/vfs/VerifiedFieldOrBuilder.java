@@ -8,83 +8,137 @@ public interface VerifiedFieldOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>int64 id = 1;</code>
+   * <code>.google.protobuf.Int64Value id = 1;</code>
+   * @return Whether the id field is set.
+   */
+  boolean hasId();
+  /**
+   * <code>.google.protobuf.Int64Value id = 1;</code>
    * @return The id.
    */
-  long getId();
+  com.google.protobuf.Int64Value getId();
+  /**
+   * <code>.google.protobuf.Int64Value id = 1;</code>
+   */
+  com.google.protobuf.Int64ValueOrBuilder getIdOrBuilder();
 
   /**
-   * <code>string tenantId = 2;</code>
+   * <code>.google.protobuf.StringValue tenantId = 2;</code>
+   * @return Whether the tenantId field is set.
+   */
+  boolean hasTenantId();
+  /**
+   * <code>.google.protobuf.StringValue tenantId = 2;</code>
    * @return The tenantId.
    */
-  java.lang.String getTenantId();
+  com.google.protobuf.StringValue getTenantId();
   /**
-   * <code>string tenantId = 2;</code>
-   * @return The bytes for tenantId.
+   * <code>.google.protobuf.StringValue tenantId = 2;</code>
    */
-  com.google.protobuf.ByteString
-      getTenantIdBytes();
+  com.google.protobuf.StringValueOrBuilder getTenantIdOrBuilder();
 
   /**
-   * <code>string personId = 3;</code>
+   * <code>.google.protobuf.StringValue personId = 3;</code>
+   * @return Whether the personId field is set.
+   */
+  boolean hasPersonId();
+  /**
+   * <code>.google.protobuf.StringValue personId = 3;</code>
    * @return The personId.
    */
-  java.lang.String getPersonId();
+  com.google.protobuf.StringValue getPersonId();
   /**
-   * <code>string personId = 3;</code>
-   * @return The bytes for personId.
+   * <code>.google.protobuf.StringValue personId = 3;</code>
    */
-  com.google.protobuf.ByteString
-      getPersonIdBytes();
+  com.google.protobuf.StringValueOrBuilder getPersonIdOrBuilder();
 
   /**
-   * <code>string fieldName = 4;</code>
+   * <code>.google.protobuf.StringValue fieldName = 4;</code>
+   * @return Whether the fieldName field is set.
+   */
+  boolean hasFieldName();
+  /**
+   * <code>.google.protobuf.StringValue fieldName = 4;</code>
    * @return The fieldName.
    */
-  java.lang.String getFieldName();
+  com.google.protobuf.StringValue getFieldName();
   /**
-   * <code>string fieldName = 4;</code>
-   * @return The bytes for fieldName.
+   * <code>.google.protobuf.StringValue fieldName = 4;</code>
    */
-  com.google.protobuf.ByteString
-      getFieldNameBytes();
+  com.google.protobuf.StringValueOrBuilder getFieldNameOrBuilder();
 
   /**
-   * <code>string fieldValue = 5;</code>
+   * <code>.google.protobuf.StringValue fieldValue = 5;</code>
+   * @return Whether the fieldValue field is set.
+   */
+  boolean hasFieldValue();
+  /**
+   * <code>.google.protobuf.StringValue fieldValue = 5;</code>
    * @return The fieldValue.
    */
-  java.lang.String getFieldValue();
+  com.google.protobuf.StringValue getFieldValue();
   /**
-   * <code>string fieldValue = 5;</code>
-   * @return The bytes for fieldValue.
+   * <code>.google.protobuf.StringValue fieldValue = 5;</code>
    */
-  com.google.protobuf.ByteString
-      getFieldValueBytes();
+  com.google.protobuf.StringValueOrBuilder getFieldValueOrBuilder();
 
   /**
-   * <code>int32 level = 6;</code>
+   * <code>.google.protobuf.Int32Value level = 6;</code>
+   * @return Whether the level field is set.
+   */
+  boolean hasLevel();
+  /**
+   * <code>.google.protobuf.Int32Value level = 6;</code>
    * @return The level.
    */
-  int getLevel();
+  com.google.protobuf.Int32Value getLevel();
+  /**
+   * <code>.google.protobuf.Int32Value level = 6;</code>
+   */
+  com.google.protobuf.Int32ValueOrBuilder getLevelOrBuilder();
 
   /**
-   * <code>bool validated = 7;</code>
+   * <code>.google.protobuf.BoolValue validated = 7;</code>
+   * @return Whether the validated field is set.
+   */
+  boolean hasValidated();
+  /**
+   * <code>.google.protobuf.BoolValue validated = 7;</code>
    * @return The validated.
    */
-  boolean getValidated();
+  com.google.protobuf.BoolValue getValidated();
+  /**
+   * <code>.google.protobuf.BoolValue validated = 7;</code>
+   */
+  com.google.protobuf.BoolValueOrBuilder getValidatedOrBuilder();
 
   /**
-   * <code>.google.protobuf.Timestamp createdDate = 8;</code>
+   * <code>.google.protobuf.BoolValue serverValidated = 8;</code>
+   * @return Whether the serverValidated field is set.
+   */
+  boolean hasServerValidated();
+  /**
+   * <code>.google.protobuf.BoolValue serverValidated = 8;</code>
+   * @return The serverValidated.
+   */
+  com.google.protobuf.BoolValue getServerValidated();
+  /**
+   * <code>.google.protobuf.BoolValue serverValidated = 8;</code>
+   */
+  com.google.protobuf.BoolValueOrBuilder getServerValidatedOrBuilder();
+
+  /**
+   * <code>.google.protobuf.Timestamp createdDate = 9;</code>
    * @return Whether the createdDate field is set.
    */
   boolean hasCreatedDate();
   /**
-   * <code>.google.protobuf.Timestamp createdDate = 8;</code>
+   * <code>.google.protobuf.Timestamp createdDate = 9;</code>
    * @return The createdDate.
    */
   com.google.protobuf.Timestamp getCreatedDate();
   /**
-   * <code>.google.protobuf.Timestamp createdDate = 8;</code>
+   * <code>.google.protobuf.Timestamp createdDate = 9;</code>
    */
   com.google.protobuf.TimestampOrBuilder getCreatedDateOrBuilder();
 }

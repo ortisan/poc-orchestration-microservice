@@ -38,7 +38,6 @@ public class ValidationFieldsServiceImpl implements IValidationFieldsService {
     @GrpcClient("data-service")
     private DataServiceGrpc.DataServiceBlockingStub dataServiceStub;
 
-
     @Override
     public List<VerifiedFieldDTO> getVerifiedFields(String tenantId, String personId) {
         validatePerson(tenantId, personId);
@@ -80,13 +79,18 @@ public class ValidationFieldsServiceImpl implements IValidationFieldsService {
         }
     }
 
-    private void validateFields(List<VerifiedFieldDTO> verifiedFieldDTOS) {
-        List<String> fieldNames = verifiedFieldDTOS.stream().map(verifiedFieldDTO -> verifiedFieldDTO.getFieldName()).collect(Collectors.toList());
+    public List<VerifiedFieldDTO> validateFields(List<VerifiedFieldDTO> verifiedFieldDTOS) {
         List<String> fieldsNamesPersisted = fieldJpaRepository.findAll().stream().map(field -> field.getName()).collect(Collectors.toList());
-        fieldNames.removeAll(fieldsNamesPersisted);
-        if (!fieldNames.isEmpty()) {
-            throw new IllegalArgumentException(String.format("Invalid fields: %s.", fieldNames.stream().collect(Collectors.joining(","))));
-        }
-
+        List<VerifiedFieldDTO> validatedFields = verifiedFieldDTOS.stream().map(verifiedFieldDTO -> {
+            String fieldName = verifiedFieldDTO.getFieldName();
+            if (fieldsNamesPersisted.contains(fieldName)) {
+                verifiedFieldDTO.setServerValidated(true);
+            } else {
+                verifiedFieldDTO.setServerValidated(false);
+                verifiedFieldDTO.setCause(String.format("Invalid fields: %s.", fieldName));
+            }
+            return verifiedFieldDTO;
+        }).collect(Collectors.toList());
+        return validatedFields;
     }
 }

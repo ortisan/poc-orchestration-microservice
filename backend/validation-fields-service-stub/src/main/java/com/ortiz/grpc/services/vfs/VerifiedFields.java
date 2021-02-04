@@ -4,18 +4,18 @@
 package com.ortiz.grpc.services.vfs;
 
 /**
- * Protobuf type {@code services.VerfieldFields}
+ * Protobuf type {@code services.VerifiedFields}
  */
-public final class VerfieldFields extends
+public final class VerifiedFields extends
     com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:services.VerfieldFields)
-    VerfieldFieldsOrBuilder {
+    // @@protoc_insertion_point(message_implements:services.VerifiedFields)
+    VerifiedFieldsOrBuilder {
 private static final long serialVersionUID = 0L;
-  // Use VerfieldFields.newBuilder() to construct.
-  private VerfieldFields(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+  // Use VerifiedFields.newBuilder() to construct.
+  private VerifiedFields(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
   }
-  private VerfieldFields() {
+  private VerifiedFields() {
     verifiedFields_ = java.util.Collections.emptyList();
   }
 
@@ -23,7 +23,7 @@ private static final long serialVersionUID = 0L;
   @SuppressWarnings({"unused"})
   protected java.lang.Object newInstance(
       UnusedPrivateParameter unused) {
-    return new VerfieldFields();
+    return new VerifiedFields();
   }
 
   @java.lang.Override
@@ -31,7 +31,7 @@ private static final long serialVersionUID = 0L;
   getUnknownFields() {
     return this.unknownFields;
   }
-  private VerfieldFields(
+  private VerifiedFields(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -83,15 +83,15 @@ private static final long serialVersionUID = 0L;
   }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return com.ortiz.grpc.services.vfs.ValidationFieldsServiceOuterClass.internal_static_services_VerfieldFields_descriptor;
+    return com.ortiz.grpc.services.vfs.ValidationFieldsServiceOuterClass.internal_static_services_VerifiedFields_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return com.ortiz.grpc.services.vfs.ValidationFieldsServiceOuterClass.internal_static_services_VerfieldFields_fieldAccessorTable
+    return com.ortiz.grpc.services.vfs.ValidationFieldsServiceOuterClass.internal_static_services_VerifiedFields_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            com.ortiz.grpc.services.vfs.VerfieldFields.class, com.ortiz.grpc.services.vfs.VerfieldFields.Builder.class);
+            com.ortiz.grpc.services.vfs.VerifiedFields.class, com.ortiz.grpc.services.vfs.VerifiedFields.Builder.class);
   }
 
   public static final int VERIFIEDFIELDS_FIELD_NUMBER = 1;
@@ -174,10 +174,10 @@ private static final long serialVersionUID = 0L;
     if (obj == this) {
      return true;
     }
-    if (!(obj instanceof com.ortiz.grpc.services.vfs.VerfieldFields)) {
+    if (!(obj instanceof com.ortiz.grpc.services.vfs.VerifiedFields)) {
       return super.equals(obj);
     }
-    com.ortiz.grpc.services.vfs.VerfieldFields other = (com.ortiz.grpc.services.vfs.VerfieldFields) obj;
+    com.ortiz.grpc.services.vfs.VerifiedFields other = (com.ortiz.grpc.services.vfs.VerifiedFields) obj;
 
     if (!getVerifiedFieldsList()
         .equals(other.getVerifiedFieldsList())) return false;
@@ -201,69 +201,69 @@ private static final long serialVersionUID = 0L;
     return hash;
   }
 
-  public static com.ortiz.grpc.services.vfs.VerfieldFields parseFrom(
+  public static com.ortiz.grpc.services.vfs.VerifiedFields parseFrom(
       java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static com.ortiz.grpc.services.vfs.VerfieldFields parseFrom(
+  public static com.ortiz.grpc.services.vfs.VerifiedFields parseFrom(
       java.nio.ByteBuffer data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static com.ortiz.grpc.services.vfs.VerfieldFields parseFrom(
+  public static com.ortiz.grpc.services.vfs.VerifiedFields parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static com.ortiz.grpc.services.vfs.VerfieldFields parseFrom(
+  public static com.ortiz.grpc.services.vfs.VerifiedFields parseFrom(
       com.google.protobuf.ByteString data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static com.ortiz.grpc.services.vfs.VerfieldFields parseFrom(byte[] data)
+  public static com.ortiz.grpc.services.vfs.VerifiedFields parseFrom(byte[] data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static com.ortiz.grpc.services.vfs.VerfieldFields parseFrom(
+  public static com.ortiz.grpc.services.vfs.VerifiedFields parseFrom(
       byte[] data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static com.ortiz.grpc.services.vfs.VerfieldFields parseFrom(java.io.InputStream input)
+  public static com.ortiz.grpc.services.vfs.VerifiedFields parseFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static com.ortiz.grpc.services.vfs.VerfieldFields parseFrom(
+  public static com.ortiz.grpc.services.vfs.VerifiedFields parseFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
-  public static com.ortiz.grpc.services.vfs.VerfieldFields parseDelimitedFrom(java.io.InputStream input)
+  public static com.ortiz.grpc.services.vfs.VerifiedFields parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input);
   }
-  public static com.ortiz.grpc.services.vfs.VerfieldFields parseDelimitedFrom(
+  public static com.ortiz.grpc.services.vfs.VerifiedFields parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
   }
-  public static com.ortiz.grpc.services.vfs.VerfieldFields parseFrom(
+  public static com.ortiz.grpc.services.vfs.VerifiedFields parseFrom(
       com.google.protobuf.CodedInputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static com.ortiz.grpc.services.vfs.VerfieldFields parseFrom(
+  public static com.ortiz.grpc.services.vfs.VerifiedFields parseFrom(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -276,7 +276,7 @@ private static final long serialVersionUID = 0L;
   public static Builder newBuilder() {
     return DEFAULT_INSTANCE.toBuilder();
   }
-  public static Builder newBuilder(com.ortiz.grpc.services.vfs.VerfieldFields prototype) {
+  public static Builder newBuilder(com.ortiz.grpc.services.vfs.VerifiedFields prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
   @java.lang.Override
@@ -292,26 +292,26 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
-   * Protobuf type {@code services.VerfieldFields}
+   * Protobuf type {@code services.VerifiedFields}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:services.VerfieldFields)
-      com.ortiz.grpc.services.vfs.VerfieldFieldsOrBuilder {
+      // @@protoc_insertion_point(builder_implements:services.VerifiedFields)
+      com.ortiz.grpc.services.vfs.VerifiedFieldsOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.ortiz.grpc.services.vfs.ValidationFieldsServiceOuterClass.internal_static_services_VerfieldFields_descriptor;
+      return com.ortiz.grpc.services.vfs.ValidationFieldsServiceOuterClass.internal_static_services_VerifiedFields_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.ortiz.grpc.services.vfs.ValidationFieldsServiceOuterClass.internal_static_services_VerfieldFields_fieldAccessorTable
+      return com.ortiz.grpc.services.vfs.ValidationFieldsServiceOuterClass.internal_static_services_VerifiedFields_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.ortiz.grpc.services.vfs.VerfieldFields.class, com.ortiz.grpc.services.vfs.VerfieldFields.Builder.class);
+              com.ortiz.grpc.services.vfs.VerifiedFields.class, com.ortiz.grpc.services.vfs.VerifiedFields.Builder.class);
     }
 
-    // Construct using com.ortiz.grpc.services.vfs.VerfieldFields.newBuilder()
+    // Construct using com.ortiz.grpc.services.vfs.VerifiedFields.newBuilder()
     private Builder() {
       maybeForceBuilderInitialization();
     }
@@ -342,17 +342,17 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return com.ortiz.grpc.services.vfs.ValidationFieldsServiceOuterClass.internal_static_services_VerfieldFields_descriptor;
+      return com.ortiz.grpc.services.vfs.ValidationFieldsServiceOuterClass.internal_static_services_VerifiedFields_descriptor;
     }
 
     @java.lang.Override
-    public com.ortiz.grpc.services.vfs.VerfieldFields getDefaultInstanceForType() {
-      return com.ortiz.grpc.services.vfs.VerfieldFields.getDefaultInstance();
+    public com.ortiz.grpc.services.vfs.VerifiedFields getDefaultInstanceForType() {
+      return com.ortiz.grpc.services.vfs.VerifiedFields.getDefaultInstance();
     }
 
     @java.lang.Override
-    public com.ortiz.grpc.services.vfs.VerfieldFields build() {
-      com.ortiz.grpc.services.vfs.VerfieldFields result = buildPartial();
+    public com.ortiz.grpc.services.vfs.VerifiedFields build() {
+      com.ortiz.grpc.services.vfs.VerifiedFields result = buildPartial();
       if (!result.isInitialized()) {
         throw newUninitializedMessageException(result);
       }
@@ -360,8 +360,8 @@ private static final long serialVersionUID = 0L;
     }
 
     @java.lang.Override
-    public com.ortiz.grpc.services.vfs.VerfieldFields buildPartial() {
-      com.ortiz.grpc.services.vfs.VerfieldFields result = new com.ortiz.grpc.services.vfs.VerfieldFields(this);
+    public com.ortiz.grpc.services.vfs.VerifiedFields buildPartial() {
+      com.ortiz.grpc.services.vfs.VerifiedFields result = new com.ortiz.grpc.services.vfs.VerifiedFields(this);
       int from_bitField0_ = bitField0_;
       if (verifiedFieldsBuilder_ == null) {
         if (((bitField0_ & 0x00000001) != 0)) {
@@ -410,16 +410,16 @@ private static final long serialVersionUID = 0L;
     }
     @java.lang.Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof com.ortiz.grpc.services.vfs.VerfieldFields) {
-        return mergeFrom((com.ortiz.grpc.services.vfs.VerfieldFields)other);
+      if (other instanceof com.ortiz.grpc.services.vfs.VerifiedFields) {
+        return mergeFrom((com.ortiz.grpc.services.vfs.VerifiedFields)other);
       } else {
         super.mergeFrom(other);
         return this;
       }
     }
 
-    public Builder mergeFrom(com.ortiz.grpc.services.vfs.VerfieldFields other) {
-      if (other == com.ortiz.grpc.services.vfs.VerfieldFields.getDefaultInstance()) return this;
+    public Builder mergeFrom(com.ortiz.grpc.services.vfs.VerifiedFields other) {
+      if (other == com.ortiz.grpc.services.vfs.VerifiedFields.getDefaultInstance()) return this;
       if (verifiedFieldsBuilder_ == null) {
         if (!other.verifiedFields_.isEmpty()) {
           if (verifiedFields_.isEmpty()) {
@@ -461,11 +461,11 @@ private static final long serialVersionUID = 0L;
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      com.ortiz.grpc.services.vfs.VerfieldFields parsedMessage = null;
+      com.ortiz.grpc.services.vfs.VerifiedFields parsedMessage = null;
       try {
         parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (com.ortiz.grpc.services.vfs.VerfieldFields) e.getUnfinishedMessage();
+        parsedMessage = (com.ortiz.grpc.services.vfs.VerifiedFields) e.getUnfinishedMessage();
         throw e.unwrapIOException();
       } finally {
         if (parsedMessage != null) {
@@ -728,41 +728,41 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    // @@protoc_insertion_point(builder_scope:services.VerfieldFields)
+    // @@protoc_insertion_point(builder_scope:services.VerifiedFields)
   }
 
-  // @@protoc_insertion_point(class_scope:services.VerfieldFields)
-  private static final com.ortiz.grpc.services.vfs.VerfieldFields DEFAULT_INSTANCE;
+  // @@protoc_insertion_point(class_scope:services.VerifiedFields)
+  private static final com.ortiz.grpc.services.vfs.VerifiedFields DEFAULT_INSTANCE;
   static {
-    DEFAULT_INSTANCE = new com.ortiz.grpc.services.vfs.VerfieldFields();
+    DEFAULT_INSTANCE = new com.ortiz.grpc.services.vfs.VerifiedFields();
   }
 
-  public static com.ortiz.grpc.services.vfs.VerfieldFields getDefaultInstance() {
+  public static com.ortiz.grpc.services.vfs.VerifiedFields getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
 
-  private static final com.google.protobuf.Parser<VerfieldFields>
-      PARSER = new com.google.protobuf.AbstractParser<VerfieldFields>() {
+  private static final com.google.protobuf.Parser<VerifiedFields>
+      PARSER = new com.google.protobuf.AbstractParser<VerifiedFields>() {
     @java.lang.Override
-    public VerfieldFields parsePartialFrom(
+    public VerifiedFields parsePartialFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return new VerfieldFields(input, extensionRegistry);
+      return new VerifiedFields(input, extensionRegistry);
     }
   };
 
-  public static com.google.protobuf.Parser<VerfieldFields> parser() {
+  public static com.google.protobuf.Parser<VerifiedFields> parser() {
     return PARSER;
   }
 
   @java.lang.Override
-  public com.google.protobuf.Parser<VerfieldFields> getParserForType() {
+  public com.google.protobuf.Parser<VerifiedFields> getParserForType() {
     return PARSER;
   }
 
   @java.lang.Override
-  public com.ortiz.grpc.services.vfs.VerfieldFields getDefaultInstanceForType() {
+  public com.ortiz.grpc.services.vfs.VerifiedFields getDefaultInstanceForType() {
     return DEFAULT_INSTANCE;
   }
 
