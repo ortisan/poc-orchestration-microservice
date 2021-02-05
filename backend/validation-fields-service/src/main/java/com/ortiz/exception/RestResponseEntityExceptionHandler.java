@@ -1,6 +1,6 @@
 package com.ortiz.exception;
 
-import com.ortiz.dto.ErrorDTO;
+import com.ortiz.poc.dto.ErrorDTO;
 import io.grpc.StatusRuntimeException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;

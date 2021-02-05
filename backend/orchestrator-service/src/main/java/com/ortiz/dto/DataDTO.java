@@ -1,13 +1,15 @@
 package com.ortiz.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Builder;
 import lombok.Data;
-import net.minidev.json.annotate.JsonIgnore;
-import java.util.List;
 
 import java.io.Serializable;
+import java.util.List;
 
 @Data
+@Builder
 public class DataDTO implements Serializable {
     @JsonIgnore
     private String tenantId;

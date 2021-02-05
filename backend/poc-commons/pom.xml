@@ -10,11 +10,19 @@
     <properties>
         <java.version>11</java.version>
         <grpc.version>1.31.0</grpc.version>
+        <org.projectlombok.version>1.18.12</org.projectlombok.version>
         <maven-compile.version>3.8.1</maven-compile.version>
         <protobuff.version>3.14.0</protobuff.version>
         <protoc-plugin.version>3.14.1</protoc-plugin.version>
     </properties>
     <dependencies>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${org.projectlombok.version}</version>
+        </dependency>
+
         <!-- GRPC DEP-->
         <!-- https://github.com/grpc/grpc-java/blob/master/README.md-->
         <dependency>
@@ -50,10 +58,17 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>${maven-compile.version}</version>
+                <version>3.8.1</version>
                 <configuration>
                     <source>11</source>
                     <target>11</target>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>${org.projectlombok.version}</version>
+                        </path>
+                    </annotationProcessorPaths>
                     <showWarnings>true</showWarnings>
                 </configuration>
             </plugin>

@@ -25,5 +25,5 @@ public class VerifiedFieldDTO {
     private LocalDateTime createdDate;
     private String cause;
     @JsonProperty("server_validated")
-    private boolean serverValidated;
+    private Boolean serverValidated;
 }

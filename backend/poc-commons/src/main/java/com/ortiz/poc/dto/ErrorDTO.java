@@ -1,4 +1,4 @@
-package com.ortiz.dto;
+package com.ortiz.poc.dto;
 
 import lombok.Builder;
 import lombok.Data;

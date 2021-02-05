@@ -25,5 +25,6 @@ message VerifiedField {
   google.protobuf.Int32Value level = 6;
   google.protobuf.BoolValue validated = 7;
   google.protobuf.BoolValue serverValidated = 8;
-  google.protobuf.Timestamp createdDate = 9;
+  google.protobuf.StringValue cause = 9;
+  google.protobuf.Timestamp createdDate = 10;
 }

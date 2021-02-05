@@ -37,7 +37,7 @@ public final class ValidationFieldsServiceOuterClass {
       "ces\032\036google/protobuf/wrappers.proto\032\037goo" +
       "gle/protobuf/timestamp.proto\"A\n\016Verified" +
       "Fields\022/\n\016verifiedFields\030\001 \003(\0132\027.service" +
-      "s.VerifiedField\"\274\003\n\rVerifiedField\022\'\n\002id\030" +
+      "s.VerifiedField\"\351\003\n\rVerifiedField\022\'\n\002id\030" +
       "\001 \001(\0132\033.google.protobuf.Int64Value\022.\n\010te" +
       "nantId\030\002 \001(\0132\034.google.protobuf.StringVal" +
       "ue\022.\n\010personId\030\003 \001(\0132\034.google.protobuf.S" +
@@ -47,13 +47,15 @@ public final class ValidationFieldsServiceOuterClass {
       " \001(\0132\033.google.protobuf.Int32Value\022-\n\tval" +
       "idated\030\007 \001(\0132\032.google.protobuf.BoolValue" +
       "\0223\n\017serverValidated\030\010 \001(\0132\032.google.proto" +
-      "buf.BoolValue\022/\n\013createdDate\030\t \001(\0132\032.goo" +
-      "gle.protobuf.Timestamp2\255\001\n\027ValidationFie" +
-      "ldsService\022F\n\016ValidateFields\022\030.services." +
-      "VerifiedFields\032\030.services.VerifiedFields" +
-      "\"\000\022J\n\022SaveVerifiedFields\022\030.services.Veri" +
-      "fiedFields\032\030.services.VerifiedFields\"\000B\037" +
-      "\n\033com.ortiz.grpc.services.vfsP\001b\006proto3"
+      "buf.BoolValue\022+\n\005cause\030\t \001(\0132\034.google.pr" +
+      "otobuf.StringValue\022/\n\013createdDate\030\n \001(\0132" +
+      "\032.google.protobuf.Timestamp2\255\001\n\027Validati" +
+      "onFieldsService\022F\n\016ValidateFields\022\030.serv" +
+      "ices.VerifiedFields\032\030.services.VerifiedF" +
+      "ields\"\000\022J\n\022SaveVerifiedFields\022\030.services" +
+      ".VerifiedFields\032\030.services.VerifiedField" +
+      "s\"\000B\037\n\033com.ortiz.grpc.services.vfsP\001b\006pr" +
+      "oto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -72,7 +74,7 @@ public final class ValidationFieldsServiceOuterClass {
     internal_static_services_VerifiedField_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_services_VerifiedField_descriptor,
-        new java.lang.String[] { "Id", "TenantId", "PersonId", "FieldName", "FieldValue", "Level", "Validated", "ServerValidated", "CreatedDate", });
+        new java.lang.String[] { "Id", "TenantId", "PersonId", "FieldName", "FieldValue", "Level", "Validated", "ServerValidated", "Cause", "CreatedDate", });
     com.google.protobuf.WrappersProto.getDescriptor();
     com.google.protobuf.TimestampProto.getDescriptor();
   }

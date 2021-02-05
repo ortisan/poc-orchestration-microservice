@@ -128,17 +128,32 @@ public interface VerifiedFieldOrBuilder extends
   com.google.protobuf.BoolValueOrBuilder getServerValidatedOrBuilder();
 
   /**
-   * <code>.google.protobuf.Timestamp createdDate = 9;</code>
+   * <code>.google.protobuf.StringValue cause = 9;</code>
+   * @return Whether the cause field is set.
+   */
+  boolean hasCause();
+  /**
+   * <code>.google.protobuf.StringValue cause = 9;</code>
+   * @return The cause.
+   */
+  com.google.protobuf.StringValue getCause();
+  /**
+   * <code>.google.protobuf.StringValue cause = 9;</code>
+   */
+  com.google.protobuf.StringValueOrBuilder getCauseOrBuilder();
+
+  /**
+   * <code>.google.protobuf.Timestamp createdDate = 10;</code>
    * @return Whether the createdDate field is set.
    */
   boolean hasCreatedDate();
   /**
-   * <code>.google.protobuf.Timestamp createdDate = 9;</code>
+   * <code>.google.protobuf.Timestamp createdDate = 10;</code>
    * @return The createdDate.
    */
   com.google.protobuf.Timestamp getCreatedDate();
   /**
-   * <code>.google.protobuf.Timestamp createdDate = 9;</code>
+   * <code>.google.protobuf.Timestamp createdDate = 10;</code>
    */
   com.google.protobuf.TimestampOrBuilder getCreatedDateOrBuilder();
 }
