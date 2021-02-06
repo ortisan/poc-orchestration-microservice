@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 
 @Data
 @Builder
-public class VerifiedFieldDTO {
+public class ValidationFieldDTO {
     private Long id;
     @JsonIgnore
     private String tenantId;

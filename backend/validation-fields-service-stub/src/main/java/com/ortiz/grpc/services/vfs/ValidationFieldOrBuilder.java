@@ -3,8 +3,8 @@
 
 package com.ortiz.grpc.services.vfs;
 
-public interface VerifiedFieldOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:services.VerifiedField)
+public interface ValidationFieldOrBuilder extends
+    // @@protoc_insertion_point(interface_extends:services.ValidationField)
     com.google.protobuf.MessageOrBuilder {
 
   /**

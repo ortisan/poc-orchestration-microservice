@@ -1,6 +1,6 @@
 package com.ortiz.business;
 
-import com.ortiz.dto.PhoneDTO;
+import com.ortiz.poc.dto.PhoneDTO;
 
 public interface IPhoneService {
 

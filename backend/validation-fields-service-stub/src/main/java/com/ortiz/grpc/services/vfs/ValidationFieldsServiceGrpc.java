@@ -27,29 +27,29 @@ public final class ValidationFieldsServiceGrpc {
   public static final String SERVICE_NAME = "services.ValidationFieldsService";
 
   // Static method descriptors that strictly reflect the proto.
-  private static volatile io.grpc.MethodDescriptor<com.ortiz.grpc.services.vfs.VerifiedFields,
-      com.ortiz.grpc.services.vfs.VerifiedFields> getValidateFieldsMethod;
+  private static volatile io.grpc.MethodDescriptor<com.ortiz.grpc.services.vfs.ValidationFields,
+      com.ortiz.grpc.services.vfs.ValidationFields> getValidateFieldsMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "ValidateFields",
-      requestType = com.ortiz.grpc.services.vfs.VerifiedFields.class,
-      responseType = com.ortiz.grpc.services.vfs.VerifiedFields.class,
+      requestType = com.ortiz.grpc.services.vfs.ValidationFields.class,
+      responseType = com.ortiz.grpc.services.vfs.ValidationFields.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<com.ortiz.grpc.services.vfs.VerifiedFields,
-      com.ortiz.grpc.services.vfs.VerifiedFields> getValidateFieldsMethod() {
-    io.grpc.MethodDescriptor<com.ortiz.grpc.services.vfs.VerifiedFields, com.ortiz.grpc.services.vfs.VerifiedFields> getValidateFieldsMethod;
+  public static io.grpc.MethodDescriptor<com.ortiz.grpc.services.vfs.ValidationFields,
+      com.ortiz.grpc.services.vfs.ValidationFields> getValidateFieldsMethod() {
+    io.grpc.MethodDescriptor<com.ortiz.grpc.services.vfs.ValidationFields, com.ortiz.grpc.services.vfs.ValidationFields> getValidateFieldsMethod;
     if ((getValidateFieldsMethod = ValidationFieldsServiceGrpc.getValidateFieldsMethod) == null) {
       synchronized (ValidationFieldsServiceGrpc.class) {
         if ((getValidateFieldsMethod = ValidationFieldsServiceGrpc.getValidateFieldsMethod) == null) {
           ValidationFieldsServiceGrpc.getValidateFieldsMethod = getValidateFieldsMethod =
-              io.grpc.MethodDescriptor.<com.ortiz.grpc.services.vfs.VerifiedFields, com.ortiz.grpc.services.vfs.VerifiedFields>newBuilder()
+              io.grpc.MethodDescriptor.<com.ortiz.grpc.services.vfs.ValidationFields, com.ortiz.grpc.services.vfs.ValidationFields>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "ValidateFields"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  com.ortiz.grpc.services.vfs.VerifiedFields.getDefaultInstance()))
+                  com.ortiz.grpc.services.vfs.ValidationFields.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  com.ortiz.grpc.services.vfs.VerifiedFields.getDefaultInstance()))
+                  com.ortiz.grpc.services.vfs.ValidationFields.getDefaultInstance()))
               .setSchemaDescriptor(new ValidationFieldsServiceMethodDescriptorSupplier("ValidateFields"))
               .build();
         }
@@ -58,29 +58,29 @@ public final class ValidationFieldsServiceGrpc {
     return getValidateFieldsMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<com.ortiz.grpc.services.vfs.VerifiedFields,
-      com.ortiz.grpc.services.vfs.VerifiedFields> getSaveVerifiedFieldsMethod;
+  private static volatile io.grpc.MethodDescriptor<com.ortiz.grpc.services.vfs.ValidationFields,
+      com.ortiz.grpc.services.vfs.ValidationFields> getSaveVerifiedFieldsMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "SaveVerifiedFields",
-      requestType = com.ortiz.grpc.services.vfs.VerifiedFields.class,
-      responseType = com.ortiz.grpc.services.vfs.VerifiedFields.class,
+      requestType = com.ortiz.grpc.services.vfs.ValidationFields.class,
+      responseType = com.ortiz.grpc.services.vfs.ValidationFields.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<com.ortiz.grpc.services.vfs.VerifiedFields,
-      com.ortiz.grpc.services.vfs.VerifiedFields> getSaveVerifiedFieldsMethod() {
-    io.grpc.MethodDescriptor<com.ortiz.grpc.services.vfs.VerifiedFields, com.ortiz.grpc.services.vfs.VerifiedFields> getSaveVerifiedFieldsMethod;
+  public static io.grpc.MethodDescriptor<com.ortiz.grpc.services.vfs.ValidationFields,
+      com.ortiz.grpc.services.vfs.ValidationFields> getSaveVerifiedFieldsMethod() {
+    io.grpc.MethodDescriptor<com.ortiz.grpc.services.vfs.ValidationFields, com.ortiz.grpc.services.vfs.ValidationFields> getSaveVerifiedFieldsMethod;
     if ((getSaveVerifiedFieldsMethod = ValidationFieldsServiceGrpc.getSaveVerifiedFieldsMethod) == null) {
       synchronized (ValidationFieldsServiceGrpc.class) {
         if ((getSaveVerifiedFieldsMethod = ValidationFieldsServiceGrpc.getSaveVerifiedFieldsMethod) == null) {
           ValidationFieldsServiceGrpc.getSaveVerifiedFieldsMethod = getSaveVerifiedFieldsMethod =
-              io.grpc.MethodDescriptor.<com.ortiz.grpc.services.vfs.VerifiedFields, com.ortiz.grpc.services.vfs.VerifiedFields>newBuilder()
+              io.grpc.MethodDescriptor.<com.ortiz.grpc.services.vfs.ValidationFields, com.ortiz.grpc.services.vfs.ValidationFields>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "SaveVerifiedFields"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  com.ortiz.grpc.services.vfs.VerifiedFields.getDefaultInstance()))
+                  com.ortiz.grpc.services.vfs.ValidationFields.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  com.ortiz.grpc.services.vfs.VerifiedFields.getDefaultInstance()))
+                  com.ortiz.grpc.services.vfs.ValidationFields.getDefaultInstance()))
               .setSchemaDescriptor(new ValidationFieldsServiceMethodDescriptorSupplier("SaveVerifiedFields"))
               .build();
         }
@@ -139,15 +139,15 @@ public final class ValidationFieldsServiceGrpc {
 
     /**
      */
-    public void validateFields(com.ortiz.grpc.services.vfs.VerifiedFields request,
-        io.grpc.stub.StreamObserver<com.ortiz.grpc.services.vfs.VerifiedFields> responseObserver) {
+    public void validateFields(com.ortiz.grpc.services.vfs.ValidationFields request,
+        io.grpc.stub.StreamObserver<com.ortiz.grpc.services.vfs.ValidationFields> responseObserver) {
       asyncUnimplementedUnaryCall(getValidateFieldsMethod(), responseObserver);
     }
 
     /**
      */
-    public void saveVerifiedFields(com.ortiz.grpc.services.vfs.VerifiedFields request,
-        io.grpc.stub.StreamObserver<com.ortiz.grpc.services.vfs.VerifiedFields> responseObserver) {
+    public void saveVerifiedFields(com.ortiz.grpc.services.vfs.ValidationFields request,
+        io.grpc.stub.StreamObserver<com.ortiz.grpc.services.vfs.ValidationFields> responseObserver) {
       asyncUnimplementedUnaryCall(getSaveVerifiedFieldsMethod(), responseObserver);
     }
 
@@ -157,15 +157,15 @@ public final class ValidationFieldsServiceGrpc {
             getValidateFieldsMethod(),
             asyncUnaryCall(
               new MethodHandlers<
-                com.ortiz.grpc.services.vfs.VerifiedFields,
-                com.ortiz.grpc.services.vfs.VerifiedFields>(
+                com.ortiz.grpc.services.vfs.ValidationFields,
+                com.ortiz.grpc.services.vfs.ValidationFields>(
                   this, METHODID_VALIDATE_FIELDS)))
           .addMethod(
             getSaveVerifiedFieldsMethod(),
             asyncUnaryCall(
               new MethodHandlers<
-                com.ortiz.grpc.services.vfs.VerifiedFields,
-                com.ortiz.grpc.services.vfs.VerifiedFields>(
+                com.ortiz.grpc.services.vfs.ValidationFields,
+                com.ortiz.grpc.services.vfs.ValidationFields>(
                   this, METHODID_SAVE_VERIFIED_FIELDS)))
           .build();
     }
@@ -187,16 +187,16 @@ public final class ValidationFieldsServiceGrpc {
 
     /**
      */
-    public void validateFields(com.ortiz.grpc.services.vfs.VerifiedFields request,
-        io.grpc.stub.StreamObserver<com.ortiz.grpc.services.vfs.VerifiedFields> responseObserver) {
+    public void validateFields(com.ortiz.grpc.services.vfs.ValidationFields request,
+        io.grpc.stub.StreamObserver<com.ortiz.grpc.services.vfs.ValidationFields> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(getValidateFieldsMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
      */
-    public void saveVerifiedFields(com.ortiz.grpc.services.vfs.VerifiedFields request,
-        io.grpc.stub.StreamObserver<com.ortiz.grpc.services.vfs.VerifiedFields> responseObserver) {
+    public void saveVerifiedFields(com.ortiz.grpc.services.vfs.ValidationFields request,
+        io.grpc.stub.StreamObserver<com.ortiz.grpc.services.vfs.ValidationFields> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(getSaveVerifiedFieldsMethod(), getCallOptions()), request, responseObserver);
     }
@@ -218,14 +218,14 @@ public final class ValidationFieldsServiceGrpc {
 
     /**
      */
-    public com.ortiz.grpc.services.vfs.VerifiedFields validateFields(com.ortiz.grpc.services.vfs.VerifiedFields request) {
+    public com.ortiz.grpc.services.vfs.ValidationFields validateFields(com.ortiz.grpc.services.vfs.ValidationFields request) {
       return blockingUnaryCall(
           getChannel(), getValidateFieldsMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.ortiz.grpc.services.vfs.VerifiedFields saveVerifiedFields(com.ortiz.grpc.services.vfs.VerifiedFields request) {
+    public com.ortiz.grpc.services.vfs.ValidationFields saveVerifiedFields(com.ortiz.grpc.services.vfs.ValidationFields request) {
       return blockingUnaryCall(
           getChannel(), getSaveVerifiedFieldsMethod(), getCallOptions(), request);
     }
@@ -247,16 +247,16 @@ public final class ValidationFieldsServiceGrpc {
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<com.ortiz.grpc.services.vfs.VerifiedFields> validateFields(
-        com.ortiz.grpc.services.vfs.VerifiedFields request) {
+    public com.google.common.util.concurrent.ListenableFuture<com.ortiz.grpc.services.vfs.ValidationFields> validateFields(
+        com.ortiz.grpc.services.vfs.ValidationFields request) {
       return futureUnaryCall(
           getChannel().newCall(getValidateFieldsMethod(), getCallOptions()), request);
     }
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<com.ortiz.grpc.services.vfs.VerifiedFields> saveVerifiedFields(
-        com.ortiz.grpc.services.vfs.VerifiedFields request) {
+    public com.google.common.util.concurrent.ListenableFuture<com.ortiz.grpc.services.vfs.ValidationFields> saveVerifiedFields(
+        com.ortiz.grpc.services.vfs.ValidationFields request) {
       return futureUnaryCall(
           getChannel().newCall(getSaveVerifiedFieldsMethod(), getCallOptions()), request);
     }
@@ -283,12 +283,12 @@ public final class ValidationFieldsServiceGrpc {
     public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
         case METHODID_VALIDATE_FIELDS:
-          serviceImpl.validateFields((com.ortiz.grpc.services.vfs.VerifiedFields) request,
-              (io.grpc.stub.StreamObserver<com.ortiz.grpc.services.vfs.VerifiedFields>) responseObserver);
+          serviceImpl.validateFields((com.ortiz.grpc.services.vfs.ValidationFields) request,
+              (io.grpc.stub.StreamObserver<com.ortiz.grpc.services.vfs.ValidationFields>) responseObserver);
           break;
         case METHODID_SAVE_VERIFIED_FIELDS:
-          serviceImpl.saveVerifiedFields((com.ortiz.grpc.services.vfs.VerifiedFields) request,
-              (io.grpc.stub.StreamObserver<com.ortiz.grpc.services.vfs.VerifiedFields>) responseObserver);
+          serviceImpl.saveVerifiedFields((com.ortiz.grpc.services.vfs.ValidationFields) request,
+              (io.grpc.stub.StreamObserver<com.ortiz.grpc.services.vfs.ValidationFields>) responseObserver);
           break;
         default:
           throw new AssertionError();

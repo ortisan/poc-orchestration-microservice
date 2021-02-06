@@ -1,7 +1,7 @@
 package com.ortiz.view;
 
 import com.ortiz.business.IValidationFieldsService;
-import com.ortiz.dto.VerifiedFieldDTO;
+import com.ortiz.dto.ValidationFieldDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,27 +15,17 @@ public class ValidationFieldController {
     private IValidationFieldsService verifiedFieldsService;
 
     @GetMapping("/tenant/{tenant_id}/person/{person_id}/fields")
-    private List<VerifiedFieldDTO> getFields(@PathVariable(name = "tenant_id") String tenantId, @PathVariable(name = "person_id") String personId) {
-        return verifiedFieldsService.getVerifiedFields(tenantId, personId);
+    private List<ValidationFieldDTO> getFields(@PathVariable(name = "tenant_id") String tenantId, @PathVariable(name = "person_id") String personId) {
+        return verifiedFieldsService.getValidatedFields(tenantId, personId);
     }
 
     @PostMapping("/tenant/{tenant_id}/person/{person_id}/fields")
-    private List<VerifiedFieldDTO> saveFields(@PathVariable(name = "tenant_id") String tenantId, @PathVariable(name = "person_id") String personId, @RequestBody List<VerifiedFieldDTO> verifiedFields) {
-        List<VerifiedFieldDTO> listWithTenantAndPersonId = verifiedFields.stream().map(verifiedFieldDTO -> {
+    private List<ValidationFieldDTO> saveFields(@PathVariable(name = "tenant_id") String tenantId, @PathVariable(name = "person_id") String personId, @RequestBody List<ValidationFieldDTO> verifiedFields) {
+        List<ValidationFieldDTO> listWithTenantAndPersonId = verifiedFields.stream().map(verifiedFieldDTO -> {
             verifiedFieldDTO.setTenantId(tenantId);
             verifiedFieldDTO.setPersonId(personId);
             return verifiedFieldDTO;
         }).collect(Collectors.toList());
         return verifiedFieldsService.saveVerifiedFields(listWithTenantAndPersonId);
-    }
-
-    @PostMapping("/tenant/{tenant_id}/person/{person_id}")
-    private List<VerifiedFieldDTO> updateFields(@PathVariable(name = "tenant_id") String tenantId, @PathVariable(name = "person_id") String personId, @RequestBody List<VerifiedFieldDTO> verifiedFields) {
-        List<VerifiedFieldDTO> listWithTenantAndPersonId = verifiedFields.stream().map(verifiedFieldDTO -> {
-            verifiedFieldDTO.setTenantId(tenantId);
-            verifiedFieldDTO.setPersonId(personId);
-            return verifiedFieldDTO;
-        }).collect(Collectors.toList());
-        return verifiedFieldsService.updateVerifiedFields(listWithTenantAndPersonId);
     }
 }

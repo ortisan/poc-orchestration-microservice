@@ -8,15 +8,15 @@ import "google/protobuf/wrappers.proto";
 import "google/protobuf/timestamp.proto";
 
 service ValidationFieldsService {
-  rpc ValidateFields (VerifiedFields) returns (VerifiedFields) {}
-  rpc SaveVerifiedFields (VerifiedFields) returns (VerifiedFields) {}
+  rpc ValidateFields (ValidationFields) returns (ValidationFields) {}
+  rpc SaveVerifiedFields (ValidationFields) returns (ValidationFields) {}
 }
 
-message VerifiedFields {
-  repeated VerifiedField verifiedFields = 1;
+message ValidationFields {
+  repeated ValidationField verifiedFields = 1;
 }
 
-message VerifiedField {
+message ValidationField {
   google.protobuf.Int64Value id = 1;
   google.protobuf.StringValue tenantId = 2;
   google.protobuf.StringValue personId = 3;

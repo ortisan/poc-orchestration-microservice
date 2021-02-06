@@ -2,6 +2,8 @@ package com.ortiz.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.ortiz.poc.dto.PersonDTO;
+import com.ortiz.poc.dto.ValidationFieldDTO;
 import lombok.Builder;
 import lombok.Data;
 
@@ -17,10 +19,8 @@ public class DataDTO implements Serializable {
     private String personId;
     @JsonProperty("person_data")
     private PersonDTO person;
-
-    private List<VerifiedFieldDTO> verifiedFields;
-
-
+    @JsonProperty("fields")
+    private List<ValidationFieldDTO> validationFields;
 }
 
 

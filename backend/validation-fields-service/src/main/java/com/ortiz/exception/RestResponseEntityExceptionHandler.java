@@ -38,7 +38,6 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
                 break;
             default:
                 status = HttpStatus.INTERNAL_SERVER_ERROR;
-
         }
         return handleError(ex, request, status);
     }

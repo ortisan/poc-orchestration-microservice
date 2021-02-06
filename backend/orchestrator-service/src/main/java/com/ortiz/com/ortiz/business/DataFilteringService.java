@@ -1,7 +1,7 @@
 package com.ortiz.com.ortiz.business;
 
-import com.ortiz.dto.PersonDTO;
-import com.ortiz.dto.VerifiedFieldDTO;
+import com.ortiz.poc.dto.PersonDTO;
+import com.ortiz.poc.dto.ValidationFieldDTO;
 import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -15,7 +15,7 @@ public class DataFilteringService {
     @Value("#{${fields_dto_mapper}}")
     private Map<String, String> mapDtoFields;
 
-    public PersonDTO filterData(PersonDTO personDTO, List<VerifiedFieldDTO> fields) {
+    public PersonDTO filterData(PersonDTO personDTO, List<ValidationFieldDTO> fields) {
         fields.stream().filter(verifiedFieldDTO -> !verifiedFieldDTO.getServerValidated()).forEach(verifiedFieldDTO -> {
             String dtoFieldName = mapDtoFields.get(verifiedFieldDTO.getFieldName());
             try {

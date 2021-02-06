@@ -1,4 +1,4 @@
-package com.ortiz.dto;
+package com.ortiz.poc.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;

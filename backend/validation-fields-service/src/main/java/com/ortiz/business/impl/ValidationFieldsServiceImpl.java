@@ -4,7 +4,7 @@ package com.ortiz.business.impl;
 import com.ortiz.business.IValidationFieldsService;
 import com.ortiz.domain.VerifiedFieldDomain;
 import com.ortiz.domain.mapper.IVerifiedFieldBusinessMapper;
-import com.ortiz.dto.VerifiedFieldDTO;
+import com.ortiz.dto.ValidationFieldDTO;
 import com.ortiz.grpc.services.DataServiceGrpc;
 import com.ortiz.grpc.services.GetPersonRequest;
 import com.ortiz.grpc.services.Person;
@@ -39,17 +39,17 @@ public class ValidationFieldsServiceImpl implements IValidationFieldsService {
     private DataServiceGrpc.DataServiceBlockingStub dataServiceStub;
 
     @Override
-    public List<VerifiedFieldDTO> getVerifiedFields(String tenantId, String personId) {
+    public List<ValidationFieldDTO> getValidatedFields(String tenantId, String personId) {
         validatePerson(tenantId, personId);
         List<VerifiedFieldDomain> fieldsByPerson = verifyFieldRepository.getVerifiedFieldsByPerson(tenantId, personId);
         return fieldsBusinessMapper.toDtoList(fieldsByPerson);
     }
 
     @Override
-    public List<VerifiedFieldDTO> saveVerifiedFields(List<VerifiedFieldDTO> verifiedFieldDTOS) {
-        validateFields(verifiedFieldDTOS);
-        List<VerifiedFieldDomain> verifiedFieldDomains = fieldsBusinessMapper.toDomainList(verifiedFieldDTOS);
-        VerifiedFieldDTO verifiedFieldDTO = verifiedFieldDTOS.stream().findFirst().get();
+    public List<ValidationFieldDTO> saveVerifiedFields(List<ValidationFieldDTO> validationFieldDTOS) {
+        validateFields(validationFieldDTOS);
+        List<VerifiedFieldDomain> verifiedFieldDomains = fieldsBusinessMapper.toDomainList(validationFieldDTOS);
+        ValidationFieldDTO verifiedFieldDTO = validationFieldDTOS.stream().findFirst().get();
         validatePerson(verifiedFieldDTO.getTenantId(), verifiedFieldDTO.getPersonId());
 
         final List<VerifiedFieldDomain> savedVerifiedFieldDomains = verifyFieldRepository.saveVerifiedFields(verifiedFieldDomains);
@@ -57,12 +57,12 @@ public class ValidationFieldsServiceImpl implements IValidationFieldsService {
     }
 
     @Override
-    public List<VerifiedFieldDTO> updateVerifiedFields(List<VerifiedFieldDTO> verifiedFieldDTOS) {
-        validateFields(verifiedFieldDTOS);
-        VerifiedFieldDTO verifiedFieldDTO = verifiedFieldDTOS.stream().findFirst().get();
+    public List<ValidationFieldDTO> updateVerifiedFields(List<ValidationFieldDTO> validationFieldDTOS) {
+        validateFields(validationFieldDTOS);
+        ValidationFieldDTO verifiedFieldDTO = validationFieldDTOS.stream().findFirst().get();
         validatePerson(verifiedFieldDTO.getTenantId(), verifiedFieldDTO.getPersonId());
 
-        List<VerifiedFieldDomain> verifiedFieldDomains = fieldsBusinessMapper.toDomainList(verifiedFieldDTOS);
+        List<VerifiedFieldDomain> verifiedFieldDomains = fieldsBusinessMapper.toDomainList(validationFieldDTOS);
         List<VerifiedFieldDomain> savedVerifiedFieldDomains = verifyFieldRepository.updateVerifiedFields(verifiedFieldDomains);
         return fieldsBusinessMapper.toDtoList(savedVerifiedFieldDomains);
     }
@@ -79,9 +79,9 @@ public class ValidationFieldsServiceImpl implements IValidationFieldsService {
         }
     }
 
-    public List<VerifiedFieldDTO> validateFields(List<VerifiedFieldDTO> verifiedFieldDTOS) {
+    public List<ValidationFieldDTO> validateFields(List<ValidationFieldDTO> validationFieldDTOS) {
         List<String> fieldsNamesPersisted = fieldJpaRepository.findAll().stream().map(field -> field.getName()).collect(Collectors.toList());
-        List<VerifiedFieldDTO> validatedFields = verifiedFieldDTOS.stream().map(verifiedFieldDTO -> {
+        List<ValidationFieldDTO> validatedFields = validationFieldDTOS.stream().map(verifiedFieldDTO -> {
             String fieldName = verifiedFieldDTO.getFieldName();
             if (fieldsNamesPersisted.contains(fieldName)) {
                 verifiedFieldDTO.setServerValidated(true);
