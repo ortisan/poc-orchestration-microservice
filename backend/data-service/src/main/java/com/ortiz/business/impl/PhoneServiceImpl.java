@@ -4,8 +4,8 @@ import com.ortiz.business.IPhoneService;
 import com.ortiz.business.rules.IPhoneRule;
 import com.ortiz.domain.Phone;
 import com.ortiz.domain.mapper.IPhoneBusinessMapper;
-import com.ortiz.dto.PhoneDTO;
 import com.ortiz.persistence.repositories.service.IPhoneRepository;
+import com.ortiz.poc.dto.PhoneDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

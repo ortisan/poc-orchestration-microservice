@@ -1,7 +1,7 @@
 package com.ortiz.domain.mapper;
 
 import com.ortiz.domain.Phone;
-import com.ortiz.dto.PhoneDTO;
+import com.ortiz.poc.dto.PhoneDTO;
 import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

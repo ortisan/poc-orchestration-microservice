@@ -1,13 +1,15 @@
 package com.ortiz.business;
 
-import com.ortiz.dto.VerifiedFieldDTO;
+import com.ortiz.dto.ValidationFieldDTO;
 
 import java.util.List;
 
 public interface IValidationFieldsService {
-    List<VerifiedFieldDTO> getVerifiedFields(String tenantId, String personId);
+    List<ValidationFieldDTO> getValidatedFields(String tenantId, String personId);
 
-    List<VerifiedFieldDTO> saveVerifiedFields(List<VerifiedFieldDTO> verifiedFieldDTOS);
+    List<ValidationFieldDTO> saveVerifiedFields(List<ValidationFieldDTO> validationFieldDTOS);
 
-    List<VerifiedFieldDTO> updateVerifiedFields(List<VerifiedFieldDTO> verifiedFieldDTOS);
+    List<ValidationFieldDTO> updateVerifiedFields(List<ValidationFieldDTO> validationFieldDTOS);
+
+    List<ValidationFieldDTO> validateFields(List<ValidationFieldDTO> validationFieldDTOS);
 }

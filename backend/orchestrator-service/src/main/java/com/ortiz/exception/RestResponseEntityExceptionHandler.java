@@ -10,9 +10,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import javax.persistence.EntityNotFoundException;
-
-@ControllerAdvice()
+@ControllerAdvice
 public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(value = {IllegalArgumentException.class, IllegalStateException.class})
     protected ResponseEntity<Object> handleValidationError(Exception ex, WebRequest request) {
@@ -22,11 +20,6 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
     @ExceptionHandler(value = {Exception.class})
     protected ResponseEntity<Object> handleGenericError(Exception ex, WebRequest request) {
         return handleError(ex, request, HttpStatus.INTERNAL_SERVER_ERROR);
-    }
-
-    @ExceptionHandler(value = {EntityNotFoundException.class})
-    protected ResponseEntity<Object> handleEntityNotFound(Exception ex, WebRequest request) {
-        return handleError(ex, request, HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(value = {StatusRuntimeException.class})

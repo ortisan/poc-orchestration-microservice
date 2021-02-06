@@ -1,6 +1,6 @@
 package com.ortiz.exception;
 
-import com.ortiz.dto.ErrorDTO;
+import com.ortiz.poc.dto.ErrorDTO;
 import io.grpc.StatusRuntimeException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -38,7 +38,6 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
                 break;
             default:
                 status = HttpStatus.INTERNAL_SERVER_ERROR;
-
         }
         return handleError(ex, request, status);
     }

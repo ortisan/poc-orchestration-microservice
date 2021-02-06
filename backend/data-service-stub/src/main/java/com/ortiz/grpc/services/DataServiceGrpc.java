@@ -59,6 +59,37 @@ public final class DataServiceGrpc {
   }
 
   private static volatile io.grpc.MethodDescriptor<com.ortiz.grpc.services.Person,
+      com.ortiz.grpc.services.Person> getValidateSavePersonMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "ValidateSavePerson",
+      requestType = com.ortiz.grpc.services.Person.class,
+      responseType = com.ortiz.grpc.services.Person.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<com.ortiz.grpc.services.Person,
+      com.ortiz.grpc.services.Person> getValidateSavePersonMethod() {
+    io.grpc.MethodDescriptor<com.ortiz.grpc.services.Person, com.ortiz.grpc.services.Person> getValidateSavePersonMethod;
+    if ((getValidateSavePersonMethod = DataServiceGrpc.getValidateSavePersonMethod) == null) {
+      synchronized (DataServiceGrpc.class) {
+        if ((getValidateSavePersonMethod = DataServiceGrpc.getValidateSavePersonMethod) == null) {
+          DataServiceGrpc.getValidateSavePersonMethod = getValidateSavePersonMethod =
+              io.grpc.MethodDescriptor.<com.ortiz.grpc.services.Person, com.ortiz.grpc.services.Person>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "ValidateSavePerson"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.ortiz.grpc.services.Person.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.ortiz.grpc.services.Person.getDefaultInstance()))
+              .setSchemaDescriptor(new DataServiceMethodDescriptorSupplier("ValidateSavePerson"))
+              .build();
+        }
+      }
+    }
+    return getValidateSavePersonMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<com.ortiz.grpc.services.Person,
       com.ortiz.grpc.services.Person> getSavePersonMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
@@ -87,6 +118,37 @@ public final class DataServiceGrpc {
       }
     }
     return getSavePersonMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<com.ortiz.grpc.services.Person,
+      com.ortiz.grpc.services.Person> getValidateUpdatePersonMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "ValidateUpdatePerson",
+      requestType = com.ortiz.grpc.services.Person.class,
+      responseType = com.ortiz.grpc.services.Person.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<com.ortiz.grpc.services.Person,
+      com.ortiz.grpc.services.Person> getValidateUpdatePersonMethod() {
+    io.grpc.MethodDescriptor<com.ortiz.grpc.services.Person, com.ortiz.grpc.services.Person> getValidateUpdatePersonMethod;
+    if ((getValidateUpdatePersonMethod = DataServiceGrpc.getValidateUpdatePersonMethod) == null) {
+      synchronized (DataServiceGrpc.class) {
+        if ((getValidateUpdatePersonMethod = DataServiceGrpc.getValidateUpdatePersonMethod) == null) {
+          DataServiceGrpc.getValidateUpdatePersonMethod = getValidateUpdatePersonMethod =
+              io.grpc.MethodDescriptor.<com.ortiz.grpc.services.Person, com.ortiz.grpc.services.Person>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "ValidateUpdatePerson"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.ortiz.grpc.services.Person.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.ortiz.grpc.services.Person.getDefaultInstance()))
+              .setSchemaDescriptor(new DataServiceMethodDescriptorSupplier("ValidateUpdatePerson"))
+              .build();
+        }
+      }
+    }
+    return getValidateUpdatePersonMethod;
   }
 
   private static volatile io.grpc.MethodDescriptor<com.ortiz.grpc.services.Person,
@@ -270,9 +332,23 @@ public final class DataServiceGrpc {
 
     /**
      */
+    public void validateSavePerson(com.ortiz.grpc.services.Person request,
+        io.grpc.stub.StreamObserver<com.ortiz.grpc.services.Person> responseObserver) {
+      asyncUnimplementedUnaryCall(getValidateSavePersonMethod(), responseObserver);
+    }
+
+    /**
+     */
     public void savePerson(com.ortiz.grpc.services.Person request,
         io.grpc.stub.StreamObserver<com.ortiz.grpc.services.Person> responseObserver) {
       asyncUnimplementedUnaryCall(getSavePersonMethod(), responseObserver);
+    }
+
+    /**
+     */
+    public void validateUpdatePerson(com.ortiz.grpc.services.Person request,
+        io.grpc.stub.StreamObserver<com.ortiz.grpc.services.Person> responseObserver) {
+      asyncUnimplementedUnaryCall(getValidateUpdatePersonMethod(), responseObserver);
     }
 
     /**
@@ -313,12 +389,26 @@ public final class DataServiceGrpc {
                 com.ortiz.grpc.services.Person>(
                   this, METHODID_GET_PERSON)))
           .addMethod(
+            getValidateSavePersonMethod(),
+            asyncUnaryCall(
+              new MethodHandlers<
+                com.ortiz.grpc.services.Person,
+                com.ortiz.grpc.services.Person>(
+                  this, METHODID_VALIDATE_SAVE_PERSON)))
+          .addMethod(
             getSavePersonMethod(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.ortiz.grpc.services.Person,
                 com.ortiz.grpc.services.Person>(
                   this, METHODID_SAVE_PERSON)))
+          .addMethod(
+            getValidateUpdatePersonMethod(),
+            asyncUnaryCall(
+              new MethodHandlers<
+                com.ortiz.grpc.services.Person,
+                com.ortiz.grpc.services.Person>(
+                  this, METHODID_VALIDATE_UPDATE_PERSON)))
           .addMethod(
             getUpdatePersonMethod(),
             asyncUnaryCall(
@@ -375,10 +465,26 @@ public final class DataServiceGrpc {
 
     /**
      */
+    public void validateSavePerson(com.ortiz.grpc.services.Person request,
+        io.grpc.stub.StreamObserver<com.ortiz.grpc.services.Person> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(getValidateSavePersonMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
     public void savePerson(com.ortiz.grpc.services.Person request,
         io.grpc.stub.StreamObserver<com.ortiz.grpc.services.Person> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(getSavePersonMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public void validateUpdatePerson(com.ortiz.grpc.services.Person request,
+        io.grpc.stub.StreamObserver<com.ortiz.grpc.services.Person> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(getValidateUpdatePersonMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -437,9 +543,23 @@ public final class DataServiceGrpc {
 
     /**
      */
+    public com.ortiz.grpc.services.Person validateSavePerson(com.ortiz.grpc.services.Person request) {
+      return blockingUnaryCall(
+          getChannel(), getValidateSavePersonMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
     public com.ortiz.grpc.services.Person savePerson(com.ortiz.grpc.services.Person request) {
       return blockingUnaryCall(
           getChannel(), getSavePersonMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.ortiz.grpc.services.Person validateUpdatePerson(com.ortiz.grpc.services.Person request) {
+      return blockingUnaryCall(
+          getChannel(), getValidateUpdatePersonMethod(), getCallOptions(), request);
     }
 
     /**
@@ -495,10 +615,26 @@ public final class DataServiceGrpc {
 
     /**
      */
+    public com.google.common.util.concurrent.ListenableFuture<com.ortiz.grpc.services.Person> validateSavePerson(
+        com.ortiz.grpc.services.Person request) {
+      return futureUnaryCall(
+          getChannel().newCall(getValidateSavePersonMethod(), getCallOptions()), request);
+    }
+
+    /**
+     */
     public com.google.common.util.concurrent.ListenableFuture<com.ortiz.grpc.services.Person> savePerson(
         com.ortiz.grpc.services.Person request) {
       return futureUnaryCall(
           getChannel().newCall(getSavePersonMethod(), getCallOptions()), request);
+    }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.ortiz.grpc.services.Person> validateUpdatePerson(
+        com.ortiz.grpc.services.Person request) {
+      return futureUnaryCall(
+          getChannel().newCall(getValidateUpdatePersonMethod(), getCallOptions()), request);
     }
 
     /**
@@ -535,11 +671,13 @@ public final class DataServiceGrpc {
   }
 
   private static final int METHODID_GET_PERSON = 0;
-  private static final int METHODID_SAVE_PERSON = 1;
-  private static final int METHODID_UPDATE_PERSON = 2;
-  private static final int METHODID_GET_PHONE = 3;
-  private static final int METHODID_SAVE_PHONE = 4;
-  private static final int METHODID_UPDATE_PHONE = 5;
+  private static final int METHODID_VALIDATE_SAVE_PERSON = 1;
+  private static final int METHODID_SAVE_PERSON = 2;
+  private static final int METHODID_VALIDATE_UPDATE_PERSON = 3;
+  private static final int METHODID_UPDATE_PERSON = 4;
+  private static final int METHODID_GET_PHONE = 5;
+  private static final int METHODID_SAVE_PHONE = 6;
+  private static final int METHODID_UPDATE_PHONE = 7;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -562,8 +700,16 @@ public final class DataServiceGrpc {
           serviceImpl.getPerson((com.ortiz.grpc.services.GetPersonRequest) request,
               (io.grpc.stub.StreamObserver<com.ortiz.grpc.services.Person>) responseObserver);
           break;
+        case METHODID_VALIDATE_SAVE_PERSON:
+          serviceImpl.validateSavePerson((com.ortiz.grpc.services.Person) request,
+              (io.grpc.stub.StreamObserver<com.ortiz.grpc.services.Person>) responseObserver);
+          break;
         case METHODID_SAVE_PERSON:
           serviceImpl.savePerson((com.ortiz.grpc.services.Person) request,
+              (io.grpc.stub.StreamObserver<com.ortiz.grpc.services.Person>) responseObserver);
+          break;
+        case METHODID_VALIDATE_UPDATE_PERSON:
+          serviceImpl.validateUpdatePerson((com.ortiz.grpc.services.Person) request,
               (io.grpc.stub.StreamObserver<com.ortiz.grpc.services.Person>) responseObserver);
           break;
         case METHODID_UPDATE_PERSON:
@@ -644,7 +790,9 @@ public final class DataServiceGrpc {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
               .setSchemaDescriptor(new DataServiceFileDescriptorSupplier())
               .addMethod(getGetPersonMethod())
+              .addMethod(getValidateSavePersonMethod())
               .addMethod(getSavePersonMethod())
+              .addMethod(getValidateUpdatePersonMethod())
               .addMethod(getUpdatePersonMethod())
               .addMethod(getGetPhoneMethod())
               .addMethod(getSavePhoneMethod())

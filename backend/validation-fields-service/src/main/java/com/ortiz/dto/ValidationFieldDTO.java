@@ -1,13 +1,16 @@
 package com.ortiz.dto;
 
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Builder;
 import lombok.Data;
-import net.minidev.json.annotate.JsonIgnore;
 
 import java.time.LocalDateTime;
 
 @Data
-public class VerifiedFieldDTO {
+@Builder
+public class ValidationFieldDTO {
     private Long id;
     @JsonIgnore
     private String tenantId;
@@ -20,4 +23,7 @@ public class VerifiedFieldDTO {
     private Boolean validated;
     @JsonProperty("created_date")
     private LocalDateTime createdDate;
+    private String cause;
+    @JsonProperty("server_validated")
+    private Boolean serverValidated;
 }
