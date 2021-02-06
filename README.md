@@ -46,5 +46,6 @@ docker stop $(docker container  ls -aq)
 | Data-Service                    | 8080        | Spring Boot App |
 | Validation-Fields-Service       | 8081        | Spring Boot App |
 | Data-Service-RPC                | 9090        | GRPC            |
+| Orchestrator-Service            | 8082        | Spring Boot App |
 | Envoy GRP Load Balancer         | 8090        | Envoy           |
 | Envoy Admin UI                  | 9901        | Envoy           |

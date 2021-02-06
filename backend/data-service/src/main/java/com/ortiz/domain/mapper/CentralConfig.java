@@ -1,7 +1,7 @@
 package com.ortiz.domain.mapper;
 
 import com.ortiz.domain.Person;
-import com.ortiz.dto.PersonDTO;
+import com.ortiz.poc.dto.PersonDTO;
 import org.mapstruct.MapperConfig;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingInheritanceStrategy;

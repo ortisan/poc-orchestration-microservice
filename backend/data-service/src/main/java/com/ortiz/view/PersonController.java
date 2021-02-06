@@ -28,5 +28,4 @@ public class PersonController {
         personDTO.setId(personId);
         return personService.updatePerson(personDTO);
     }
-
 }
