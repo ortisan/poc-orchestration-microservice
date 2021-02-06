@@ -37,6 +37,12 @@ docker-compose down
 docker stop $(docker container  ls -aq)
 ```
 
+Run Spring Boot like nodemon (nodejs)
+
+```sh
+./mvnw spring-boot:run
+```
+
 ### Services and port numbers:
 
 | Service                         | Port Number | Type/Tech       |
@@ -47,5 +53,4 @@ docker stop $(docker container  ls -aq)
 | Validation-Fields-Service       | 8081        | Spring Boot App |
 | Data-Service-RPC                | 9090        | GRPC            |
 | Orchestrator-Service            | 8082        | Spring Boot App |
-| Envoy GRP Load Balancer         | 8090        | Envoy           |
-| Envoy Admin UI                  | 9901        | Envoy           |
+| Service-Discovery               | 8200        | Consul          |

@@ -30,65 +30,73 @@ services:
     networks:
       - poc-network
 
-  data-service:
-    restart: always
-    build: 
-      dockerfile: Dockerfile
-      context: ./backend/data-service
-    volumes:
-      - ./docker/.m2:/root/.m2
-    environment:
-      - MYSQL_HOST=mysql-data-service
-      - MYSQL_PORT=3306
-      - MYSQL_USER=poc_user
-      - MYSQL_PASSWORD=123456
-    ports:
-      - 8080:8080
-      - 9090:9090
-    networks:
-      - poc-network
-    depends_on: 
-      - mysql-data-service
+  # data-service:
+  #   restart: always
+  #   build: 
+  #     dockerfile: Dockerfile
+  #     context: ./backend/data-service
+  #   volumes:
+  #     - ./docker/.m2:/root/.m2
+  #   environment:
+  #     - MYSQL_HOST=mysql-data-service
+  #     - MYSQL_PORT=3306
+  #     - MYSQL_USER=poc_user
+  #     - MYSQL_PASSWORD=123456
+  #   ports:
+  #     - 8080:8080
+  #     - 9090:9090
+  #   networks:
+  #     - poc-network
+  #   depends_on: 
+  #     - mysql-data-service
 
-  validation-fields-service:
-    restart: always
-    build: 
-      dockerfile: Dockerfile
-      context: ./backend/validation-fields-service
-    volumes:
-      - ./docker/.m2:/root/.m2
-    environment:
-      - MYSQL_HOST=mysql-validation-fields-service
-      - MYSQL_PORT=3306
-      - MYSQL_USER=poc_user
-      - MYSQL_PASSWORD=123456
-      - DATA_SERVICE_GRPC_ADDRESS=static://data-service:9090
-    ports:
-      - 8081:8080
-      - 9091:9090
-    networks:
-      - poc-network
-    depends_on:
-      - mysql-validation-fields-service
-      - data-service
+  # validation-fields-service:
+  #   restart: always
+  #   build: 
+  #     dockerfile: Dockerfile
+  #     context: ./backend/validation-fields-service
+  #   volumes:
+  #     - ./docker/.m2:/root/.m2
+  #   environment:
+  #     - MYSQL_HOST=mysql-validation-fields-service
+  #     - MYSQL_PORT=3306
+  #     - MYSQL_USER=poc_user
+  #     - MYSQL_PASSWORD=123456
+  #     - DATA_SERVICE_GRPC_ADDRESS=static://data-service:9090
+  #   ports:
+  #     - 8081:8080
+  #     - 9091:9090
+  #   networks:
+  #     - poc-network
+  #   depends_on:
+  #     - mysql-validation-fields-service
+  #     - data-service
   
-  orchestrator-service:
+  # orchestrator-service:
+  #   restart: always
+  #   build: 
+  #     dockerfile: Dockerfile
+  #     context: ./backend/orchestrator-service
+  #   volumes:
+  #     - ./docker/.m2:/root/.m2
+  #   environment:
+  #     - DATA_SERVICE_GRPC_ADDRESS=static://data-service:9090
+  #     - VALIDATION_FIELDS_SERVICE_GRPC_ADDRESS=static://validation-fields-service:9090
+  #   ports:
+  #     - 8082:8080
+  #   networks:
+  #     - poc-network
+  #   depends_on:
+  #     - mysql-validation-fields-service
+  #     - data-service
+
+  service-discovery:
     restart: always
-    build: 
-      dockerfile: Dockerfile
-      context: ./backend/orchestrator-service
-    volumes:
-      - ./docker/.m2:/root/.m2
-    environment:
-      - DATA_SERVICE_GRPC_ADDRESS=static://data-service:9090
-      - VALIDATION_FIELDS_SERVICE_GRPC_ADDRESS=static://validation-fields-service:9090
+    image: consul:1.9.3
     ports:
-      - 8082:8080      
+      - 8500:8500
     networks:
       - poc-network
-    depends_on:
-      - mysql-validation-fields-service
-      - data-service
 
   # envoy-cluster:
   #   restart: always
