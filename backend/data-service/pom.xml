@@ -157,26 +157,6 @@
                     </compilerArgs>
                 </configuration>
             </plugin>
-
-            <!--            <plugin>-->
-            <!--                <groupId>org.flywaydb</groupId>-->
-            <!--                <artifactId>flyway-maven-plugin</artifactId>-->
-            <!--                <executions>-->
-            <!--                    <execution>-->
-            <!--                        <phase>generate-sources</phase>-->
-            <!--                        <goals>-->
-            <!--                            <goal>migrate</goal>-->
-            <!--                        </goals>-->
-            <!--                    </execution>-->
-            <!--                </executions>-->
-            <!--                <configuration>-->
-            <!--                    <driver>com.mysql.cj.jdbc.Driver</driver>-->
-            <!--                    <url>jdbc:mysql://localhost:3306/poc</url>-->
-            <!--                    <user>poc_user</user>-->
-            <!--                    <password>123456</password>-->
-            <!--                    <baselineOnMigrate>true</baselineOnMigrate>-->
-            <!--                </configuration>-->
-            <!--            </plugin>-->
         </plugins>
     </build>
 </project>
