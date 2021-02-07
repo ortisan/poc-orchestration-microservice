@@ -12,7 +12,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"name\": \"Marcelo\",\n    \"type\": \"C\",\n    \"cpf_cnpj\": \"20073932000171\",    \n    \"phones\": [\n        {\n            \"ddi\": 55,\n            \"ddd\": 11,\n            \"number\": 123456789,\n            \"extensionLine\": null\n        }\n    ]\n}",
+					"raw": "{\n    \"name\": \"Marcelo\",\n    \"type\": \"P\",\n    \"cpf_cnpj\": \"73106887087\",\n    \"phones\": [\n        {\n            \"ddi\": 55,\n            \"ddd\": 11,\n            \"number\": 123456789,\n            \"extensionLine\": null\n        }\n    ]\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -72,7 +72,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/tenant/1234/person/3a4550e1-dcdb-4bdf-a1ba-203c8033da4e",
+					"raw": "http://localhost:8080/tenant/1234/person/5a783ece-0ef5-48f2-a803-df7b5d9adf2e",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -82,7 +82,7 @@
 						"tenant",
 						"1234",
 						"person",
-						"3a4550e1-dcdb-4bdf-a1ba-203c8033da4e"
+						"5a783ece-0ef5-48f2-a803-df7b5d9adf2e"
 					]
 				}
 			},
@@ -103,7 +103,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8081/tenant/1234/person/1234/fields",
+					"raw": "http://localhost:8081/tenant/1234/person/5a783ece-0ef5-48f2-a803-df7b5d9adf2e/fields",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -113,7 +113,7 @@
 						"tenant",
 						"1234",
 						"person",
-						"1234",
+						"5a783ece-0ef5-48f2-a803-df7b5d9adf2e",
 						"fields"
 					]
 				}
@@ -138,6 +138,38 @@
 						"person",
 						"3a4550e1-dcdb-4bdf-a1ba-203c8033da4e",
 						"fields"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "post orchestration data",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"person_data\": {\n    \"name\": \"Marcelo\",\n    \"type\": \"P\",\n    \"cpf_cnpj\": \"74444487011\",\n    \"phones\": [\n      {\n        \"ddi\": 55,\n        \"ddd\": 11,\n        \"number\": 123456789,\n        \"extensionLine\": null\n      }\n    ]\n  },\n  \"fields\": [\n    {\n      \"field_name\": \"name\",\n      \"value\": \"Marcelo Ortiz\",\n      \"level\": 400,\n      \"validated\": true,\n      \"created_date\": \"2021-01-02T18:25:43.511Z\"\n    }\n  ]\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8082/orchestrator/tenant/1234/person/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"orchestrator",
+						"tenant",
+						"1234",
+						"person",
+						""
 					]
 				}
 			},
