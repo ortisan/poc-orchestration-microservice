@@ -1,7 +1,7 @@
 package com.ortiz.domain.mapper;
 
 import com.ortiz.domain.VerifiedFieldDomain;
-import com.ortiz.dto.ValidationFieldDTO;
+import com.ortiz.poc.dto.ValidationFieldDTO;
 import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
 

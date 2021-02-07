@@ -1,5 +1,6 @@
 package com.ortiz.view;
 
+import br.com.fluentvalidator.exception.ValidationException;
 import com.google.rpc.Code;
 import com.ortiz.business.IPersonService;
 import com.ortiz.business.IPhoneService;
@@ -11,8 +12,6 @@ import net.devh.boot.grpc.server.service.GrpcService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.EntityNotFoundException;
-import java.util.List;
-import java.util.stream.Collectors;
 
 import static com.ortiz.poc.commons.ErrorUtils.handleError;
 import static com.ortiz.poc.commons.GRPCMapper.*;
@@ -41,13 +40,27 @@ public class PersonServiceGRPC extends DataServiceGrpc.DataServiceImplBase {
     }
 
     @Override
+    public void validateSavePerson(Person request, StreamObserver<Person> responseObserver) {
+        PersonDTO personDTO = toPersonDTO(request);
+        try {
+            personService.validatePerson(personDTO, true);
+
+            Person personResposnse = toPersonGRPC(personDTO);
+            responseObserver.onNext(personResposnse);
+            responseObserver.onCompleted();
+        } catch (ValidationException exc) {
+            responseObserver.onError(handleError(exc, Code.INVALID_ARGUMENT, request));
+        } catch (Exception exc) {
+            responseObserver.onError(handleError(exc, Code.ABORTED, request));
+        }
+    }
+
+    @Override
     public void savePerson(Person request, StreamObserver<Person> responseObserver) {
         try {
             PersonDTO personDTO = toPersonDTO(request);
 
-            List<PhoneDTO> phoneDTOS = request.getPhonesList().stream().map(phone -> PhoneDTO.builder().ddi(phone.getDdi().getValue()).ddd(phone.getDdd().getValue()).number(phone.getNumber().getValue()).extensionLine(phone.getExtensionLine().getValue()).build()).collect(Collectors.toList());
             PersonDTO personPersistedDTO = personService.savePerson(personDTO);
-
             Person personResposnse = toPersonGRPC(personPersistedDTO);
             responseObserver.onNext(personResposnse);
             responseObserver.onCompleted();
@@ -59,11 +72,25 @@ public class PersonServiceGRPC extends DataServiceGrpc.DataServiceImplBase {
     }
 
     @Override
+    public void validateUpdatePerson(Person request, StreamObserver<Person> responseObserver) {
+        PersonDTO personDTO = toPersonDTO(request);
+        try {
+            personService.validatePerson(personDTO, false);
+
+            Person personResposnse = toPersonGRPC(personDTO);
+            responseObserver.onNext(personResposnse);
+            responseObserver.onCompleted();
+        } catch (ValidationException exc) {
+            responseObserver.onError(handleError(exc, Code.INVALID_ARGUMENT, request));
+        } catch (Exception exc) {
+            responseObserver.onError(handleError(exc, Code.ABORTED, request));
+        }
+    }
+
+    @Override
     public void updatePerson(Person request, StreamObserver<Person> responseObserver) {
         try {
             PersonDTO personDTO = toPersonDTO(request);
-
-            List<PhoneDTO> phoneDTOS = request.getPhonesList().stream().map(phone -> PhoneDTO.builder().ddi(phone.getDdi().getValue()).ddd(phone.getDdd().getValue()).number(phone.getNumber().getValue()).extensionLine(phone.getExtensionLine().getValue()).build()).collect(Collectors.toList());
             PersonDTO personPersistedDTO = personService.updatePerson(personDTO);
 
             Person personResposnse = toPersonGRPC(personPersistedDTO);

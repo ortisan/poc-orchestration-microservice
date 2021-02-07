@@ -17,4 +17,4 @@ FROM openjdk:11-jre-slim
 WORKDIR '/app'
 COPY ./target/data-service.jar ./data-service.jar
 # CMD ["./mvnw", "spring-boot:run", "-Dspring.profiles.active=compose"]
-CMD ["java", "-jar", "data-service.jar", "-Dspring.profiles.active=compose"]
+CMD ["java", "-Dspring.profiles.active=compose", "-jar", "data-service.jar"]

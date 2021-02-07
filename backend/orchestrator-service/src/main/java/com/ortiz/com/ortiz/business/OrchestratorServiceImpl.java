@@ -33,14 +33,15 @@ public class OrchestratorServiceImpl {
     private DataFilteringService dataFilteringService;
 
     public DataDTO saveData(DataDTO dataDTO) {
+
         PersonDTO personDTO = dataDTO.getPerson();
         List<ValidationFieldDTO> verifiedFields = dataDTO.getValidationFields();
 
         ValidationFields validationFieldsRequest = toValidationFieldsGRPC(verifiedFields);
-        ValidationFields valdationFieldsValidated = validationFieldsServiceStub.validateFields(validationFieldsRequest);
+        ValidationFields validationFieldsValidated = validationFieldsServiceStub.validateFields(validationFieldsRequest);
 
-        List<ValidationField> valids = valdationFieldsValidated.getVerifiedFieldsList().stream().filter(verifiedField -> verifiedField.getServerValidated().getValue()).collect(Collectors.toList());
-        List<ValidationField> invalids = valdationFieldsValidated.getVerifiedFieldsList().stream().filter(verifiedField -> !verifiedField.getServerValidated().getValue()).collect(Collectors.toList());
+        List<ValidationField> valids = validationFieldsValidated.getVerifiedFieldsList().stream().filter(verifiedField -> verifiedField.getServerValidated().getValue()).collect(Collectors.toList());
+        List<ValidationField> invalids = validationFieldsValidated.getVerifiedFieldsList().stream().filter(verifiedField -> !verifiedField.getServerValidated().getValue()).collect(Collectors.toList());
         List<ValidationFieldDTO> invalidFieldsDTO = invalids.stream().map(verifiedField -> toValidationFieldDTO(verifiedField)).collect(Collectors.toList());
         PersonDTO personValidatedDTO = dataFilteringService.filterData(personDTO, invalidFieldsDTO);
 
@@ -49,8 +50,10 @@ public class OrchestratorServiceImpl {
         Person personValidated = dataServiceStub.validateSavePerson(person);
         Person personPersisted = dataServiceStub.savePerson(personValidated);
 
+        // Updates valid fields with person id persited before
+        List<ValidationField> validFieldsPersonIdUpdated = valids.stream().map(validationField -> ValidationField.newBuilder(validationField).setPersonId(personPersisted.getPersonId()).build()).collect(Collectors.toList());
         // Last insert validated fields
-        ValidationFields verifiedFieldsPersisted = validationFieldsServiceStub.saveVerifiedFields(ValidationFields.newBuilder().addAllVerifiedFields(valids).build());
+        ValidationFields verifiedFieldsPersisted = validationFieldsServiceStub.saveVerifiedFields(ValidationFields.newBuilder().addAllVerifiedFields(validFieldsPersonIdUpdated).build());
         return DataDTO.builder().person(toPersonDTO(personPersisted)).validationFields(toValidationFieldsDTO(verifiedFieldsPersisted)).build();
     }
 }

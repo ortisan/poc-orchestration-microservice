@@ -30,6 +30,14 @@ services:
     networks:
       - poc-network
 
+  service-discovery:
+    restart: always
+    image: consul:1.9.3    
+    ports:
+      - 8500:8500
+    networks:
+      - poc-network    
+
   data-service:
     restart: always
     build: 
@@ -42,6 +50,8 @@ services:
       - MYSQL_PORT=3306
       - MYSQL_USER=poc_user
       - MYSQL_PASSWORD=123456
+      - SERVICE_DISCOVERY_HOST=service-discovery
+      - SERVICE_DISCOVERY_PORT=8500
     ports:
       - 8080:8080
       - 9090:9090
@@ -49,6 +59,7 @@ services:
       - poc-network
     depends_on: 
       - mysql-data-service
+      - service-discovery
 
   validation-fields-service:
     restart: always
@@ -62,7 +73,9 @@ services:
       - MYSQL_PORT=3306
       - MYSQL_USER=poc_user
       - MYSQL_PASSWORD=123456
-      - DATA_SERVICE_GRPC_ADDRESS=static://data-service:9090
+      - DATA_SERVICE_GRPC_ADDRESS=discovery:///data-service
+      - SERVICE_DISCOVERY_HOST=service-discovery
+      - SERVICE_DISCOVERY_PORT=8500
     ports:
       - 8081:8080
       - 9091:9090
@@ -71,6 +84,7 @@ services:
     depends_on:
       - mysql-validation-fields-service
       - data-service
+      - service-discovery
   
   orchestrator-service:
     restart: always
@@ -80,24 +94,15 @@ services:
     volumes:
       - ./docker/.m2:/root/.m2
     environment:
-      - DATA_SERVICE_GRPC_ADDRESS=static://data-service:9090
-      - VALIDATION_FIELDS_SERVICE_GRPC_ADDRESS=static://validation-fields-service:9090
+      - DATA_SERVICE_GRPC_ADDRESS=discovery:///data-service
+      - VALIDATION_FIELDS_SERVICE_GRPC_ADDRESS=discovery:///validation-fields-service
+      - SERVICE_DISCOVERY_HOST=service-discovery
+      - SERVICE_DISCOVERY_PORT=8500
     ports:
-      - 8082:8080      
+      - 8082:8080
     networks:
       - poc-network
     depends_on:
       - mysql-validation-fields-service
       - data-service
-
-  # envoy-cluster:
-  #   restart: always
-  #   image: envoyproxy/envoy-dev:18db4c90e3295fb2c39bfc7b2ce641cfd6c3fbed
-  #   ports:
-  #     - "8090:8080"
-  #     - "9901:9901"
-  #   volumes:
-  #     - ./envoy.yaml:/etc/envoy/envoy.yaml
-  #   networks:
-  #     - poc-network
-    
+      - service-discovery

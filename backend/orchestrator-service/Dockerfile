@@ -18,4 +18,4 @@ FROM openjdk:11-jre-slim
 WORKDIR '/app'
 COPY ./target/orchestrator-service.jar ./orchestrator-service.jar
 # CMD ["./mvnw", "spring-boot:run", "-Dspring.profiles.active=compose"]
-CMD ["java", "-jar", "orchestrator-service.jar", "-Dspring.profiles.active=compose"]
+CMD ["java", "-Dspring.profiles.active=compose", "-jar", "orchestrator-service.jar"]

@@ -1,7 +1,7 @@
 package com.ortiz.view;
 
 import com.ortiz.business.IValidationFieldsService;
-import com.ortiz.dto.ValidationFieldDTO;
+import com.ortiz.poc.dto.ValidationFieldDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

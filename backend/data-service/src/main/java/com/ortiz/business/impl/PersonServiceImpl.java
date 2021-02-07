@@ -34,17 +34,24 @@ public class PersonServiceImpl implements IPersonService {
     }
 
     @Override
-    public PersonDTO savePerson(PersonDTO personDTO) {
+    public PersonDTO validatePerson(PersonDTO personDTO, boolean isInsert) {
         final Person person = personBusinessMapper.mapToDomain(personDTO);
-        personRule.validate(person, true);
+        personRule.validate(person, isInsert);
+        return personDTO;
+    }
+
+    @Override
+    public PersonDTO savePerson(PersonDTO personDTO) {
+        validatePerson(personDTO, true);
+        final Person person = personBusinessMapper.mapToDomain(personDTO);
         final Person personSaved = personRepository.savePerson(person);
         return personBusinessMapper.mapToDto(personSaved);
     }
 
     @Override
     public PersonDTO updatePerson(PersonDTO personDTO) {
+        validatePerson(personDTO, false);
         final Person person = personBusinessMapper.mapToDomain(personDTO);
-        personRule.validate(person, false);
         final Person personSaved = personRepository.updatePerson(person);
         return personBusinessMapper.mapToDto(personSaved);
     }
