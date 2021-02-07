@@ -4,19 +4,17 @@ package com.ortiz.business.impl;
 import com.ortiz.business.IValidationFieldsService;
 import com.ortiz.domain.VerifiedFieldDomain;
 import com.ortiz.domain.mapper.IVerifiedFieldBusinessMapper;
-import com.ortiz.dto.ValidationFieldDTO;
+
 import com.ortiz.grpc.services.DataServiceGrpc;
 import com.ortiz.grpc.services.GetPersonRequest;
 import com.ortiz.grpc.services.Person;
 import com.ortiz.persistence.repositories.jpa.IFieldJpaRepository;
 import com.ortiz.persistence.repositories.service.IVerifyFieldRepository;
-import io.grpc.ManagedChannel;
-import io.grpc.ManagedChannelBuilder;
+import com.ortiz.poc.dto.ValidationFieldDTO;
 import io.grpc.Status;
 import io.grpc.StatusRuntimeException;
 import net.devh.boot.grpc.client.inject.GrpcClient;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.stereotype.Service;
 
@@ -75,19 +73,6 @@ public class ValidationFieldsServiceImpl implements IValidationFieldsService {
     }
 
     private void validatePerson(String tenantId, String personId) {
-
-        System.out.println("getUrl() = " + getUrl());
-
-//        ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", 9090)
-//                .usePlaintext()
-//                .build();
-//
-//        DataServiceGrpc.DataServiceBlockingStub stub
-//                = DataServiceGrpc.newBlockingStub(channel);
-
-
-
-
         GetPersonRequest personRequest = GetPersonRequest.newBuilder().setTenantId(getStringValue(tenantId)).setPersonId(getStringValue(personId)).build();
         try {
             Person personResponse = dataServiceStub.getPerson(personRequest);
@@ -109,16 +94,12 @@ public class ValidationFieldsServiceImpl implements IValidationFieldsService {
                 verifiedFieldDTO.setServerValidated(false);
                 verifiedFieldDTO.setCause(String.format("Invalid fields: %s.", fieldName));
             }
+            if (verifiedFieldDTO.getCreatedDate() == null) {
+                verifiedFieldDTO.setServerValidated(false);
+                verifiedFieldDTO.setCause("Created date is null");
+            }
             return verifiedFieldDTO;
         }).collect(Collectors.toList());
         return validatedFields;
-    }
-
-    private String getUrl() {
-        List<ServiceInstance> list = discoveryClient.getInstances("data-service");
-        if (list != null && list.size() > 0 ) {
-            return list.get(0).getUri().toString();
-        }
-        return null;
     }
 }

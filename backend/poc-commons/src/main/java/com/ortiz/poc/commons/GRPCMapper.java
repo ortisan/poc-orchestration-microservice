@@ -12,6 +12,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static com.ortiz.poc.commons.FieldUtils.*;
+import static com.ortiz.poc.commons.PerserUtil.toLocalDateTime;
+import static com.ortiz.poc.commons.PerserUtil.toTimestamp;
 
 public class GRPCMapper {
 
@@ -58,6 +60,7 @@ public class GRPCMapper {
                 .value(validationField.getFieldValue().getValue())
                 .level(validationField.getLevel().getValue())
                 .validated(validationField.getValidated().getValue())
+                .createdDate(toLocalDateTime(validationField.getCreatedDate()))
                 .build();
     }
 
@@ -79,8 +82,7 @@ public class GRPCMapper {
                 .setValidated(getBooleanValue(validationFieldDTO.getValidated()))
                 .setServerValidated(getBooleanValue(validationFieldDTO.getServerValidated()))
                 .setCause(getStringValue(validationFieldDTO.getCause()))
+                .setCreatedDate(toTimestamp(validationFieldDTO.getCreatedDate()))
                 .build();
     }
-
-
 }

@@ -1,6 +1,7 @@
 package com.ortiz.business;
 
-import com.ortiz.dto.ValidationFieldDTO;
+
+import com.ortiz.poc.dto.ValidationFieldDTO;
 
 import java.util.List;
 

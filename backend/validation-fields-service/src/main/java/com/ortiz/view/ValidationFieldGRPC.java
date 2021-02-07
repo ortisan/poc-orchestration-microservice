@@ -2,10 +2,11 @@ package com.ortiz.view;
 
 import com.google.rpc.Code;
 import com.ortiz.business.IValidationFieldsService;
-import com.ortiz.dto.ValidationFieldDTO;
+
 import com.ortiz.grpc.services.vfs.ValidationField;
 import com.ortiz.grpc.services.vfs.ValidationFields;
 import com.ortiz.grpc.services.vfs.ValidationFieldsServiceGrpc;
+import com.ortiz.poc.dto.ValidationFieldDTO;
 import io.grpc.stub.StreamObserver;
 import net.devh.boot.grpc.server.service.GrpcService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import java.util.stream.Collectors;
 
 import static com.ortiz.poc.commons.ErrorUtils.handleError;
 import static com.ortiz.poc.commons.FieldUtils.*;
+import static com.ortiz.poc.commons.GRPCMapper.*;
 
 @GrpcService
 public class ValidationFieldGRPC extends ValidationFieldsServiceGrpc.ValidationFieldsServiceImplBase {
@@ -64,42 +66,5 @@ public class ValidationFieldGRPC extends ValidationFieldsServiceGrpc.ValidationF
             responseObserver.onError(handleError(exc, Code.ABORTED, request));
         }
     }
-
-    public List<ValidationFieldDTO> toValidationFieldsDTO(ValidationFields validationFields) {
-        return validationFields.getVerifiedFieldsList().stream().map(validationField -> toValidationFieldDTO(validationField)).collect(Collectors.toList());
-    }
-
-    public ValidationFieldDTO toValidationFieldDTO(ValidationField validationField) {
-        return ValidationFieldDTO.builder()
-                .id(validationField.getId().getValue())
-                .tenantId(validationField.getTenantId().getValue())
-                .personId(validationField.getPersonId().getValue())
-                .fieldName(validationField.getFieldName().getValue())
-                .value(validationField.getFieldValue().getValue())
-                .level(validationField.getLevel().getValue())
-                .validated(validationField.getValidated().getValue())
-                .build();
-    }
-
-    public ValidationFields toValidationFieldsGRPC(List<ValidationFieldDTO> validationFieldsDTOS) {
-        List<ValidationField> verifiedFieldList = validationFieldsDTOS.stream().map(validationFieldDTO -> {
-            return toValidationFieldGRPC(validationFieldDTO);
-        }).collect(Collectors.toList());
-        return ValidationFields.newBuilder().addAllVerifiedFields(verifiedFieldList).build();
-    }
-
-    public ValidationField toValidationFieldGRPC(ValidationFieldDTO validationFieldDTO) {
-        return ValidationField.newBuilder()
-                .setId(getInteger64Value(validationFieldDTO.getId()))
-                .setTenantId(getStringValue(validationFieldDTO.getTenantId()))
-                .setPersonId(getStringValue(validationFieldDTO.getPersonId()))
-                .setFieldName(getStringValue(validationFieldDTO.getFieldName()))
-                .setFieldValue(getStringValue(validationFieldDTO.getValue()))
-                .setLevel(getInteger32Value(validationFieldDTO.getLevel()))
-                .setValidated(getBooleanValue(validationFieldDTO.getValidated()))
-                .setServerValidated(getBooleanValue(validationFieldDTO.getServerValidated()))
-                .setCause(getStringValue(validationFieldDTO.getCause()))
-                .build();
-
-    }
 }
+

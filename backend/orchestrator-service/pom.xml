@@ -13,13 +13,17 @@
     <packaging>jar</packaging>
     <properties>
         <java.version>11</java.version>
+        <bean-utils.verson>1.9.4</bean-utils.verson>
         <br.com.caelum.stella.version>2.1.2</br.com.caelum.stella.version>
         <com.github.mvallim.version>1.9.2</com.github.mvallim.version>
         <commons-validator.version>1.7</commons-validator.version>
+        <grpc-springboot.version>2.11.1-SNAPSHOT</grpc-springboot.version>
         <mysql.version>8.0.23</mysql.version>
         <org.mapstruct.version>1.4.1.Final</org.mapstruct.version>
         <org.projectlombok.version>1.18.12</org.projectlombok.version>
+        <spring-cloud.version>2020.0.1</spring-cloud.version>
         <rx.version>3.0.9</rx.version>
+
     </properties>
     <dependencies>
         <dependency>
@@ -27,13 +31,11 @@
             <artifactId>poc-commons</artifactId>
             <version>1.0.0-SNAPSHOT</version>
         </dependency>
-
         <dependency>
             <groupId>net.devh</groupId>
             <artifactId>grpc-client-spring-boot-starter</artifactId>
-            <version>2.10.1.RELEASE</version>
+            <version>${grpc-springboot.version}</version>
         </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
@@ -43,6 +45,15 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-consul-discovery</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>commons-beanutils</groupId>
+            <artifactId>commons-beanutils</artifactId>
+            <version>${bean-utils.verson}</version>
+        </dependency>
+        <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
         </dependency>
@@ -50,21 +61,6 @@
             <groupId>org.mapstruct</groupId>
             <artifactId>mapstruct</artifactId>
             <version>${org.mapstruct.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.github.mvallim</groupId>
-            <artifactId>java-fluent-validator</artifactId>
-            <version>${com.github.mvallim.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>br.com.caelum.stella</groupId>
-            <artifactId>caelum-stella-core</artifactId>
-            <version>${br.com.caelum.stella.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>commons-validator</groupId>
-            <artifactId>commons-validator</artifactId>
-            <version>${commons-validator.version}</version>
         </dependency>
         <dependency>
             <groupId>io.reactivex.rxjava3</groupId>
@@ -125,26 +121,6 @@
                     </compilerArgs>
                 </configuration>
             </plugin>
-
-            <!--            <plugin>-->
-            <!--                <groupId>org.flywaydb</groupId>-->
-            <!--                <artifactId>flyway-maven-plugin</artifactId>-->
-            <!--                <executions>-->
-            <!--                    <execution>-->
-            <!--                        <phase>generate-sources</phase>-->
-            <!--                        <goals>-->
-            <!--                            <goal>migrate</goal>-->
-            <!--                        </goals>-->
-            <!--                    </execution>-->
-            <!--                </executions>-->
-            <!--                <configuration>-->
-            <!--                    <driver>com.mysql.cj.jdbc.Driver</driver>-->
-            <!--                    <url>jdbc:mysql://localhost:3307/poc</url>-->
-            <!--                    <user>poc_user</user>-->
-            <!--                    <password>123456</password>-->
-            <!--                    <baselineOnMigrate>true</baselineOnMigrate>-->
-            <!--                </configuration>-->
-            <!--            </plugin>-->
         </plugins>
     </build>
 </project>

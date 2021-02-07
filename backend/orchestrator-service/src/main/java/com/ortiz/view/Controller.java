@@ -8,14 +8,28 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Optional;
+
 @RestController
 public class Controller {
     @Autowired
     private OrchestratorServiceImpl service;
 
-    @PostMapping("/tenant/{tenant_id}/person")
+    @PostMapping("/orchestrator/tenant/{tenant_id}/person")
     private DataDTO savePerson(@PathVariable(name = "tenant_id") String tenantId, @RequestBody DataDTO dataDTO) {
         dataDTO.setTenantId(tenantId);
+
+        Optional.ofNullable(dataDTO.getPerson()).map(personDTO -> {
+            personDTO.setTenantId(tenantId);
+            return personDTO;
+        }).orElse(null);
+
+        dataDTO.getPerson().setTenantId(tenantId);
+        Optional.ofNullable(dataDTO.getValidationFields()).map(validationFieldDTOS -> {
+            validationFieldDTOS.stream().forEach(validationFieldDTO -> validationFieldDTO.setTenantId(tenantId));
+            return validationFieldDTOS;
+        }).orElse(null);
+
         return service.saveData(dataDTO);
     }
 }

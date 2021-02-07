@@ -18,4 +18,4 @@ FROM openjdk:11-jre-slim
 WORKDIR '/app'
 COPY ./target/validation-fields-service.jar ./validation-fields-service.jar
 # CMD ["./mvnw", "spring-boot:run", "-Dspring.profiles.active=compose"]
-CMD ["java", "-jar", "validation-fields-service.jar", "-Dspring.profiles.active=compose"]
+CMD ["java", "-Dspring.profiles.active=compose", "-jar", "validation-fields-service.jar"]
