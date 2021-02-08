@@ -60,6 +60,7 @@ public class GRPCMapper {
                 .value(validationField.getFieldValue().getValue())
                 .level(validationField.getLevel().getValue())
                 .validated(validationField.getValidated().getValue())
+                .serverValidated(validationField.getServerValidated().getValue())
                 .createdDate(toLocalDateTime(validationField.getCreatedDate()))
                 .build();
     }
