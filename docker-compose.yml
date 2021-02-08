@@ -106,3 +106,18 @@ services:
       - mysql-validation-fields-service
       - data-service
       - service-discovery
+
+  frontend:
+    restart: always
+    build: 
+      dockerfile: Dockerfile
+      context: ./frontend/app
+    environment:
+      - VUE_APP_API_URL=http://localhost:8082/
+    ports:
+      - '8083:8080'
+    networks:
+      - poc-network
+    volumes: 
+      - /app/node_modules
+      - ./frontend/app:/app
