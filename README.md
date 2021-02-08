@@ -4,7 +4,7 @@ POC for testing microservices orchestration patterns.
 
 ### Run:
 
-Checkout this project and install into local repository (with this bug ( [#495](https://github.com/yidongnan/grpc-spring-boot-starter/issues/495) fixed):
+Checkout this project and install into local repository (with this bug [#495](https://github.com/yidongnan/grpc-spring-boot-starter/issues/495) fixed):
 
 ```sh
 git clone git@github.com:tentativafc/grpc-spring-boot-starter.git
