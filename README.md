@@ -50,3 +50,4 @@ Run Spring Boot like nodemon (nodejs)
 | Data-Service-RPC                | 9090        | GRPC            |
 | Orchestrator-Service            | 8082        | Spring Boot App |
 | Service-Discovery               | 8500        | Consul          |
+| Frontend                        | 8083        | VUEjs           |
