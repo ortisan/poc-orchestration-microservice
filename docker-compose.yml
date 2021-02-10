@@ -100,7 +100,6 @@ services:
       - SERVICE_DISCOVERY_PORT=8500
       - URL_DATA_SERVICE=http://data-service:8080
       - URL_VALIDATION_FIELDS_SERVICE=http://validation-fields-service:8080
-
     ports:
       - 8082:8080
     networks:

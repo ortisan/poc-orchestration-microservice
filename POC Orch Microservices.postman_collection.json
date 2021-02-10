@@ -6,6 +6,37 @@
 	},
 	"item": [
 		{
+			"name": "post validate user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Marcelo\",\n    \"type\": \"P\",\n    \"cpf_cnpj\": \"73106887087\",\n    \"phones\": [\n        {\n            \"ddi\": 55,\n            \"ddd\": 11,\n            \"number\": 123456789,\n            \"extensionLine\": null\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/validation/tenant/1234/person",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"validation",
+						"tenant",
+						"1234",
+						"person"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "post user",
 			"request": {
 				"method": "POST",
@@ -89,7 +120,38 @@
 			"response": []
 		},
 		{
-			"name": "post verified field",
+			"name": "post validation validate fields",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[{\n    \"field_name\": \"name\",\n    \"value\": \"Marcelo Ortiz\",\n    \"level\": 400,\n    \"validated\": true,\n    \"created_date\": \"2021-01-02T18:25:43.511Z\"\n}\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/validation/tenant/1234/fields",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"validation",
+						"tenant",
+						"1234",
+						"fields"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "post validation fields",
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -144,13 +206,13 @@
 			"response": []
 		},
 		{
-			"name": "post orchestration data",
+			"name": "post orchestration grpc",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"person_data\": {\n    \"name\": \"Marcelo\",\n    \"type\": \"P\",\n    \"cpf_cnpj\": \"74444487011\",\n    \"phones\": [\n      {\n        \"ddi\": 55,\n        \"ddd\": 11,\n        \"number\": 123456789,\n        \"extensionLine\": null\n      }\n    ]\n  },\n  \"fields\": [\n    {\n      \"field_name\": \"name\",\n      \"value\": \"Marcelo Ortiz\",\n      \"level\": 400,\n      \"validated\": true,\n      \"created_date\": \"2021-01-02T18:25:43.511Z\"\n    }\n  ]\n}\n",
+					"raw": "{\"person_data\":{\"name\":\"MARCELO O SANTANA\",\"person_type\":\"P\",\"cpf_cnpj\":\"29856439884\",\"phone\":{\"ddi\":\"55\",\"ddd\":\"11\",\"phone_number\":\"12321321\",\"extension_line\":null}}}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -158,14 +220,46 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8082/orchestrator/tenant/1234/person/",
+					"raw": "http://localhost:8082/orchestrator-grpc/tenant/1234/person/",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8082",
 					"path": [
-						"orchestrator",
+						"orchestrator-grpc",
+						"tenant",
+						"1234",
+						"person",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "post orchestration rest",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"person_data\": {\n    \"name\": \"Marcelo\",\n    \"type\": \"P\",\n    \"cpf_cnpj\": \"24000956043\",\n    \"phones\": [\n      {\n        \"ddi\": 55,\n        \"ddd\": 11,\n        \"number\": 123456789,\n        \"extensionLine\": null\n      }\n    ]\n  },\n  \"fields\": [\n    {\n      \"field_name\": \"name\",\n      \"value\": \"Marcelo Ortiz\",\n      \"level\": 400,\n      \"validated\": true,\n      \"created_date\": \"2021-01-02T18:25:43.511Z\"\n    }\n  ]\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8082/orchestrator-rest/tenant/1234/person/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"orchestrator-rest",
 						"tenant",
 						"1234",
 						"person",
