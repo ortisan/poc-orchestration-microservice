@@ -44,7 +44,7 @@ mvn clean compile package
 cd - 
 
 # Start docker containers. Obs: the services will build Dockerfile
-docker-compose up -d
+docker-compose up --build -d
 cd - 
 
 trap : 0

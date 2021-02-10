@@ -16,8 +16,13 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 import lombok.extern.slf4j.Slf4j;
 import net.devh.boot.grpc.client.inject.GrpcClient;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -40,7 +45,17 @@ public class OrchestratorServiceImpl {
     @Autowired
     private DataFilteringService dataFilteringService;
 
-    public DataDTO saveData(DataDTO dataDTO) {
+    @Value("${application.data-service.url}")
+    private String urlDataService;
+
+    @Value("${application.validation-fields-service.url}")
+    private String urlValidationFieldsService;
+
+    @Autowired
+    private RestTemplate restTemplate;
+
+
+    public DataDTO saveDataGrpc(DataDTO dataDTO) {
 
         ContextFlow context = ContextFlow.builder().data(dataDTO).build();
 
@@ -64,7 +79,7 @@ public class OrchestratorServiceImpl {
                 })
                 // validate person data on data service
                 .map(contextFlow -> {
-                    Person person = toPersonGRPC(contextFlow.getData().getPerson());
+                    Person person = toPersonGRPC(contextFlow.getPersonValidateFieldsFiltered());
                     Person personValidated = dataServiceStub.validateSavePerson(person);
                     PersonDTO personValidatedDTO = toPersonDTO(personValidated);
                     contextFlow.setPersonValidated(personValidatedDTO);
@@ -91,6 +106,73 @@ public class OrchestratorServiceImpl {
                     ValidationFields validatedFieldsPersisted = validationFieldsServiceStub.saveVerifiedFields(ValidationFields.newBuilder().addAllVerifiedFields(validFieldsPersonIdUpdated).build());
                     List<ValidationFieldDTO> validationFieldsPersistedDTO = toValidationFieldsDTO(validatedFieldsPersisted);
                     contextFlow.setValidationFieldsPersisted(validationFieldsPersistedDTO);
+                    return contextFlow;
+                })
+                // retry when network errors
+                .retry(MAX_RETRIES, retryOnlyWhenNetworkError)
+                .map(contextFlow -> {
+                    return DataDTO.builder().person(contextFlow.getPersonPersisted()).validationFields(contextFlow.getValidationFieldsPersisted()).build();
+                })
+                .subscribeOn(Schedulers.newThread())
+                .toObservable().blockingFirst();
+    }
+
+    public DataDTO saveDataRest(DataDTO dataDTO) {
+
+        ContextFlow context = ContextFlow.builder().data(dataDTO).build();
+
+        return Flowable.just(context)
+                // validate fields on validation fields service
+                .map(contextFlow -> {
+                    HttpEntity<List<ValidationFieldDTO>> request =
+                            new HttpEntity<>(context.getData().getValidationFields());
+                    ResponseEntity<ValidationFieldDTO[]> response = restTemplate.postForEntity(urlValidationFieldsService + "/validation/tenant/1234/fields", request, ValidationFieldDTO[].class);
+                    ValidationFieldDTO[] validatedFieldsDTO = response.getBody();
+                    contextFlow.setValidatedFields(Arrays.asList(validatedFieldsDTO));
+                    return contextFlow;
+                })
+                // retry when network errors
+                .retry(MAX_RETRIES, retryOnlyWhenNetworkError)
+                // filter person data from validated fields
+                .map(contextFlow -> {
+                    List<ValidationFieldDTO> invalidFields = contextFlow.getValidatedFields().stream().filter(validationFieldDTO -> !validationFieldDTO.getServerValidated()).collect(Collectors.toList());
+                    PersonDTO personValidateFieldsFiltered = dataFilteringService.filterData(contextFlow.getData().getPerson(), invalidFields);
+                    contextFlow.setPersonValidateFieldsFiltered(personValidateFieldsFiltered);
+                    return contextFlow;
+                })
+                // validate person data on data service
+                .map(contextFlow -> {
+                    HttpEntity<PersonDTO> request = new HttpEntity<>(contextFlow.getPersonValidateFieldsFiltered());
+                    ResponseEntity<PersonDTO> response = restTemplate.postForEntity(urlDataService + "/validation/tenant/1234/person", request, PersonDTO.class);
+                    PersonDTO personValidatedDTO = response.getBody();
+                    contextFlow.setPersonValidated(personValidatedDTO);
+                    return contextFlow;
+                })
+                // persist person data on data service
+                .map(contextFlow -> {
+                    HttpEntity<PersonDTO> request = new HttpEntity<>(contextFlow.getPersonValidateFieldsFiltered());
+                    ResponseEntity<PersonDTO> response = restTemplate.postForEntity(urlDataService + "/tenant/1234/person", request, PersonDTO.class);
+                    PersonDTO personPersistedDTO = response.getBody();
+                    contextFlow.setPersonPersisted(personPersistedDTO);
+                    return contextFlow;
+                })
+                // retry when network errors
+                .retry(MAX_RETRIES, retryOnlyWhenNetworkError)
+                // persist validation fields
+                .map(contextFlow -> {
+                    List<ValidationFieldDTO> validFieldsDTO = contextFlow.getValidatedFields().stream().filter(validationFieldDTO -> validationFieldDTO.getServerValidated()).collect(Collectors.toList());
+                    // Updates valid fields with person id persited before
+                    List<ValidationFieldDTO> validFieldsPersonIdUpdated = validFieldsDTO.stream().map(validationFieldDTO -> {
+                        validationFieldDTO.setPersonId(contextFlow.getPersonPersisted().getId());
+                        return validationFieldDTO;
+                    }).collect(Collectors.toList());
+                    // persisted validated fields
+                    HttpEntity<List<ValidationFieldDTO>> request =
+                            new HttpEntity<>(context.getData().getValidationFields());
+                    String url = String.format("%s/tenant/1234/person/%s/fields", urlValidationFieldsService, contextFlow.getPersonPersisted().getId());
+                    ResponseEntity<ValidationFieldDTO[]> response = restTemplate.postForEntity(url, request, ValidationFieldDTO[].class);
+                    ValidationFieldDTO[] validatedFieldsDTO = response.getBody();
+                    contextFlow.setValidationFieldsPersisted(Arrays.asList(validatedFieldsDTO));
                     return contextFlow;
                 })
                 // retry when network errors

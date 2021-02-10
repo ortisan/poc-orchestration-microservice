@@ -28,4 +28,13 @@ public class ValidationFieldController {
         }).collect(Collectors.toList());
         return verifiedFieldsService.saveVerifiedFields(listWithTenantAndPersonId);
     }
+
+    @PostMapping("/validation/tenant/{tenant_id}/fields")
+    private List<ValidationFieldDTO> validationSaveFields(@PathVariable(name = "tenant_id") String tenantId, @RequestBody List<ValidationFieldDTO> verifiedFields) {
+        List<ValidationFieldDTO> listWithTenantAndPersonId = verifiedFields.stream().map(verifiedFieldDTO -> {
+            verifiedFieldDTO.setTenantId(tenantId);
+            return verifiedFieldDTO;
+        }).collect(Collectors.toList());
+        return verifiedFieldsService.validateFields(listWithTenantAndPersonId);
+    }
 }

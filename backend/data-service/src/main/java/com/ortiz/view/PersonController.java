@@ -22,10 +22,24 @@ public class PersonController {
         return personService.savePerson(personDTO);
     }
 
+    @PostMapping("/validation/tenant/{tenant_id}/person")
+    private PersonDTO validateSavePerson(@PathVariable(name = "tenant_id") String tenantId, @RequestBody PersonDTO personDTO) {
+        personDTO.setTenantId(tenantId);
+        return personService.validatePerson(personDTO, true);
+    }
+
     @PutMapping("/tenant/{tenant_id}/person/{person_id}")
     private PersonDTO updatePerson(@PathVariable(name = "tenant_id") String tenantId, @PathVariable(name = "person_id") String personId, @RequestBody PersonDTO personDTO) {
         personDTO.setTenantId(tenantId);
         personDTO.setId(personId);
         return personService.updatePerson(personDTO);
     }
+
+    @PutMapping("/validation/tenant/{tenant_id}/person/{person_id}")
+    private PersonDTO validateUpdatePerson(@PathVariable(name = "tenant_id") String tenantId, @PathVariable(name = "person_id") String personId, @RequestBody PersonDTO personDTO) {
+        personDTO.setTenantId(tenantId);
+        personDTO.setId(personId);
+        return personService.validatePerson(personDTO, false);
+    }
+
 }
