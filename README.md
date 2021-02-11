@@ -26,9 +26,22 @@ docker-compose up -d
 
 Generate data for performance tests (Jmeter script Test Plan.jmx)
 
-```sh
-./gen_data.sh
-```
+1. Create virtualenv and install python dependencies
+
+2. Make projects and run docker compose (Build, Uploads images and start docker compose) this step does not need repeat.
+
+   ```sh
+   cd backend/gen-data
+   virtualenv env
+   source env/bin/activate
+   pip install -r requirements.txt
+   ```
+
+3. Generate data:
+
+   ```sh
+   ./gen_data.sh
+   ```
 
 ### Useful commands:
 
