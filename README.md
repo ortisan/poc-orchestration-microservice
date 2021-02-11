@@ -12,10 +12,22 @@ cd grpc-spring-boot-starter
 ./gradlew publishToMavenLocal
 ```
 
-Make projects and run docker compose
+Make projects and run docker compose (Build, Uploads images and start docker compose)
 
 ```sh
 ./make.sh
+```
+
+Start application
+
+```sh
+docker-compose up -d
+```
+
+Generate data for performance tests (Jmeter script Test Plan.jmx)
+
+```sh
+./gen_data.sh
 ```
 
 ### Useful commands:

@@ -40,11 +40,7 @@ services:
 
   data-service:
     restart: always
-    build: 
-      dockerfile: Dockerfile
-      context: ./backend/data-service
-    volumes:
-      - ./docker/.m2:/root/.m2
+    image: tentativafc/poc-data-service:1.0.0-snapshot
     environment:
       - MYSQL_HOST=mysql-data-service
       - MYSQL_PORT=3306
@@ -63,11 +59,7 @@ services:
 
   validation-fields-service:
     restart: always
-    build: 
-      dockerfile: Dockerfile
-      context: ./backend/validation-fields-service
-    volumes:
-      - ./docker/.m2:/root/.m2
+    image: tentativafc/poc-validation-fields-service:1.0.0-snapshot
     environment:
       - MYSQL_HOST=mysql-validation-fields-service
       - MYSQL_PORT=3306
@@ -88,11 +80,7 @@ services:
   
   orchestrator-service:
     restart: always
-    build: 
-      dockerfile: Dockerfile
-      context: ./backend/orchestrator-service
-    volumes:
-      - ./docker/.m2:/root/.m2
+    image: tentativafc/poc-orchestrator-service:1.0.0-snapshot
     environment:
       - DATA_SERVICE_GRPC_ADDRESS=discovery:///data-service
       - VALIDATION_FIELDS_SERVICE_GRPC_ADDRESS=discovery:///validation-fields-service

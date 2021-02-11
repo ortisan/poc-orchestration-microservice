@@ -33,14 +33,20 @@ cd -
 ## Building services
 cd backend/data-service
 mvn clean compile package
+docker build -t tentativafc/poc-data-service:1.0.0-snapshot -f Dockerfile .
+docker push tentativafc/poc-data-service:1.0.0-snapshot
 cd - 
 
 cd backend/validation-fields-service
 mvn clean compile package
+docker build -t tentativafc/poc-validation-fields-service:1.0.0-snapshot -f Dockerfile .
+docker push tentativafc/poc-validation-fields-service:1.0.0-snapshot
 cd - 
 
 cd backend/orchestrator-service
 mvn clean compile package
+docker build -t tentativafc/poc-orchestrator-service:1.0.0-snapshot -f Dockerfile .
+docker push tentativafc/poc-orchestrator-service:1.0.0-snapshot
 cd - 
 
 # Start docker containers. Obs: the services will build Dockerfile
