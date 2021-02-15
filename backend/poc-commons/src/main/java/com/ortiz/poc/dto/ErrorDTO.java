@@ -7,5 +7,5 @@ import lombok.Data;
 @Builder
 public class ErrorDTO {
     private String message;
-    private Exception cause;
+    private Throwable cause;
 }

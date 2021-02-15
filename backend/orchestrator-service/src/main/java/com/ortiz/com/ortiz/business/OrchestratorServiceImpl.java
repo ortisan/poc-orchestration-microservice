@@ -10,7 +10,7 @@ import com.ortiz.poc.dto.PersonDTO;
 import com.ortiz.poc.dto.ValidationFieldDTO;
 import io.grpc.Status;
 import io.grpc.StatusRuntimeException;
-import io.reactivex.rxjava3.core.Flowable;
+import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.functions.Predicate;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 import lombok.extern.slf4j.Slf4j;
@@ -20,7 +20,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
+import reactor.adapter.rxjava.RxJava3Adapter;
+import reactor.core.publisher.Mono;
 
 import java.util.Arrays;
 import java.util.List;
@@ -54,14 +57,14 @@ public class OrchestratorServiceImpl {
     @Autowired
     private RestTemplate restTemplate;
 
-
-    public DataDTO saveDataGrpc(DataDTO dataDTO) {
+    public Single<DataDTO> saveDataGrpc(DataDTO dataDTO) {
 
         ContextFlow context = ContextFlow.builder().data(dataDTO).build();
 
-        return Flowable.just(context)
+        return Single.just(context)
                 // validate fields on validation fields service
                 .map(contextFlow -> {
+                    contextFlow.setStateEnum(StateEnum.DO_VALIDATE_FIELDS);
                     ValidationFields validationFieldsRequest = toValidationFieldsGRPC(contextFlow.getData().getValidationFields());
                     ValidationFields validatedFields = validationFieldsServiceStub.validateFields(validationFieldsRequest);
                     List<ValidationFieldDTO> validatedFieldsDTO = toValidationFieldsDTO(validatedFields);
@@ -79,6 +82,7 @@ public class OrchestratorServiceImpl {
                 })
                 // validate person data on data service
                 .map(contextFlow -> {
+                    contextFlow.setStateEnum(StateEnum.DO_VALIDATE_PERSON_DATA);
                     Person person = toPersonGRPC(contextFlow.getPersonValidateFieldsFiltered());
                     Person personValidated = dataServiceStub.validateSavePerson(person);
                     PersonDTO personValidatedDTO = toPersonDTO(personValidated);
@@ -87,6 +91,7 @@ public class OrchestratorServiceImpl {
                 })
                 // persist person data on data service
                 .map(contextFlow -> {
+                    contextFlow.setStateEnum(StateEnum.DO_PERSIST_PERSON);
                     Person personValidated = toPersonGRPC(contextFlow.getPersonValidated());
                     Person personPersisted = dataServiceStub.savePerson(personValidated);
                     PersonDTO personPersistedDTO = toPersonDTO(personPersisted);
@@ -97,6 +102,7 @@ public class OrchestratorServiceImpl {
                 .retry(MAX_RETRIES, retryOnlyWhenNetworkError)
                 // persist validation fields
                 .map(contextFlow -> {
+                    contextFlow.setStateEnum(StateEnum.DO_PERSIST_VALIDATED_FIELDS);
                     List<ValidationFieldDTO> validFieldsDTO = contextFlow.getValidatedFields().stream().filter(validationFieldDTO -> validationFieldDTO.getServerValidated()).collect(Collectors.toList());
                     // Updates valid fields with person id persited before
                     List<ValidationField> validFieldsPersonIdUpdated = toValidationFieldsGRPC(validFieldsDTO).getVerifiedFieldsList().stream().map(validationField -> {
@@ -112,20 +118,30 @@ public class OrchestratorServiceImpl {
                 .retry(MAX_RETRIES, retryOnlyWhenNetworkError)
                 .map(contextFlow -> {
                     return DataDTO.builder().person(contextFlow.getPersonPersisted()).validationFields(contextFlow.getValidationFieldsPersisted()).build();
-                })
+                });
+
+    }
+
+    public DataDTO saveDataGrpcBlocking(DataDTO dataDTO) {
+        return saveDataGrpc(dataDTO)
                 .subscribeOn(Schedulers.newThread())
                 .toObservable().blockingFirst();
+    }
+
+    public Mono<DataDTO> saveDataGrpcMono(DataDTO dataDTO) {
+        return RxJava3Adapter.singleToMono(saveDataGrpc(dataDTO));
+        //return Mono.just(dataDTO);
     }
 
     public DataDTO saveDataRest(DataDTO dataDTO) {
 
         ContextFlow context = ContextFlow.builder().data(dataDTO).build();
 
-        return Flowable.just(context)
+        return Single.just(context)
                 // validate fields on validation fields service
                 .map(contextFlow -> {
                     HttpEntity<List<ValidationFieldDTO>> request =
-                            new HttpEntity<>(context.getData().getValidationFields());
+                            new HttpEntity<>(contextFlow.getData().getValidationFields());
                     ResponseEntity<ValidationFieldDTO[]> response = restTemplate.postForEntity(urlValidationFieldsService + "/validation/tenant/1234/fields", request, ValidationFieldDTO[].class);
                     ValidationFieldDTO[] validatedFieldsDTO = response.getBody();
                     contextFlow.setValidatedFields(Arrays.asList(validatedFieldsDTO));
@@ -185,11 +201,11 @@ public class OrchestratorServiceImpl {
     }
 
     private Predicate<Throwable> retryOnlyWhenNetworkError = (Throwable throwable) -> {
-        if (!(throwable instanceof StatusRuntimeException)) {
-            return false;
+        if (throwable instanceof StatusRuntimeException) {
+            return ((StatusRuntimeException) throwable).getStatus().equals(Status.ABORTED);
+        } else if (throwable instanceof HttpClientErrorException) {
+            return ((HttpClientErrorException) throwable).getStatusCode().is5xxServerError();
         }
-        return ((StatusRuntimeException) throwable).getStatus().equals(Status.ABORTED);
+        return false;
     };
-
-
 }

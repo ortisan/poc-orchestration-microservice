@@ -12,6 +12,8 @@ import java.util.List;
 @Builder
 public class ContextFlow {
 
+    private StateEnum stateEnum;
+
     private DataDTO data;
 
     private List<ValidationFieldDTO> validatedFields;

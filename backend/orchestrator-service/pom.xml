@@ -52,7 +52,6 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-consul-discovery</artifactId>
         </dependency>
-
         <dependency>
             <groupId>commons-beanutils</groupId>
             <artifactId>commons-beanutils</artifactId>
@@ -72,6 +71,20 @@
             <artifactId>rxjava</artifactId>
             <version>${rx.version}</version>
         </dependency>
+        <dependency>
+            <groupId>io.projectreactor</groupId>
+            <artifactId>reactor-core</artifactId>
+            <version>3.4.2</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/io.projectreactor.addons/reactor-adapter -->
+        <dependency>
+            <groupId>io.projectreactor.addons</groupId>
+            <artifactId>reactor-adapter</artifactId>
+            <version>3.4.2</version>
+        </dependency>
+
+
     </dependencies>
 
     <dependencyManagement>

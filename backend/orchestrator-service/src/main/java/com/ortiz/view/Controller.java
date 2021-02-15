@@ -28,7 +28,7 @@ public class Controller {
             return validationFieldDTOS;
         }).orElse(null);
 
-        return service.saveDataGrpc(dataDTO);
+        return service.saveDataGrpcBlocking(dataDTO);
     }
 
     @CrossOrigin(origins = "*")
