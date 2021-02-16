@@ -10,6 +10,8 @@ public interface IValidationFieldsService {
 
     List<ValidationFieldDTO> saveVerifiedFields(List<ValidationFieldDTO> validationFieldDTOS);
 
+    List<ValidationFieldDTO> deleteSavedVerifiedFields(List<ValidationFieldDTO> validationFieldDTOS);
+
     List<ValidationFieldDTO> updateVerifiedFields(List<ValidationFieldDTO> validationFieldDTOS);
 
     List<ValidationFieldDTO> validateFields(List<ValidationFieldDTO> validationFieldDTOS);

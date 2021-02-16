@@ -38,6 +38,13 @@ public class VerifyFieldRepositoryServiceImpl implements IVerifyFieldRepository 
     }
 
     @Override
+    public List<VerifiedFieldDomain> deleteSavedVerifiedFields(List<VerifiedFieldDomain> fields) {
+        List<VerifiedFieldEntity> entities = verifiedFieldsRepositoryMapper.collectionDomainToEntity(fields);
+        verifiedFieldRepositoryJpa.deleteAll(entities);
+        return StreamSupport.stream(Spliterators.spliteratorUnknownSize(entities.iterator(), Spliterator.ORDERED), false).map(verifiedFieldEntity -> verifiedFieldsRepositoryMapper.entityToDomain(verifiedFieldEntity)).collect(Collectors.toList());
+    }
+
+    @Override
     public List<VerifiedFieldDomain> updateVerifiedFields(List<VerifiedFieldDomain> fields) {
         List<VerifiedFieldEntity> entities = verifiedFieldsRepositoryMapper.collectionDomainToEntity(fields);
         Iterator<VerifiedFieldEntity> entititesSaved = verifiedFieldRepositoryJpa.saveAll(entities).iterator();

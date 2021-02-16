@@ -9,5 +9,7 @@ public interface IVerifyFieldRepository {
 
     List<VerifiedFieldDomain> saveVerifiedFields(List<VerifiedFieldDomain> fields);
 
+    List<VerifiedFieldDomain> deleteSavedVerifiedFields(List<VerifiedFieldDomain> fields);
+
     List<VerifiedFieldDomain> updateVerifiedFields(List<VerifiedFieldDomain> fields);
 }

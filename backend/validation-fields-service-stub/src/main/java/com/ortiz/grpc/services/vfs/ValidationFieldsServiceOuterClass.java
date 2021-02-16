@@ -49,13 +49,15 @@ public final class ValidationFieldsServiceOuterClass {
       "lValue\0223\n\017serverValidated\030\010 \001(\0132\032.google" +
       ".protobuf.BoolValue\022+\n\005cause\030\t \001(\0132\034.goo" +
       "gle.protobuf.StringValue\022/\n\013createdDate\030" +
-      "\n \001(\0132\032.google.protobuf.Timestamp2\265\001\n\027Va" +
+      "\n \001(\0132\032.google.protobuf.Timestamp2\211\002\n\027Va" +
       "lidationFieldsService\022J\n\016ValidateFields\022" +
       "\032.services.ValidationFields\032\032.services.V" +
       "alidationFields\"\000\022N\n\022SaveVerifiedFields\022" +
       "\032.services.ValidationFields\032\032.services.V" +
-      "alidationFields\"\000B\037\n\033com.ortiz.grpc.serv" +
-      "ices.vfsP\001b\006proto3"
+      "alidationFields\"\000\022R\n\026UndoSaveVerifiedFie" +
+      "lds\022\032.services.ValidationFields\032\032.servic" +
+      "es.ValidationFields\"\000B\037\n\033com.ortiz.grpc." +
+      "services.vfsP\001b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

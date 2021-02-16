@@ -1,0 +1,46 @@
+syntax = "proto3";
+import "google/protobuf/wrappers.proto";
+
+option java_multiple_files = true;
+option java_package = "com.ortiz.grpc.services";
+
+package services;
+
+service DataService {
+  rpc GetPerson (GetPersonRequest) returns (Person) {}
+  rpc ValidateSavePerson (Person) returns (Person) {}
+  rpc SavePerson (Person) returns (Person) {}
+  rpc ValidateUpdatePerson (Person) returns (Person) {}
+  rpc UpdatePerson (Person) returns (Person) {}
+
+  rpc GetPhone (GetPhoneRequest) returns (Phone) {}
+  rpc SavePhone (Phone) returns (Phone) {}
+  rpc UpdatePhone (Phone) returns (Phone) {}
+}
+
+message GetPersonRequest {
+  google.protobuf.StringValue tenantId = 1;
+  google.protobuf.StringValue personId = 2;
+}
+
+message Phone {
+  google.protobuf.StringValue id = 1;
+  google.protobuf.Int32Value ddi = 2;
+  google.protobuf.Int32Value ddd = 3;
+  google.protobuf.Int32Value number = 4;
+  google.protobuf.Int32Value extensionLine = 5;
+}
+
+message Person {
+  google.protobuf.StringValue tenantId = 1;
+  google.protobuf.StringValue personId = 2;
+  google.protobuf.StringValue name = 3;
+  google.protobuf.StringValue type = 4;
+  google.protobuf.StringValue cpfCnpj = 5;
+  repeated Phone phones = 6;
+}
+
+message GetPhoneRequest {
+  google.protobuf.StringValue phoneId = 1;
+}
+

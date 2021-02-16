@@ -61,20 +61,23 @@ public final class DataServiceOuterClass {
       "gValue\022-\n\007cpfCnpj\030\005 \001(\0132\034.google.protobu" +
       "f.StringValue\022\037\n\006phones\030\006 \003(\0132\017.services" +
       ".Phone\"@\n\017GetPhoneRequest\022-\n\007phoneId\030\001 \001" +
-      "(\0132\034.google.protobuf.StringValue2\314\003\n\013Dat" +
+      "(\0132\034.google.protobuf.StringValue2\276\004\n\013Dat" +
       "aService\022;\n\tGetPerson\022\032.services.GetPers" +
       "onRequest\032\020.services.Person\"\000\022:\n\022Validat" +
       "eSavePerson\022\020.services.Person\032\020.services" +
       ".Person\"\000\0222\n\nSavePerson\022\020.services.Perso" +
-      "n\032\020.services.Person\"\000\022<\n\024ValidateUpdateP" +
-      "erson\022\020.services.Person\032\020.services.Perso" +
-      "n\"\000\0224\n\014UpdatePerson\022\020.services.Person\032\020." +
-      "services.Person\"\000\0228\n\010GetPhone\022\031.services" +
-      ".GetPhoneRequest\032\017.services.Phone\"\000\022/\n\tS" +
-      "avePhone\022\017.services.Phone\032\017.services.Pho" +
-      "ne\"\000\0221\n\013UpdatePhone\022\017.services.Phone\032\017.s" +
-      "ervices.Phone\"\000B\033\n\027com.ortiz.grpc.servic" +
-      "esP\001b\006proto3"
+      "n\032\020.services.Person\"\000\0226\n\016UndoSavePerson\022" +
+      "\020.services.Person\032\020.services.Person\"\000\022<\n" +
+      "\024ValidateUpdatePerson\022\020.services.Person\032" +
+      "\020.services.Person\"\000\0224\n\014UpdatePerson\022\020.se" +
+      "rvices.Person\032\020.services.Person\"\000\0228\n\020Und" +
+      "oUpdatePerson\022\020.services.Person\032\020.servic" +
+      "es.Person\"\000\0228\n\010GetPhone\022\031.services.GetPh" +
+      "oneRequest\032\017.services.Phone\"\000\022/\n\tSavePho" +
+      "ne\022\017.services.Phone\032\017.services.Phone\"\000\0221" +
+      "\n\013UpdatePhone\022\017.services.Phone\032\017.service" +
+      "s.Phone\"\000B\033\n\027com.ortiz.grpc.servicesP\001b\006" +
+      "proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

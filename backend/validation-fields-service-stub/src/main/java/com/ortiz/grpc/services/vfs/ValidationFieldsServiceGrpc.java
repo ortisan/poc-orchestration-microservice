@@ -89,6 +89,37 @@ public final class ValidationFieldsServiceGrpc {
     return getSaveVerifiedFieldsMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<com.ortiz.grpc.services.vfs.ValidationFields,
+      com.ortiz.grpc.services.vfs.ValidationFields> getUndoSaveVerifiedFieldsMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "UndoSaveVerifiedFields",
+      requestType = com.ortiz.grpc.services.vfs.ValidationFields.class,
+      responseType = com.ortiz.grpc.services.vfs.ValidationFields.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<com.ortiz.grpc.services.vfs.ValidationFields,
+      com.ortiz.grpc.services.vfs.ValidationFields> getUndoSaveVerifiedFieldsMethod() {
+    io.grpc.MethodDescriptor<com.ortiz.grpc.services.vfs.ValidationFields, com.ortiz.grpc.services.vfs.ValidationFields> getUndoSaveVerifiedFieldsMethod;
+    if ((getUndoSaveVerifiedFieldsMethod = ValidationFieldsServiceGrpc.getUndoSaveVerifiedFieldsMethod) == null) {
+      synchronized (ValidationFieldsServiceGrpc.class) {
+        if ((getUndoSaveVerifiedFieldsMethod = ValidationFieldsServiceGrpc.getUndoSaveVerifiedFieldsMethod) == null) {
+          ValidationFieldsServiceGrpc.getUndoSaveVerifiedFieldsMethod = getUndoSaveVerifiedFieldsMethod =
+              io.grpc.MethodDescriptor.<com.ortiz.grpc.services.vfs.ValidationFields, com.ortiz.grpc.services.vfs.ValidationFields>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "UndoSaveVerifiedFields"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.ortiz.grpc.services.vfs.ValidationFields.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.ortiz.grpc.services.vfs.ValidationFields.getDefaultInstance()))
+              .setSchemaDescriptor(new ValidationFieldsServiceMethodDescriptorSupplier("UndoSaveVerifiedFields"))
+              .build();
+        }
+      }
+    }
+    return getUndoSaveVerifiedFieldsMethod;
+  }
+
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -151,6 +182,13 @@ public final class ValidationFieldsServiceGrpc {
       asyncUnimplementedUnaryCall(getSaveVerifiedFieldsMethod(), responseObserver);
     }
 
+    /**
+     */
+    public void undoSaveVerifiedFields(com.ortiz.grpc.services.vfs.ValidationFields request,
+        io.grpc.stub.StreamObserver<com.ortiz.grpc.services.vfs.ValidationFields> responseObserver) {
+      asyncUnimplementedUnaryCall(getUndoSaveVerifiedFieldsMethod(), responseObserver);
+    }
+
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
@@ -167,6 +205,13 @@ public final class ValidationFieldsServiceGrpc {
                 com.ortiz.grpc.services.vfs.ValidationFields,
                 com.ortiz.grpc.services.vfs.ValidationFields>(
                   this, METHODID_SAVE_VERIFIED_FIELDS)))
+          .addMethod(
+            getUndoSaveVerifiedFieldsMethod(),
+            asyncUnaryCall(
+              new MethodHandlers<
+                com.ortiz.grpc.services.vfs.ValidationFields,
+                com.ortiz.grpc.services.vfs.ValidationFields>(
+                  this, METHODID_UNDO_SAVE_VERIFIED_FIELDS)))
           .build();
     }
   }
@@ -200,6 +245,14 @@ public final class ValidationFieldsServiceGrpc {
       asyncUnaryCall(
           getChannel().newCall(getSaveVerifiedFieldsMethod(), getCallOptions()), request, responseObserver);
     }
+
+    /**
+     */
+    public void undoSaveVerifiedFields(com.ortiz.grpc.services.vfs.ValidationFields request,
+        io.grpc.stub.StreamObserver<com.ortiz.grpc.services.vfs.ValidationFields> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(getUndoSaveVerifiedFieldsMethod(), getCallOptions()), request, responseObserver);
+    }
   }
 
   /**
@@ -228,6 +281,13 @@ public final class ValidationFieldsServiceGrpc {
     public com.ortiz.grpc.services.vfs.ValidationFields saveVerifiedFields(com.ortiz.grpc.services.vfs.ValidationFields request) {
       return blockingUnaryCall(
           getChannel(), getSaveVerifiedFieldsMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.ortiz.grpc.services.vfs.ValidationFields undoSaveVerifiedFields(com.ortiz.grpc.services.vfs.ValidationFields request) {
+      return blockingUnaryCall(
+          getChannel(), getUndoSaveVerifiedFieldsMethod(), getCallOptions(), request);
     }
   }
 
@@ -260,10 +320,19 @@ public final class ValidationFieldsServiceGrpc {
       return futureUnaryCall(
           getChannel().newCall(getSaveVerifiedFieldsMethod(), getCallOptions()), request);
     }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.ortiz.grpc.services.vfs.ValidationFields> undoSaveVerifiedFields(
+        com.ortiz.grpc.services.vfs.ValidationFields request) {
+      return futureUnaryCall(
+          getChannel().newCall(getUndoSaveVerifiedFieldsMethod(), getCallOptions()), request);
+    }
   }
 
   private static final int METHODID_VALIDATE_FIELDS = 0;
   private static final int METHODID_SAVE_VERIFIED_FIELDS = 1;
+  private static final int METHODID_UNDO_SAVE_VERIFIED_FIELDS = 2;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -288,6 +357,10 @@ public final class ValidationFieldsServiceGrpc {
           break;
         case METHODID_SAVE_VERIFIED_FIELDS:
           serviceImpl.saveVerifiedFields((com.ortiz.grpc.services.vfs.ValidationFields) request,
+              (io.grpc.stub.StreamObserver<com.ortiz.grpc.services.vfs.ValidationFields>) responseObserver);
+          break;
+        case METHODID_UNDO_SAVE_VERIFIED_FIELDS:
+          serviceImpl.undoSaveVerifiedFields((com.ortiz.grpc.services.vfs.ValidationFields) request,
               (io.grpc.stub.StreamObserver<com.ortiz.grpc.services.vfs.ValidationFields>) responseObserver);
           break;
         default:
@@ -353,6 +426,7 @@ public final class ValidationFieldsServiceGrpc {
               .setSchemaDescriptor(new ValidationFieldsServiceFileDescriptorSupplier())
               .addMethod(getValidateFieldsMethod())
               .addMethod(getSaveVerifiedFieldsMethod())
+              .addMethod(getUndoSaveVerifiedFieldsMethod())
               .build();
         }
       }

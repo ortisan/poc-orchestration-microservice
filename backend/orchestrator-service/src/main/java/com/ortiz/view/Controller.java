@@ -9,6 +9,7 @@ import java.util.Optional;
 
 @RestController
 public class Controller {
+
     @Autowired
     private OrchestratorServiceImpl service;
 
@@ -31,6 +32,7 @@ public class Controller {
         return service.saveDataGrpcBlocking(dataDTO);
     }
 
+    @Deprecated// Just to test Rest X Grpc
     @CrossOrigin(origins = "*")
     @PostMapping("/orchestrator-rest/tenant/{tenant_id}/person")
     private DataDTO savePersonRest(@PathVariable(name = "tenant_id") String tenantId, @RequestBody DataDTO dataDTO) {

@@ -1,6 +1,7 @@
 package com.ortiz.view;
 
 import com.ortiz.com.ortiz.business.OrchestratorServiceImpl;
+import com.ortiz.com.ortiz.business.StateEnum;
 import com.ortiz.dto.DataDTO;
 import com.ortiz.poc.dto.ErrorDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,8 +40,18 @@ public class ControllerWebFlux {
 
         return service.saveDataGrpcMono(dataDTO)
                 .flatMap(data -> {
-                    ResponseEntity body = ResponseEntity.status(HttpStatus.CREATED).body(data);
-                    return Mono.just(body);
+                    if (data.getState() == StateEnum.DONE) {
+                        ResponseEntity body = ResponseEntity.status(HttpStatus.CREATED).body(data);
+                        return Mono.just(body);
+                    } else if(data.getState() == StateEnum.UNDONE) {
+                        ErrorDTO errorDTO = ErrorDTO.builder().message("Rollback successfully...").build();
+                        ResponseEntity body = ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorDTO);
+                        return Mono.just(body);
+                    } else {
+                        ErrorDTO errorDTO = ErrorDTO.builder().message("The process was in an inconsistent state. We will try again later...").build();
+                        ResponseEntity body = ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorDTO);
+                        return Mono.just(body);
+                    }
                 })
                 .onErrorResume(exc -> {
                     ErrorDTO errorDTO = ErrorDTO.builder().message(exc.getMessage()).cause(exc.getCause()).build();

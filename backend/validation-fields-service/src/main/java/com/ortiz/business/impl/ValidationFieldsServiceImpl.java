@@ -4,7 +4,6 @@ package com.ortiz.business.impl;
 import com.ortiz.business.IValidationFieldsService;
 import com.ortiz.domain.VerifiedFieldDomain;
 import com.ortiz.domain.mapper.IVerifiedFieldBusinessMapper;
-
 import com.ortiz.grpc.services.DataServiceGrpc;
 import com.ortiz.grpc.services.GetPersonRequest;
 import com.ortiz.grpc.services.Person;
@@ -62,11 +61,17 @@ public class ValidationFieldsServiceImpl implements IValidationFieldsService {
     }
 
     @Override
+    public List<ValidationFieldDTO> deleteSavedVerifiedFields(List<ValidationFieldDTO> validationFieldDTOS) {
+        List<VerifiedFieldDomain> verifiedFieldDomains = fieldsBusinessMapper.toDomainList(validationFieldDTOS);
+        final List<VerifiedFieldDomain> savedVerifiedFieldDomains = verifyFieldRepository.deleteSavedVerifiedFields(verifiedFieldDomains);
+        return fieldsBusinessMapper.toDtoList(savedVerifiedFieldDomains);
+    }
+
+    @Override
     public List<ValidationFieldDTO> updateVerifiedFields(List<ValidationFieldDTO> validationFieldDTOS) {
         validateFields(validationFieldDTOS);
         ValidationFieldDTO verifiedFieldDTO = validationFieldDTOS.stream().findFirst().get();
         validatePerson(verifiedFieldDTO.getTenantId(), verifiedFieldDTO.getPersonId());
-
         List<VerifiedFieldDomain> verifiedFieldDomains = fieldsBusinessMapper.toDomainList(validationFieldDTOS);
         List<VerifiedFieldDomain> savedVerifiedFieldDomains = verifyFieldRepository.updateVerifiedFields(verifiedFieldDomains);
         return fieldsBusinessMapper.toDtoList(savedVerifiedFieldDomains);

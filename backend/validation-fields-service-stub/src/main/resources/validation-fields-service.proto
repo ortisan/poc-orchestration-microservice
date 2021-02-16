@@ -10,6 +10,7 @@ import "google/protobuf/timestamp.proto";
 service ValidationFieldsService {
   rpc ValidateFields (ValidationFields) returns (ValidationFields) {}
   rpc SaveVerifiedFields (ValidationFields) returns (ValidationFields) {}
+  rpc UndoSaveVerifiedFields (ValidationFields) returns (ValidationFields) {}
 }
 
 message ValidationFields {

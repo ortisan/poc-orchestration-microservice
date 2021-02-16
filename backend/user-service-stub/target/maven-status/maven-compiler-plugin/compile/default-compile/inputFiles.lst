@@ -1,0 +1,10 @@
+/home/marcelo/Documents/Ambiente/Projetos/poc-orchestration/backend/data-service-stub/src/main/java/com/ortiz/grpc/services/Person.java
+/home/marcelo/Documents/Ambiente/Projetos/poc-orchestration/backend/data-service-stub/src/main/java/com/ortiz/grpc/services/PersonOrBuilder.java
+/home/marcelo/Documents/Ambiente/Projetos/poc-orchestration/backend/data-service-stub/src/main/java/com/ortiz/grpc/services/DataServiceGrpc.java
+/home/marcelo/Documents/Ambiente/Projetos/poc-orchestration/backend/data-service-stub/src/main/java/com/ortiz/grpc/services/PhoneOrBuilder.java
+/home/marcelo/Documents/Ambiente/Projetos/poc-orchestration/backend/data-service-stub/src/main/java/com/ortiz/grpc/services/Phone.java
+/home/marcelo/Documents/Ambiente/Projetos/poc-orchestration/backend/data-service-stub/src/main/java/com/ortiz/grpc/services/GetPhoneRequestOrBuilder.java
+/home/marcelo/Documents/Ambiente/Projetos/poc-orchestration/backend/data-service-stub/src/main/java/com/ortiz/grpc/services/GetPersonRequestOrBuilder.java
+/home/marcelo/Documents/Ambiente/Projetos/poc-orchestration/backend/data-service-stub/src/main/java/com/ortiz/grpc/services/GetPhoneRequest.java
+/home/marcelo/Documents/Ambiente/Projetos/poc-orchestration/backend/data-service-stub/src/main/java/com/ortiz/grpc/services/GetPersonRequest.java
+/home/marcelo/Documents/Ambiente/Projetos/poc-orchestration/backend/data-service-stub/src/main/java/com/ortiz/grpc/services/DataServiceOuterClass.java

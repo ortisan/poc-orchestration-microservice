@@ -2,8 +2,6 @@ package com.ortiz.view;
 
 import com.google.rpc.Code;
 import com.ortiz.business.IValidationFieldsService;
-
-import com.ortiz.grpc.services.vfs.ValidationField;
 import com.ortiz.grpc.services.vfs.ValidationFields;
 import com.ortiz.grpc.services.vfs.ValidationFieldsServiceGrpc;
 import com.ortiz.poc.dto.ValidationFieldDTO;
@@ -17,8 +15,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static com.ortiz.poc.commons.ErrorUtils.handleError;
-import static com.ortiz.poc.commons.FieldUtils.*;
-import static com.ortiz.poc.commons.GRPCMapper.*;
+import static com.ortiz.poc.commons.GRPCMapper.toValidationFieldsDTO;
+import static com.ortiz.poc.commons.GRPCMapper.toValidationFieldsGRPC;
 
 @GrpcService
 public class ValidationFieldGRPC extends ValidationFieldsServiceGrpc.ValidationFieldsServiceImplBase {
@@ -55,6 +53,27 @@ public class ValidationFieldGRPC extends ValidationFieldsServiceGrpc.ValidationF
             List<ValidationFieldDTO> fieldsPersisted = validationFieldsService.saveVerifiedFields(fieldsValidated);
 
             List<ValidationFieldDTO> fieldsToReturn = new ArrayList<>(fieldsNotValid);
+            fieldsToReturn.addAll(fieldsPersisted);
+
+            ValidationFields validationFieldsResponse = toValidationFieldsGRPC(fieldsToReturn);
+            responseObserver.onNext(validationFieldsResponse);
+            responseObserver.onCompleted();
+        } catch (EntityNotFoundException exc) {
+            responseObserver.onError(handleError(exc, Code.NOT_FOUND, request));
+        } catch (Exception exc) {
+            responseObserver.onError(handleError(exc, Code.ABORTED, request));
+        }
+    }
+
+    @Override
+    public void undoSaveVerifiedFields(ValidationFields request, StreamObserver<ValidationFields> responseObserver) {
+        try {
+            List<ValidationFieldDTO> validationFieldDTOS = toValidationFieldsDTO(request);
+
+            // undo
+            List<ValidationFieldDTO> fieldsPersisted = validationFieldsService.deleteSavedVerifiedFields(validationFieldDTOS);
+
+            List<ValidationFieldDTO> fieldsToReturn = new ArrayList<>(fieldsPersisted);
             fieldsToReturn.addAll(fieldsPersisted);
 
             ValidationFields validationFieldsResponse = toValidationFieldsGRPC(fieldsToReturn);

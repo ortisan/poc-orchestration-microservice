@@ -53,6 +53,18 @@ public class PersonRepositoryServiceImpl implements IPersonRepository {
     }
 
     @Override
+    public Person deletePerson(Person person) {
+        final PersonIdentity personIdentity = getOrCreatePersonIdentity(person);
+        final com.ortiz.persistence.entities.Person personEntity = personRepositoryMapper.mapToEntity(person);
+        personEntity.getPersonId().setPersonId(personIdentity.getId());
+        personEntity.getPhones().forEach(phone -> phone.setId(UUID.randomUUID().toString()));
+        if (personRepositoryJpa.existsById(personEntity.getPersonId())) {
+            personRepositoryJpa.delete(personEntity);
+        }
+        return personRepositoryMapper.mapToDomain(personEntity);
+    }
+
+    @Override
     public Person updatePerson(Person person) {
         final com.ortiz.persistence.entities.Person personEntity = personRepositoryMapper.mapToEntity(person);
         if (!personRepositoryJpa.existsById(personEntity.getPersonId())) {

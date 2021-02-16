@@ -49,6 +49,13 @@ public class PersonServiceImpl implements IPersonService {
     }
 
     @Override
+    public PersonDTO deletePerson(PersonDTO personDTO) {
+        final Person person = personBusinessMapper.mapToDomain(personDTO);
+        final Person personDeleted = personRepository.deletePerson(person);
+        return personBusinessMapper.mapToDto(personDeleted);
+    }
+
+    @Override
     public PersonDTO updatePerson(PersonDTO personDTO) {
         validatePerson(personDTO, false);
         final Person person = personBusinessMapper.mapToDomain(personDTO);

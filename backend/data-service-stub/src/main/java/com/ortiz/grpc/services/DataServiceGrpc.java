@@ -121,6 +121,37 @@ public final class DataServiceGrpc {
   }
 
   private static volatile io.grpc.MethodDescriptor<com.ortiz.grpc.services.Person,
+      com.ortiz.grpc.services.Person> getUndoSavePersonMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "UndoSavePerson",
+      requestType = com.ortiz.grpc.services.Person.class,
+      responseType = com.ortiz.grpc.services.Person.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<com.ortiz.grpc.services.Person,
+      com.ortiz.grpc.services.Person> getUndoSavePersonMethod() {
+    io.grpc.MethodDescriptor<com.ortiz.grpc.services.Person, com.ortiz.grpc.services.Person> getUndoSavePersonMethod;
+    if ((getUndoSavePersonMethod = DataServiceGrpc.getUndoSavePersonMethod) == null) {
+      synchronized (DataServiceGrpc.class) {
+        if ((getUndoSavePersonMethod = DataServiceGrpc.getUndoSavePersonMethod) == null) {
+          DataServiceGrpc.getUndoSavePersonMethod = getUndoSavePersonMethod =
+              io.grpc.MethodDescriptor.<com.ortiz.grpc.services.Person, com.ortiz.grpc.services.Person>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "UndoSavePerson"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.ortiz.grpc.services.Person.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.ortiz.grpc.services.Person.getDefaultInstance()))
+              .setSchemaDescriptor(new DataServiceMethodDescriptorSupplier("UndoSavePerson"))
+              .build();
+        }
+      }
+    }
+    return getUndoSavePersonMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<com.ortiz.grpc.services.Person,
       com.ortiz.grpc.services.Person> getValidateUpdatePersonMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
@@ -180,6 +211,37 @@ public final class DataServiceGrpc {
       }
     }
     return getUpdatePersonMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<com.ortiz.grpc.services.Person,
+      com.ortiz.grpc.services.Person> getUndoUpdatePersonMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "UndoUpdatePerson",
+      requestType = com.ortiz.grpc.services.Person.class,
+      responseType = com.ortiz.grpc.services.Person.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<com.ortiz.grpc.services.Person,
+      com.ortiz.grpc.services.Person> getUndoUpdatePersonMethod() {
+    io.grpc.MethodDescriptor<com.ortiz.grpc.services.Person, com.ortiz.grpc.services.Person> getUndoUpdatePersonMethod;
+    if ((getUndoUpdatePersonMethod = DataServiceGrpc.getUndoUpdatePersonMethod) == null) {
+      synchronized (DataServiceGrpc.class) {
+        if ((getUndoUpdatePersonMethod = DataServiceGrpc.getUndoUpdatePersonMethod) == null) {
+          DataServiceGrpc.getUndoUpdatePersonMethod = getUndoUpdatePersonMethod =
+              io.grpc.MethodDescriptor.<com.ortiz.grpc.services.Person, com.ortiz.grpc.services.Person>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "UndoUpdatePerson"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.ortiz.grpc.services.Person.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.ortiz.grpc.services.Person.getDefaultInstance()))
+              .setSchemaDescriptor(new DataServiceMethodDescriptorSupplier("UndoUpdatePerson"))
+              .build();
+        }
+      }
+    }
+    return getUndoUpdatePersonMethod;
   }
 
   private static volatile io.grpc.MethodDescriptor<com.ortiz.grpc.services.GetPhoneRequest,
@@ -346,6 +408,13 @@ public final class DataServiceGrpc {
 
     /**
      */
+    public void undoSavePerson(com.ortiz.grpc.services.Person request,
+        io.grpc.stub.StreamObserver<com.ortiz.grpc.services.Person> responseObserver) {
+      asyncUnimplementedUnaryCall(getUndoSavePersonMethod(), responseObserver);
+    }
+
+    /**
+     */
     public void validateUpdatePerson(com.ortiz.grpc.services.Person request,
         io.grpc.stub.StreamObserver<com.ortiz.grpc.services.Person> responseObserver) {
       asyncUnimplementedUnaryCall(getValidateUpdatePersonMethod(), responseObserver);
@@ -356,6 +425,13 @@ public final class DataServiceGrpc {
     public void updatePerson(com.ortiz.grpc.services.Person request,
         io.grpc.stub.StreamObserver<com.ortiz.grpc.services.Person> responseObserver) {
       asyncUnimplementedUnaryCall(getUpdatePersonMethod(), responseObserver);
+    }
+
+    /**
+     */
+    public void undoUpdatePerson(com.ortiz.grpc.services.Person request,
+        io.grpc.stub.StreamObserver<com.ortiz.grpc.services.Person> responseObserver) {
+      asyncUnimplementedUnaryCall(getUndoUpdatePersonMethod(), responseObserver);
     }
 
     /**
@@ -403,6 +479,13 @@ public final class DataServiceGrpc {
                 com.ortiz.grpc.services.Person>(
                   this, METHODID_SAVE_PERSON)))
           .addMethod(
+            getUndoSavePersonMethod(),
+            asyncUnaryCall(
+              new MethodHandlers<
+                com.ortiz.grpc.services.Person,
+                com.ortiz.grpc.services.Person>(
+                  this, METHODID_UNDO_SAVE_PERSON)))
+          .addMethod(
             getValidateUpdatePersonMethod(),
             asyncUnaryCall(
               new MethodHandlers<
@@ -416,6 +499,13 @@ public final class DataServiceGrpc {
                 com.ortiz.grpc.services.Person,
                 com.ortiz.grpc.services.Person>(
                   this, METHODID_UPDATE_PERSON)))
+          .addMethod(
+            getUndoUpdatePersonMethod(),
+            asyncUnaryCall(
+              new MethodHandlers<
+                com.ortiz.grpc.services.Person,
+                com.ortiz.grpc.services.Person>(
+                  this, METHODID_UNDO_UPDATE_PERSON)))
           .addMethod(
             getGetPhoneMethod(),
             asyncUnaryCall(
@@ -481,6 +571,14 @@ public final class DataServiceGrpc {
 
     /**
      */
+    public void undoSavePerson(com.ortiz.grpc.services.Person request,
+        io.grpc.stub.StreamObserver<com.ortiz.grpc.services.Person> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(getUndoSavePersonMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
     public void validateUpdatePerson(com.ortiz.grpc.services.Person request,
         io.grpc.stub.StreamObserver<com.ortiz.grpc.services.Person> responseObserver) {
       asyncUnaryCall(
@@ -493,6 +591,14 @@ public final class DataServiceGrpc {
         io.grpc.stub.StreamObserver<com.ortiz.grpc.services.Person> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(getUpdatePersonMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public void undoUpdatePerson(com.ortiz.grpc.services.Person request,
+        io.grpc.stub.StreamObserver<com.ortiz.grpc.services.Person> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(getUndoUpdatePersonMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -557,6 +663,13 @@ public final class DataServiceGrpc {
 
     /**
      */
+    public com.ortiz.grpc.services.Person undoSavePerson(com.ortiz.grpc.services.Person request) {
+      return blockingUnaryCall(
+          getChannel(), getUndoSavePersonMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
     public com.ortiz.grpc.services.Person validateUpdatePerson(com.ortiz.grpc.services.Person request) {
       return blockingUnaryCall(
           getChannel(), getValidateUpdatePersonMethod(), getCallOptions(), request);
@@ -567,6 +680,13 @@ public final class DataServiceGrpc {
     public com.ortiz.grpc.services.Person updatePerson(com.ortiz.grpc.services.Person request) {
       return blockingUnaryCall(
           getChannel(), getUpdatePersonMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.ortiz.grpc.services.Person undoUpdatePerson(com.ortiz.grpc.services.Person request) {
+      return blockingUnaryCall(
+          getChannel(), getUndoUpdatePersonMethod(), getCallOptions(), request);
     }
 
     /**
@@ -631,6 +751,14 @@ public final class DataServiceGrpc {
 
     /**
      */
+    public com.google.common.util.concurrent.ListenableFuture<com.ortiz.grpc.services.Person> undoSavePerson(
+        com.ortiz.grpc.services.Person request) {
+      return futureUnaryCall(
+          getChannel().newCall(getUndoSavePersonMethod(), getCallOptions()), request);
+    }
+
+    /**
+     */
     public com.google.common.util.concurrent.ListenableFuture<com.ortiz.grpc.services.Person> validateUpdatePerson(
         com.ortiz.grpc.services.Person request) {
       return futureUnaryCall(
@@ -643,6 +771,14 @@ public final class DataServiceGrpc {
         com.ortiz.grpc.services.Person request) {
       return futureUnaryCall(
           getChannel().newCall(getUpdatePersonMethod(), getCallOptions()), request);
+    }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.ortiz.grpc.services.Person> undoUpdatePerson(
+        com.ortiz.grpc.services.Person request) {
+      return futureUnaryCall(
+          getChannel().newCall(getUndoUpdatePersonMethod(), getCallOptions()), request);
     }
 
     /**
@@ -673,11 +809,13 @@ public final class DataServiceGrpc {
   private static final int METHODID_GET_PERSON = 0;
   private static final int METHODID_VALIDATE_SAVE_PERSON = 1;
   private static final int METHODID_SAVE_PERSON = 2;
-  private static final int METHODID_VALIDATE_UPDATE_PERSON = 3;
-  private static final int METHODID_UPDATE_PERSON = 4;
-  private static final int METHODID_GET_PHONE = 5;
-  private static final int METHODID_SAVE_PHONE = 6;
-  private static final int METHODID_UPDATE_PHONE = 7;
+  private static final int METHODID_UNDO_SAVE_PERSON = 3;
+  private static final int METHODID_VALIDATE_UPDATE_PERSON = 4;
+  private static final int METHODID_UPDATE_PERSON = 5;
+  private static final int METHODID_UNDO_UPDATE_PERSON = 6;
+  private static final int METHODID_GET_PHONE = 7;
+  private static final int METHODID_SAVE_PHONE = 8;
+  private static final int METHODID_UPDATE_PHONE = 9;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -708,12 +846,20 @@ public final class DataServiceGrpc {
           serviceImpl.savePerson((com.ortiz.grpc.services.Person) request,
               (io.grpc.stub.StreamObserver<com.ortiz.grpc.services.Person>) responseObserver);
           break;
+        case METHODID_UNDO_SAVE_PERSON:
+          serviceImpl.undoSavePerson((com.ortiz.grpc.services.Person) request,
+              (io.grpc.stub.StreamObserver<com.ortiz.grpc.services.Person>) responseObserver);
+          break;
         case METHODID_VALIDATE_UPDATE_PERSON:
           serviceImpl.validateUpdatePerson((com.ortiz.grpc.services.Person) request,
               (io.grpc.stub.StreamObserver<com.ortiz.grpc.services.Person>) responseObserver);
           break;
         case METHODID_UPDATE_PERSON:
           serviceImpl.updatePerson((com.ortiz.grpc.services.Person) request,
+              (io.grpc.stub.StreamObserver<com.ortiz.grpc.services.Person>) responseObserver);
+          break;
+        case METHODID_UNDO_UPDATE_PERSON:
+          serviceImpl.undoUpdatePerson((com.ortiz.grpc.services.Person) request,
               (io.grpc.stub.StreamObserver<com.ortiz.grpc.services.Person>) responseObserver);
           break;
         case METHODID_GET_PHONE:
@@ -792,8 +938,10 @@ public final class DataServiceGrpc {
               .addMethod(getGetPersonMethod())
               .addMethod(getValidateSavePersonMethod())
               .addMethod(getSavePersonMethod())
+              .addMethod(getUndoSavePersonMethod())
               .addMethod(getValidateUpdatePersonMethod())
               .addMethod(getUpdatePersonMethod())
+              .addMethod(getUndoUpdatePersonMethod())
               .addMethod(getGetPhoneMethod())
               .addMethod(getSavePhoneMethod())
               .addMethod(getUpdatePhoneMethod())

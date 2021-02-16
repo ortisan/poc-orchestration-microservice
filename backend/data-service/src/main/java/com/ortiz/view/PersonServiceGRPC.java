@@ -72,6 +72,22 @@ public class PersonServiceGRPC extends DataServiceGrpc.DataServiceImplBase {
     }
 
     @Override
+    public void undoSavePerson(Person request, StreamObserver<Person> responseObserver) {
+        try {
+            PersonDTO personDTO = toPersonDTO(request);
+
+            PersonDTO personPersistedDTO = personService.deletePerson(personDTO);
+            Person personResposnse = toPersonGRPC(personPersistedDTO);
+            responseObserver.onNext(personResposnse);
+            responseObserver.onCompleted();
+        } catch (EntityNotFoundException exc) {
+            responseObserver.onError(handleError(exc, Code.NOT_FOUND, request));
+        } catch (Exception exc) {
+            responseObserver.onError(handleError(exc, Code.ABORTED, request));
+        }
+    }
+
+    @Override
     public void validateUpdatePerson(Person request, StreamObserver<Person> responseObserver) {
         PersonDTO personDTO = toPersonDTO(request);
         try {

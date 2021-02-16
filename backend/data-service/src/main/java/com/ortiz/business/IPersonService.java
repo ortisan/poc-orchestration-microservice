@@ -9,5 +9,7 @@ public interface IPersonService {
 
     PersonDTO savePerson(PersonDTO personDTO);
 
+    PersonDTO deletePerson(PersonDTO personDTO);
+
     PersonDTO updatePerson(PersonDTO personDTO);
 }

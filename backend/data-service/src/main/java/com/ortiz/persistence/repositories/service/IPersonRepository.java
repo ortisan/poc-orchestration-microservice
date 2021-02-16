@@ -5,5 +5,6 @@ import com.ortiz.domain.Person;
 public interface IPersonRepository {
     Person getPerson(String tenantId, String personId);
     Person savePerson(Person person);
+    Person deletePerson(Person person);
     Person updatePerson(Person person);
 }
