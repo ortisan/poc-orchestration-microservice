@@ -70,6 +70,7 @@ Run Spring Boot like nodemon (nodejs)
 | ------------------------------- | ----------- | --------------- |
 | Mysql Data-Service              | 3306        | DB              |
 | Mysql Validation-Fields-Service | 3307        | DB              |
+| DLQ                             | 5672        | Rabbit MQ       |
 | Data-Service                    | 8080        | Spring Boot App |
 | Validation-Fields-Service       | 8081        | Spring Boot App |
 | Data-Service-RPC                | 9090        | GRPC            |

@@ -89,40 +89,40 @@ services:
       - data-service
       - service-discovery
   
-  # orchestrator-service:
-  #   restart: always
-  #   image: tentativafc/poc-orchestrator-service:1.0.0-snapshot
-  #   environment:
-  #     - DATA_SERVICE_GRPC_ADDRESS=discovery:///data-service
-  #     - VALIDATION_FIELDS_SERVICE_GRPC_ADDRESS=discovery:///validation-fields-service
-  #     - SERVICE_DISCOVERY_HOST=service-discovery
-  #     - SERVICE_DISCOVERY_PORT=8500
-  #     - URL_DATA_SERVICE=http://data-service:8080
-  #     - URL_VALIDATION_FIELDS_SERVICE=http://validation-fields-service:8080      
-  #     - QUEUE_SERVICE_HOST=queue-service
-  #     - QUEUE_SERVICE_PORT=5672
-  #     - QUEUE_SERVICE_USER=poc_user
-  #     - QUEUE_SERVICE_USER_PASS=123456
-  #   ports:
-  #     - 8082:8080
-  #   networks:
-  #     - poc-network
-  #   depends_on:
-  #     - mysql-validation-fields-service
-  #     - data-service
-  #     - service-discovery
+  orchestrator-service:
+    restart: always
+    image: tentativafc/poc-orchestrator-service:1.0.0-snapshot
+    environment:
+      - DATA_SERVICE_GRPC_ADDRESS=discovery:///data-service
+      - VALIDATION_FIELDS_SERVICE_GRPC_ADDRESS=discovery:///validation-fields-service
+      - SERVICE_DISCOVERY_HOST=service-discovery
+      - SERVICE_DISCOVERY_PORT=8500
+      - URL_DATA_SERVICE=http://data-service:8080
+      - URL_VALIDATION_FIELDS_SERVICE=http://validation-fields-service:8080      
+      - QUEUE_SERVICE_HOST=queue-service
+      - QUEUE_SERVICE_PORT=5672
+      - QUEUE_SERVICE_USER=poc_user
+      - QUEUE_SERVICE_USER_PASS=123456
+    ports:
+      - 8082:8080
+    networks:
+      - poc-network
+    depends_on:
+      - mysql-validation-fields-service
+      - data-service
+      - service-discovery
 
-  # frontend:
-  #   restart: always
-  #   build: 
-  #     dockerfile: Dockerfile
-  #     context: ./frontend/app
-  #   environment:
-  #     - VUE_APP_API_URL=http://localhost:8082/
-  #   ports:
-  #     - '8083:8080'
-  #   networks:
-  #     - poc-network
-  #   volumes: 
-  #     - /app/node_modules
-  #     - ./frontend/app:/app
+  frontend:
+    restart: always
+    build: 
+      dockerfile: Dockerfile
+      context: ./frontend/app
+    environment:
+      - VUE_APP_API_URL=http://localhost:8082/
+    ports:
+      - '8083:8080'
+    networks:
+      - poc-network
+    volumes: 
+      - /app/node_modules
+      - ./frontend/app:/app
