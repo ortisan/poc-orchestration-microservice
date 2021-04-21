@@ -1,0 +1,51 @@
+##################################################################################################
+# Consul Service Discovery
+##################################################################################################
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-discovery
+  labels:
+    app: service-discovery
+    service: service-discovery
+spec:
+  ports:
+    - port: 8500
+      name: http
+  selector:
+    app: service-discovery
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: service-discovery-details
+  labels:
+    account: service-discovery
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: service-discovery-v1
+  labels:
+    app: service-discovery
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: service-discovery
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: service-discovery
+        version: v1
+    spec:
+      serviceAccountName: service-discovery-details
+      containers:
+        - name: service-discovery
+          image: docker.io/consul:1.9.3
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8500
+---

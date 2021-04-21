@@ -1,0 +1,127 @@
+##################################################################################################
+# Data Service
+##################################################################################################
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-data-service
+  labels:
+    app: mysql-data-service
+    service: mysql-data-service
+spec:
+  ports:
+    - port: 3306
+      name: http
+  selector:
+    app: mysql-data-service
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: mysql-data-service-details
+  labels:
+    account: mysql-data-service
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-data-service-v1
+  labels:
+    app: mysql-data-service
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql-data-service
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: mysql-data-service
+        version: v1
+    spec:
+      serviceAccountName: mysql-data-service-details
+      containers:
+        - name: mysql-data-service
+          image: docker.io/mysql:8.0.23
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3306
+          securityContext:
+            runAsUser: 1000
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: "123456"
+            - name: MYSQL_DATABASE
+              value: "poc"
+            - name: MYSQL_USER
+              value: "poc_user"
+            - name: MYSQL_PASSWORD
+              value: "123456"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: data-service
+  labels:
+    app: data-service
+    service: data-service
+spec:
+  ports:
+    - port: 8080
+      name: http
+    - port: 9090
+      name: grpc
+  selector:
+    app: data-service
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: data-service-details
+  labels:
+    account: data-service
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: data-service-v1
+  labels:
+    app: data-service
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: data-service
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: data-service
+        version: v1
+    spec:
+      serviceAccountName: data-service-details
+      containers:
+        - name: data-service
+          image: docker.io/tentativafc/poc-data-service:1.0.0-snapshot
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+            - containerPort: 9090
+          env:
+            - name: MYSQL_HOST
+              value: "mysql-data-service"
+            - name: MYSQL_PORT
+              value: "3306"
+            - name: MYSQL_USER
+              value: "poc_user"
+            - name: MYSQL_PASSWORD
+              value: "123456"
+            - name: SERVICE_DISCOVERY_HOST
+              value: "service-discovery"
+            - name: SERVICE_DISCOVERY_PORT
+              value: "123456"
+
+---

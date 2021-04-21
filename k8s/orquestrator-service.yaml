@@ -1,0 +1,130 @@
+##################################################################################################
+# Orquestrator Service
+##################################################################################################
+apiVersion: v1
+kind: Service
+metadata:
+  name: queue-service
+  labels:
+    app: queue-service
+    service: queue-service
+spec:
+  ports:
+    - port: 5672
+      name: client
+    - port: 15672
+      name: management
+
+  selector:
+    app: queue-service-service
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: queue-service-details
+  labels:
+    account: queue-service
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: queue-service-v1
+  labels:
+    app: queue-service
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: queue-service
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: queue-service
+        version: v1
+    spec:
+      serviceAccountName: queue-service-details
+      containers:
+        - name: rabbit-queue-service
+          image: docker.io/rabbitmq:3-management
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3306
+            - containerPort: 15672
+          env:
+            - name: RABBITMQ_DEFAULT_USER
+              value: "poc_user"
+            - name: RABBITMQ_DEFAULT_PASS
+              value: "123456"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: orquestrator-service
+  labels:
+    app: orquestrator-service
+    service: orquestrator-service
+spec:
+  ports:
+    - port: 8080
+      name: http
+  selector:
+    app: orquestrator-service
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: orquestrator-service-details
+  labels:
+    account: orquestrator-service
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: orquestrator-service-v1
+  labels:
+    app: orquestrator-service
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: orquestrator-service
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: orquestrator-service
+        version: v1
+    spec:
+      serviceAccountName: orquestrator-service-details
+      containers:
+        - name: orquestrator-service
+          image: docker.io/tentativafc/poc-orchestrator-service:1.0.0-snapshot
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SERVICE_DISCOVERY_HOST
+              value: "service-discovery"
+            - name: SERVICE_DISCOVERY_PORT
+              value: "8500"
+            - name: DATA_SERVICE_GRPC_ADDRESS
+              value: "discovery:///data-service"
+            - name: VALIDATION_FIELDS_SERVICE_GRPC_ADDRESS
+              value: "discovery:///validation-fields-service"
+            - name: URL_DATA_SERVICE
+              value: "http://data-service:8080"
+            - name: URL_VALIDATION_FIELDS_SERVICE
+              value: "http://validation-service:8080"
+            - name: QUEUE_SERVICE_HOST
+              value: "queue-service"
+            - name: QUEUE_SERVICE_PORT
+              value: "5672"
+            - name: QUEUE_SERVICE_USER
+              value: "poc_user"
+            - name: QUEUE_SERVICE_USER_PASS
+              value: "123456"
+---
+

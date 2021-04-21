@@ -18,11 +18,30 @@ Make projects and run docker compose (Build, Uploads images and start docker com
 ./make.sh
 ```
 
+#### Docker Environment
+
 Start application
 
 ```sh
 docker-compose up -d
 ```
+
+### Services and port numbers:
+
+| Service                         | Port Number | Type/Tech       |
+| ------------------------------- | ----------- | --------------- |
+| Mysql Data-Service              | 3306        | DB              |
+| Mysql Validation-Fields-Service | 3307        | DB              |
+| DLQ                             | 5672        | Rabbit MQ       |
+| Data-Service                    | 8080        | Spring Boot App |
+| Validation-Fields-Service       | 8081        | Spring Boot App |
+| Data-Service-RPC                | 9090        | GRPC            |
+| Validation-Fields-Service-RPC   | 9091        | GRPC            |
+| Orchestrator-Service            | 8082        | Spring Boot App |
+| Service-Discovery               | 8500        | Consul          |
+| Frontend                        | 8083        | VUEjs           |
+
+---
 
 Generate data for performance tests (Jmeter script Test Plan.jmx)
 
@@ -43,7 +62,101 @@ Generate data for performance tests (Jmeter script Test Plan.jmx)
    ./gen_data.sh
    ```
 
-### Useful commands:
+### K8S Envoronment
+
+Create cluster
+
+```sh
+k3d cluster create k3d-poc-orchestration-cluster --servers 1 --agents 3 --port 9080:80@loadbalancer --port 9443:443@loadbalancer --api-port 6443 --k3s-server-arg '--no-deploy=traefik'
+k3d kubeconfig merge k3d-poc-orchestration-cluster --kubeconfig-switch-context
+kubectl cluster-info
+kubectl get pods --all-namespaces
+
+k3d cluster delete k3d-poc-orchestration-cluster
+```
+
+#### Config Istio
+
+Download [Istio](https://istio.io/latest/docs/setup/getting-started/#download)
+
+Install istio [profile](https://istio.io/latest/docs/setup/additional-setup/config-profiles/)
+
+```sh
+istioctl install --set profile=demo -y
+```
+
+Add a namespace label to instruct Istio to automatically inject Envoy sidecar proxies when you deploy your application later
+
+```sh
+kubectl label namespace default istio-injection=enabled
+```
+
+Install addons (Prometheus, Grafana, Jaeger and Kiali):
+
+```sh
+kubectl apply -f samples/addons
+```
+
+#### Deploy applications
+
+Install Service Discovery
+
+```sh
+kubectl apply -f k8s/service-discovery.yaml
+```
+
+Install Data Service
+
+```sh
+kubectl apply -f k8s/data-service.yaml
+```
+
+Install Validation-Service
+
+```sh
+kubectl apply -f k8s/validation-service.yaml
+```
+
+```sh
+kubectl apply -f k8s/orquestrator-service.yaml
+```
+
+Check services and Pods
+
+```sh
+kubectl get services
+kubectl get pods
+```
+
+#### Outside Connection
+
+Gateway config
+
+```sh
+kubectl apply -f k8s/orquestrator-gateway.yaml
+```
+
+Get ingress server and port
+
+```sh
+kubectl get svc istio-ingressgateway -n istio-system
+
+export INGRESS_HOST=$(kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
+export INGRESS_PORT=$(kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.spec.ports[?(@.name=="http2")].nodePort}')
+export SECURE_INGRESS_PORT=$(kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.spec.ports[?(@.name=="https")].nodePort}')
+
+export GATEWAY_URL=$INGRESS_HOST:$INGRESS_PORT
+
+echo "$GATEWAY_URL"
+```
+
+Open in browser this url:
+
+```sh
+echo "http://$GATEWAY_URL/orchestrator-grpc/tenant/1234/person/"
+```
+
+### Commands:
 
 Force container recreation:
 
@@ -64,17 +177,61 @@ Run Spring Boot like nodemon (nodejs)
 ./mvnw spring-boot:run
 ```
 
-### Services and port numbers:
+Delete all containers:
 
-| Service                         | Port Number | Type/Tech       |
-| ------------------------------- | ----------- | --------------- |
-| Mysql Data-Service              | 3306        | DB              |
-| Mysql Validation-Fields-Service | 3307        | DB              |
-| DLQ                             | 5672        | Rabbit MQ       |
-| Data-Service                    | 8080        | Spring Boot App |
-| Validation-Fields-Service       | 8081        | Spring Boot App |
-| Data-Service-RPC                | 9090        | GRPC            |
-| Validation-Fields-Service-RPC   | 9091        | GRPC            |
-| Orchestrator-Service            | 8082        | Spring Boot App |
-| Service-Discovery               | 8500        | Consul          |
-| Frontend                        | 8083        | VUEjs           |
+```sh
+docker rm -f $(docker container  ls -aq)
+```
+
+Create docker image and push to docker-hub:
+
+```sh
+docker build -t tentativafc/ib-sts-service:1.0-snapshot -f Dockerfile .
+```
+
+```sh
+docker push tentativafc/ib-sts-service:1.0-snapshot
+```
+
+Run docker image:
+
+```sh
+docker run --rm -d --network host --name my_sts_service sts-service:latest
+```
+
+Generating GRPC stub:
+
+```sh
+protoc sts.proto --go_out=plugins=grpc:.
+```
+
+Configure pod or service:
+
+```sh
+kubectl apply -f <filename>
+```
+
+Delete running pod or service:
+
+```sh
+kubectl delete -f <filename>
+```
+
+List pods, services or deployments:
+
+```sh
+kubectl get <pods/services/deployments>
+```
+
+Detail object:
+
+```sh
+kubectl describe <object type> <object name>
+```
+
+Create and list secrets:
+
+```sh
+kubectl create secret <type of secret> <secret name> --from literal key=value
+kubectl get secrets
+```

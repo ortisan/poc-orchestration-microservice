@@ -50,8 +50,6 @@ docker push tentativafc/poc-orchestrator-service:1.0.0-snapshot
 cd - 
 
 # Start docker containers. Obs: the services will build Dockerfile
-docker-compose up --build -d
-cd - 
 
 trap : 0
 

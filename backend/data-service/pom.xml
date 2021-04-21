@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.4.2</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <relativePath /> <!-- lookup parent from repository -->
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>data-service</artifactId>
@@ -17,7 +15,7 @@
         <br.com.caelum.stella.version>2.1.2</br.com.caelum.stella.version>
         <com.github.mvallim.version>1.9.2</com.github.mvallim.version>
         <commons-validator.version>1.7</commons-validator.version>
-        <grpc-springboot.version>2.11.1-SNAPSHOT</grpc-springboot.version>
+        <grpc-springboot.version>2.11.0-SNAPSHOT</grpc-springboot.version>
         <mysql.version>8.0.23</mysql.version>
         <org.mapstruct.version>1.4.1.Final</org.mapstruct.version>
         <org.projectlombok.version>1.18.12</org.projectlombok.version>
@@ -66,7 +64,7 @@
         <dependency>
             <groupId>net.devh</groupId>
             <artifactId>grpc-server-spring-boot-starter</artifactId>
-            <version>2.11.1-SNAPSHOT</version>
+            <version>${grpc-springboot.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>

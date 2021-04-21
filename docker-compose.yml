@@ -93,10 +93,10 @@ services:
     restart: always
     image: tentativafc/poc-orchestrator-service:1.0.0-snapshot
     environment:
-      - DATA_SERVICE_GRPC_ADDRESS=discovery:///data-service
-      - VALIDATION_FIELDS_SERVICE_GRPC_ADDRESS=discovery:///validation-fields-service
       - SERVICE_DISCOVERY_HOST=service-discovery
       - SERVICE_DISCOVERY_PORT=8500
+      - DATA_SERVICE_GRPC_ADDRESS=discovery:///data-service
+      - VALIDATION_FIELDS_SERVICE_GRPC_ADDRESS=discovery:///validation-fields-service
       - URL_DATA_SERVICE=http://data-service:8080
       - URL_VALIDATION_FIELDS_SERVICE=http://validation-fields-service:8080      
       - QUEUE_SERVICE_HOST=queue-service

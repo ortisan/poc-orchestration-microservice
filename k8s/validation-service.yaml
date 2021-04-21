@@ -1,0 +1,129 @@
+##################################################################################################
+# Validation Service
+##################################################################################################
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-validation-service
+  labels:
+    app: mysql-validation-service
+    service: mysql-validation-service
+spec:
+  ports:
+    - port: 3306
+      name: http
+  selector:
+    app: mysql-validation-service
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: mysql-validation-service-details
+  labels:
+    account: mysql-validation-service
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-validation-service-v1
+  labels:
+    app: mysql-validation-service
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql-validation-service
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: mysql-validation-service
+        version: v1
+    spec:
+      serviceAccountName: mysql-validation-service-details
+      containers:
+        - name: mysql-validation-service
+          image: mysql:8.0.23
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3306
+          securityContext:
+            runAsUser: 1000
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: "123456"
+            - name: MYSQL_DATABASE
+              value: "poc"
+            - name: MYSQL_USER
+              value: "poc_user"
+            - name: MYSQL_PASSWORD
+              value: "123456"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: validation-service
+  labels:
+    app: validation-service
+    service: validation-service
+spec:
+  ports:
+    - port: 8080
+      name: http
+    - port: 9090
+      name: grpc
+  selector:
+    app: validation-service
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: validation-service-details
+  labels:
+    account: validation-service
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: validation-service-v1
+  labels:
+    app: validation-service
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: validation-service
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: validation-service
+        version: v1
+    spec:
+      serviceAccountName: validation-service-details
+      containers:
+        - name: validation-service
+          image: docker.io/tentativafc/poc-validation-fields-service:1.0.0-snapshot
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+            - containerPort: 9090
+          env:
+            - name: MYSQL_HOST
+              value: "mysql-validation-service"
+            - name: MYSQL_PORT
+              value: "3306"
+            - name: MYSQL_USER
+              value: "poc_user"
+            - name: MYSQL_PASSWORD
+              value: "123456"
+            - name: SERVICE_DISCOVERY_HOST
+              value: "service-discovery"
+            - name: SERVICE_DISCOVERY_PORT
+              value: "8500"
+            - name: DATA_SERVICE_GRPC_ADDRESS
+              value: "discovery://service-discovery:8500/data-service"
+---
+
