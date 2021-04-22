@@ -62,7 +62,7 @@ Generate data for performance tests (Jmeter script Test Plan.jmx)
    ./gen_data.sh
    ```
 
-### K8S Envoronment
+### K8S Environment
 
 Create cluster
 
@@ -72,6 +72,7 @@ k3d kubeconfig merge k3d-poc-orchestration-cluster --kubeconfig-switch-context
 kubectl cluster-info
 kubectl get pods --all-namespaces
 
+# Delete if you need
 k3d cluster delete k3d-poc-orchestration-cluster
 ```
 
@@ -99,6 +100,15 @@ kubectl apply -f samples/addons
 
 #### Deploy applications
 
+Simple application
+
+```sh
+kubectl apply -f k8s/flask-hello.yaml
+#Install gateway
+kubectl apply -f k8s/flask-hello-gateway.yaml
+```
+
+
 Install Service Discovery
 
 ```sh
@@ -109,18 +119,26 @@ Install Data Service
 
 ```sh
 kubectl apply -f k8s/data-service.yaml
+
+# Testing
+kubectl exec "$(kubectl get pod -l app=data-service -o jsonpath='{.items[0].metadata.name}')" -c data-service -- curl -sS http://data-service-svc:8080/actuator
+
 ```
 
 Install Validation-Service
 
 ```sh
 kubectl apply -f k8s/validation-service.yaml
+# Testing
+kubectl exec "$(kubectl get pod -l app=validation-service -o jsonpath='{.items[0].metadata.name}')" -c validation-service -- curl -sS http://validation-service-svc:8080/actuator
 ```
 
 ```sh
 kubectl apply -f k8s/orquestrator-service.yaml
-```
+# Testing
+kubectl exec "$(kubectl get pod -l app=orquestrator-service -o jsonpath='{.items[0].metadata.name}')" -c orquestrator-service -- curl -sS http://orquestrator-service-svc:8080/actuator
 
+```
 Check services and Pods
 
 ```sh
@@ -144,9 +162,7 @@ kubectl get svc istio-ingressgateway -n istio-system
 export INGRESS_HOST=$(kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
 export INGRESS_PORT=$(kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.spec.ports[?(@.name=="http2")].nodePort}')
 export SECURE_INGRESS_PORT=$(kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.spec.ports[?(@.name=="https")].nodePort}')
-
 export GATEWAY_URL=$INGRESS_HOST:$INGRESS_PORT
-
 echo "$GATEWAY_URL"
 ```
 

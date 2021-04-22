@@ -4,23 +4,16 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: mysql-validation-service
+  name: mysql-validation-service-svc
   labels:
     app: mysql-validation-service
-    service: mysql-validation-service
+    service: mysql-validation-service-svc
 spec:
   ports:
     - port: 3306
       name: http
   selector:
     app: mysql-validation-service
----
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: mysql-validation-service-details
-  labels:
-    account: mysql-validation-service
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -41,7 +34,6 @@ spec:
         app: mysql-validation-service
         version: v1
     spec:
-      serviceAccountName: mysql-validation-service-details
       containers:
         - name: mysql-validation-service
           image: mysql:8.0.23
@@ -63,10 +55,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: validation-service
+  name: validation-service-svc
   labels:
     app: validation-service
-    service: validation-service
+    service: validation-service-svc
 spec:
   ports:
     - port: 8080
@@ -75,13 +67,6 @@ spec:
       name: grpc
   selector:
     app: validation-service
----
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: validation-service-details
-  labels:
-    account: validation-service
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -102,7 +87,6 @@ spec:
         app: validation-service
         version: v1
     spec:
-      serviceAccountName: validation-service-details
       containers:
         - name: validation-service
           image: docker.io/tentativafc/poc-validation-fields-service:1.0.0-snapshot
@@ -112,7 +96,7 @@ spec:
             - containerPort: 9090
           env:
             - name: MYSQL_HOST
-              value: "mysql-validation-service"
+              value: "mysql-validation-service-svc"
             - name: MYSQL_PORT
               value: "3306"
             - name: MYSQL_USER
@@ -120,10 +104,12 @@ spec:
             - name: MYSQL_PASSWORD
               value: "123456"
             - name: SERVICE_DISCOVERY_HOST
-              value: "service-discovery"
+              value: "service-discovery-svc"
             - name: SERVICE_DISCOVERY_PORT
               value: "8500"
             - name: DATA_SERVICE_GRPC_ADDRESS
-              value: "discovery://service-discovery:8500/data-service"
+              value: "discovery://service-discovery-svc:8500/data-service"
+
+
 ---
 

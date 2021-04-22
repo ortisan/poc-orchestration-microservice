@@ -1,43 +1,44 @@
 ##################################################################################################
-# Consul Service Discovery
+# Data Service
 ##################################################################################################
 apiVersion: v1
 kind: Service
 metadata:
-  name: service-discovery-svc
+  name: flask-helloworld-service
   labels:
-    app: service-discovery
-    service: service-discovery-svc
+    app: flask-helloworld
+    service: flask-helloworld-service
 spec:
   ports:
-    - port: 8500
-      name: http
+  - port: 5000
+    name: http
   selector:
-    app: service-discovery
+    app: flask-helloworld
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: service-discovery-v1
+  name: flask-helloworld-deployment
   labels:
-    app: service-discovery
+    app: flask-helloworld
     version: v1
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: service-discovery
+      app: flask-helloworld
       version: v1
   template:
     metadata:
       labels:
-        app: service-discovery
+        app: flask-helloworld
         version: v1
     spec:
       containers:
-        - name: service-discovery
-          image: docker.io/consul:1.9.3
+        - name: flask-helloworld
+          image: docker.io/digitalocean/flask-helloworld:latest
           imagePullPolicy: IfNotPresent
           ports:
-            - containerPort: 8500
----
+            - containerPort: 5000
+          securityContext:
+            runAsUser: 1000
