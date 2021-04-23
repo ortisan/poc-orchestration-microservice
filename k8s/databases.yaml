@@ -1,0 +1,50 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-validation-service-svc
+  labels:
+    service: mysql-validation-service-svc
+spec:
+  ports:
+    - port: 3306
+      name: http
+  selector:
+    app: mysql-validation-service
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-validation-service-v1
+  labels:
+    app: mysql-validation-service
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql-validation-service
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: mysql-validation-service
+        version: v1
+    spec:
+      containers:
+        - name: mysql-validation-service
+          image: mysql:8.0.23
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3306
+          securityContext:
+            runAsUser: 1000
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: "123456"
+            - name: MYSQL_DATABASE
+              value: "poc"
+            - name: MYSQL_USER
+              value: "poc_user"
+            - name: MYSQL_PASSWORD
+              value: "123456"
+---

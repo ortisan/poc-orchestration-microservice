@@ -10,4 +10,6 @@ COPY ./target/validation-fields-service.jar ./app.jar
 EXPOSE 8080
 EXPOSE 9090
 
+HEALTHCHECK --interval=10s --timeout=30s CMD curl --fail http://localhost:8080/actuator/health || exit 1
+
 CMD ["java", "-jar", "app.jar"]

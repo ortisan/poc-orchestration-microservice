@@ -10,4 +10,6 @@ COPY ./target/data-service.jar ./app.jar
 EXPOSE 8080
 EXPOSE 9090
 
+HEALTHCHECK CMD curl --fail http://localhost:8080/actuator/health || exit 1
+
 ENTRYPOINT ["java", "-jar", "app.jar"]
