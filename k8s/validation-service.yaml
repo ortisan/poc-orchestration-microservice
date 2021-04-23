@@ -6,7 +6,6 @@ kind: Service
 metadata:
   name: mysql-validation-service-svc
   labels:
-    app: mysql-validation-service
     service: mysql-validation-service-svc
 spec:
   ports:

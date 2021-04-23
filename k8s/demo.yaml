@@ -1,0 +1,44 @@
+##################################################################################################
+# Demo Application
+##################################################################################################
+apiVersion: v1
+kind: Service
+metadata:
+  name: demo-svc
+  labels:    
+    service: demo-svc
+spec:
+  ports:
+    - port: 8080
+      name: http
+  selector:
+    app: demo
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo-v1
+  labels:
+    app: demo
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: demo
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: demo
+        version: v1
+    spec:
+      containers:
+        - name: demo
+          image: docker.io/tentativafc/demo:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+          securityContext:
+            runAsUser: 1000          
+---

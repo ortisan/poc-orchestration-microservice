@@ -108,7 +108,6 @@ kubectl apply -f k8s/flask-hello.yaml
 kubectl apply -f k8s/flask-hello-gateway.yaml
 ```
 
-
 Install Service Discovery
 
 ```sh
@@ -123,6 +122,12 @@ kubectl apply -f k8s/data-service.yaml
 # Testing
 kubectl exec "$(kubectl get pod -l app=data-service -o jsonpath='{.items[0].metadata.name}')" -c data-service -- curl -sS http://data-service-svc:8080/actuator
 
+```
+
+Install Data Service Virtual Serer
+
+```sh
+kubectl apply -f k8s/data-service-gateway.yaml
 ```
 
 Install Validation-Service
