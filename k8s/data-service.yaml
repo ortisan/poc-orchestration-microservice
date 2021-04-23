@@ -111,7 +111,7 @@ spec:
     spec:
       containers:
         - name: data-service
-          image: docker.io/tentativafc/poc-data-service:1.0.2-snapshot
+          image: docker.io/tentativafc/poc-data-service:1.0.0-snapshot
           imagePullPolicy: Always
           ports:
             - containerPort: 8080

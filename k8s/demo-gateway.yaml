@@ -28,7 +28,7 @@ spec:
     - uri:
         prefix: /demo
     rewrite:
-      uri: "/demo"    
+      uri: "/demo"
     route:
     - destination:
         host: demo-svc

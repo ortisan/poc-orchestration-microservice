@@ -89,7 +89,7 @@ spec:
       containers:
         - name: validation-service
           image: docker.io/tentativafc/poc-validation-fields-service:1.0.0-snapshot
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           ports:
             - containerPort: 8080
             - containerPort: 9090

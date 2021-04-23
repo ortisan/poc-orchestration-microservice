@@ -6,7 +6,6 @@ kind: Service
 metadata:
   name: queue-service-svc
   labels:
-    app: queue-service
     service: queue-service-svc
 spec:
   ports:
@@ -14,7 +13,6 @@ spec:
       name: client
     - port: 15672
       name: management
-
   selector:
     app: queue-service-service
 ---
@@ -55,7 +53,6 @@ kind: Service
 metadata:
   name: orquestrator-service-svc
   labels:
-    app: orquestrator-service
     service: orquestrator-service-svc
 spec:
   ports:
@@ -86,7 +83,7 @@ spec:
       containers:
         - name: orquestrator-service
           image: docker.io/tentativafc/poc-orchestrator-service:1.0.0-snapshot
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           ports:
             - containerPort: 8080
           env:

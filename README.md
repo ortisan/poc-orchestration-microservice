@@ -124,7 +124,7 @@ kubectl exec "$(kubectl get pod -l app=data-service -o jsonpath='{.items[0].meta
 
 ```
 
-Install Data Service Virtual Serer
+Install Data Service Virtual Server
 
 ```sh
 kubectl apply -f k8s/data-service-gateway.yaml
@@ -138,13 +138,19 @@ kubectl apply -f k8s/validation-service.yaml
 kubectl exec "$(kubectl get pod -l app=validation-service -o jsonpath='{.items[0].metadata.name}')" -c validation-service -- curl -sS http://validation-service-svc:8080/actuator
 ```
 
+Install Validation Service Virtual Server
+
+```sh
+kubectl apply -f k8s/validation-service-gateway.yaml
+```
+
 ```sh
 kubectl apply -f k8s/orquestrator-service.yaml
 # Testing
 kubectl exec "$(kubectl get pod -l app=orquestrator-service -o jsonpath='{.items[0].metadata.name}')" -c orquestrator-service -- curl -sS http://orquestrator-service-svc:8080/actuator
 
 ```
-Check services and Pods
+Check services and pods
 
 ```sh
 kubectl get services
@@ -174,7 +180,7 @@ echo "$GATEWAY_URL"
 Open in browser this url:
 
 ```sh
-echo "http://$GATEWAY_URL/orchestrator-grpc/tenant/1234/person/"
+echo "http://$GATEWAY_URL/orquestrator-service/orchestrator-grpc/tenant/1234/person/"
 ```
 
 ### Commands:
