@@ -104,8 +104,6 @@ Simple application
 
 ```sh
 kubectl apply -f k8s/demo.yaml
-#Install gateway
-kubectl apply -f k8s/demo-gateway.yaml
 # Testing
 kubectl exec "$(kubectl get pod -l app=demo -o jsonpath='{.items[0].metadata.name}')" -c demo -- curl -sS http://demo-svc:8080/demo
 
@@ -121,16 +119,8 @@ Install Data Service
 
 ```sh
 kubectl apply -f k8s/data-service.yaml
-
 # Testing
 kubectl exec "$(kubectl get pod -l app=data-service -o jsonpath='{.items[0].metadata.name}')" -c data-service -- curl -sS http://data-service-svc:8080/actuator/health
-
-```
-
-Install Data Service Virtual Server
-
-```sh
-kubectl apply -f k8s/data-service-gateway.yaml
 ```
 
 Install Validation-Service
@@ -141,17 +131,10 @@ kubectl apply -f k8s/validation-service.yaml
 kubectl exec "$(kubectl get pod -l app=validation-service -o jsonpath='{.items[0].metadata.name}')" -c validation-service -- curl -sS http://validation-service-svc:8080/actuator/health
 ```
 
-Install Validation Service Virtual Server
-
-```sh
-kubectl apply -f k8s/validation-service-gateway.yaml
-```
-
 ```sh
 kubectl apply -f k8s/orchestrator-service.yaml
 # Testing
 kubectl exec "$(kubectl get pod -l app=orchestrator-service -o jsonpath='{.items[0].metadata.name}')" -c orchestrator-service -- curl -sS http://orchestrator-service-svc:8080/actuator/health
-
 ```
 
 Check services and pods
@@ -192,8 +175,26 @@ echo "$GATEWAY_URL"
 Open in browser this url:
 
 ```sh
-echo "http://$GATEWAY_URL/orchestrator-service/orchestrator-grpc/tenant/1234/person/"
+echo "http://$GATEWAY_URL/actuator/health"
 ```
+
+### Dashboards
+
+Kiali
+
+```sh
+istioctl dashboard kiali
+```
+
+![image](images/kiali.png)
+
+Grafana
+
+```sh
+istioctl dashboard grafana
+```
+
+![image](images/grafana.png)
 
 ### Commands:
 
