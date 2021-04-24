@@ -1,87 +1,40 @@
 ##################################################################################################
-# Orquestrator Service
+# Orchestrator Service
 ##################################################################################################
 apiVersion: v1
 kind: Service
 metadata:
-  name: queue-service-svc
+  name: orchestrator-service-svc
   labels:
-    service: queue-service-svc
-spec:
-  ports:
-    - port: 5672
-      name: client
-    - port: 15672
-      name: management
-  selector:
-    app: queue-service-service
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: queue-service-v1
-  labels:
-    app: queue-service
-    version: v1
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: queue-service
-      version: v1
-  template:
-    metadata:
-      labels:
-        app: queue-service
-        version: v1
-    spec:
-      containers:
-        - name: rabbit-queue-service
-          image: docker.io/rabbitmq:3-management
-          imagePullPolicy: IfNotPresent
-          ports:
-            - containerPort: 3306
-            - containerPort: 15672
-          env:
-            - name: RABBITMQ_DEFAULT_USER
-              value: "poc_user"
-            - name: RABBITMQ_DEFAULT_PASS
-              value: "123456"
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: orquestrator-service-svc
-  labels:
-    service: orquestrator-service-svc
+    service: orchestrator-service-svc
 spec:
   ports:
     - port: 8080
       name: http
   selector:
-    app: orquestrator-service
+    app: orchestrator-service
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: orquestrator-service-v1
+  name: orchestrator-service-v1
   labels:
-    app: orquestrator-service
+    app: orchestrator-service
     version: v1
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: orquestrator-service
+      app: orchestrator-service
       version: v1
   template:
     metadata:
       labels:
-        app: orquestrator-service
+        app: orchestrator-service
         version: v1
     spec:
       containers:
-        - name: orquestrator-service
+        - name: orchestrator-service
           image: docker.io/tentativafc/poc-orchestrator-service:1.0.0-snapshot
           imagePullPolicy: Always
           ports:

@@ -1,7 +1,7 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: Gateway
 metadata:
-  name: orquestrator-service-gateway
+  name: orchestrator-service-gateway
 spec:
   selector:
     istio: ingressgateway # use istio default controller
@@ -16,20 +16,20 @@ spec:
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  name: orquestrator-service
+  name: orchestrator-service
 spec:
   hosts:
   - "*"
   gateways:
-  - orquestrator-service-gateway
+  - orchestrator-service-gateway
   http:
   - match:
     - uri:
-        prefix: /orquestrator-service
+        prefix: /orchestrator-service
     rewrite:
       uri: "/"
     route:
     - destination:
-        host: orquestrator-service-svc
+        host: orchestrator-service-svc
         port:
           number: 8080

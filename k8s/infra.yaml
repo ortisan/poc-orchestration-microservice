@@ -1,0 +1,186 @@
+##################################################################################################
+# Service Discovery and Databases
+##################################################################################################
+apiVersion: v1
+kind: Service
+metadata:
+  name: queue-service-svc
+  labels:
+    service: queue-service-svc
+spec:
+  ports:
+    - port: 5672
+      name: tcp
+    - port: 15672
+      name: management
+  selector:
+    app: queue-service
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: queue-service-v1
+  labels:
+    app: queue-service
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: queue-service
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: queue-service
+        version: v1
+    spec:
+      containers:
+        - name: rabbit-queue-service
+          image: docker.io/rabbitmq:3-management
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3306
+            - containerPort: 15672
+          env:
+            - name: RABBITMQ_DEFAULT_USER
+              value: "poc_user"
+            - name: RABBITMQ_DEFAULT_PASS
+              value: "123456"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-discovery-svc
+  labels:
+    app: service-discovery
+    service: service-discovery-svc
+spec:
+  ports:
+    - port: 8500
+      name: http
+  selector:
+    app: service-discovery
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: service-discovery-v1
+  labels:
+    app: service-discovery
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: service-discovery
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: service-discovery
+        version: v1
+    spec:
+      containers:
+        - name: service-discovery
+          image: docker.io/consul:1.9.3
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8500
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-data-service-svc
+  labels:    
+    service: mysql-data-service-svc
+spec:
+  ports:
+    - port: 3306
+      name: tcp
+  selector:
+    app: mysql-data-service
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-data-service-v1
+  labels:
+    app: mysql-data-service
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql-data-service
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: mysql-data-service
+        version: v1
+    spec:
+      containers:
+        - name: mysql-data-service
+          image: docker.io/mysql:8.0.23
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3306
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: "123456"
+            - name: MYSQL_DATABASE
+              value: "poc"
+            - name: MYSQL_USER
+              value: "poc_user"
+            - name: MYSQL_PASSWORD
+              value: "123456"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-validation-service-svc
+  labels:
+    service: mysql-validation-service-svc
+spec:
+  ports:
+    - port: 3306
+      name: tcp
+  selector:
+    app: mysql-validation-service
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-validation-service-v1
+  labels:
+    app: mysql-validation-service
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql-validation-service
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: mysql-validation-service
+        version: v1
+    spec:
+      containers:
+        - name: mysql-validation-service
+          image: mysql:8.0.23
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3306
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: "123456"
+            - name: MYSQL_DATABASE
+              value: "poc"
+            - name: MYSQL_USER
+              value: "poc_user"
+            - name: MYSQL_PASSWORD
+              value: "123456"
+---

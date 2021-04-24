@@ -25,9 +25,7 @@ spec:
   http:
   - match:
     - uri:
-        prefix: /service-discovery
-    rewrite:
-      uri: "/"
+        prefix: /
     route:
     - destination:
         host: service-discovery-svc

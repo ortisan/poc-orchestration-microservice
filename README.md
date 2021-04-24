@@ -103,15 +103,18 @@ kubectl apply -f samples/addons
 Simple application
 
 ```sh
-kubectl apply -f k8s/flask-hello.yaml
+kubectl apply -f k8s/demo.yaml
 #Install gateway
-kubectl apply -f k8s/flask-hello-gateway.yaml
+kubectl apply -f k8s/demo-gateway.yaml
+# Testing
+kubectl exec "$(kubectl get pod -l app=demo -o jsonpath='{.items[0].metadata.name}')" -c demo -- curl -sS http://demo-svc:8080/demo
+
 ```
 
-Install Service Discovery
+Install Service Discovery and Databases
 
 ```sh
-kubectl apply -f k8s/service-discovery.yaml
+kubectl apply -f k8s/infra.yaml
 ```
 
 Install Data Service
@@ -120,7 +123,7 @@ Install Data Service
 kubectl apply -f k8s/data-service.yaml
 
 # Testing
-kubectl exec "$(kubectl get pod -l app=data-service -o jsonpath='{.items[0].metadata.name}')" -c data-service -- curl -sS http://data-service-svc:8080/actuator
+kubectl exec "$(kubectl get pod -l app=data-service -o jsonpath='{.items[0].metadata.name}')" -c data-service -- curl -sS http://data-service-svc:8080/actuator/health
 
 ```
 
@@ -135,7 +138,7 @@ Install Validation-Service
 ```sh
 kubectl apply -f k8s/validation-service.yaml
 # Testing
-kubectl exec "$(kubectl get pod -l app=validation-service -o jsonpath='{.items[0].metadata.name}')" -c validation-service -- curl -sS http://validation-service-svc:8080/actuator
+kubectl exec "$(kubectl get pod -l app=validation-service -o jsonpath='{.items[0].metadata.name}')" -c validation-service -- curl -sS http://validation-service-svc:8080/actuator/health
 ```
 
 Install Validation Service Virtual Server
@@ -145,24 +148,33 @@ kubectl apply -f k8s/validation-service-gateway.yaml
 ```
 
 ```sh
-kubectl apply -f k8s/orquestrator-service.yaml
+kubectl apply -f k8s/orchestrator-service.yaml
 # Testing
-kubectl exec "$(kubectl get pod -l app=orquestrator-service -o jsonpath='{.items[0].metadata.name}')" -c orquestrator-service -- curl -sS http://orquestrator-service-svc:8080/actuator
+kubectl exec "$(kubectl get pod -l app=orchestrator-service -o jsonpath='{.items[0].metadata.name}')" -c orchestrator-service -- curl -sS http://orchestrator-service-svc:8080/actuator/health
 
 ```
+
 Check services and pods
 
 ```sh
+# Check services
 kubectl get services
+# Check if service is binding to pod
+kubectl describe svc <service_name>
+#Check pods
 kubectl get pods
+#Check pods logs
+kubectl logs <pod_name>
+# If you need inspect process/files on pod (replaces <app_name>)
+kubectl exec -it exec "$(kubectl get pod -l app=<app_name> -o jsonpath='{.items[0].metadata.name}')" -- sh
 ```
 
-#### Outside Connection
+#### Enable Ingress Connection
 
 Gateway config
 
 ```sh
-kubectl apply -f k8s/orquestrator-gateway.yaml
+kubectl apply -f k8s/orchestrator-gateway.yaml
 ```
 
 Get ingress server and port
@@ -180,7 +192,7 @@ echo "$GATEWAY_URL"
 Open in browser this url:
 
 ```sh
-echo "http://$GATEWAY_URL/orquestrator-service/orchestrator-grpc/tenant/1234/person/"
+echo "http://$GATEWAY_URL/orchestrator-service/orchestrator-grpc/tenant/1234/person/"
 ```
 
 ### Commands:

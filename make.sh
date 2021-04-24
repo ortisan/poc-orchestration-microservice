@@ -41,7 +41,7 @@ cd -
 cd backend/data-service
 mvn clean compile package
 docker build -t tentativafc/poc-data-service:1.0.0-snapshot -f Dockerfile .
-docker push tentativafc/poc-data-service:1.0.1-snapshot
+docker push tentativafc/poc-data-service:1.0.0-snapshot
 cd - 
 
 cd backend/validation-fields-service
