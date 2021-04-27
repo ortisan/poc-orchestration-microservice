@@ -2,7 +2,7 @@
 
 POC for testing microservices orchestration patterns.
 
-### Run:
+## Run:
 
 Checkout this project and install into local repository (with this bug [#495](https://github.com/yidongnan/grpc-spring-boot-starter/issues/495) fixed):
 
@@ -196,7 +196,60 @@ istioctl dashboard grafana
 
 ![image](images/grafana.png)
 
-### Commands:
+### AWS
+
+Create the subnets
+
+![image](images/subnets.png)
+
+Create and associate route tables to subnets
+
+![image](images/routetables.png)
+
+Create the ECR
+
+![image](images/ecr.png)
+
+Push images to ECR
+
+```sh
+# Docker login
+aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 779882487479.dkr.ecr.us-east-1.amazonaws.com
+# Build image and push
+cd backend/demo
+mvn clean compile package
+docker build -t demo:latest -f Dockerfile .
+docker tag tentativafc-br:latest 779882487479.dkr.ecr.us-east-1.amazonaws.com/tentativafc-br:demo
+docker push 779882487479.dkr.ecr.us-east-1.amazonaws.com/tentativafc-br:demo
+```
+
+Create cluster EKS (eksctl)
+
+```sh
+# Creates using eksctl
+eksctl create cluster --name poc-orchestration-microservices --version 1.19 --region us-east-1 --nodegroup-name ng-poc-1 --node-type m5.xlarge --nodes 2 --nodes-min 1 --nodes-max 3 --managed
+# Delete if you need
+eksctl delete cluster --name poc-orchestration-microservices
+```
+
+Or Cloudformation
+
+```sh
+# Create cluster
+aws cloudformation create-stack --stack-name poc-eks-cluster --template-body file://AWS/eks-cluster-cf-template.json --capabilities CAPABILITY_IAM
+# Create nodegroup
+aws cloudformation create-stack --stack-name poc-eks-cluster-nodegroup --template-body file://AWS/eks-nodegroups-cf-template.json --capabilities CAPABILITY_IAM
+```
+
+![image](images/eks.png)
+
+Enable kubectl connection
+
+```sh
+aws eks update-kubeconfig --name poc-orchestration-microservices --region us-east-1
+```
+
+#### Commands:
 
 Force container recreation:
 

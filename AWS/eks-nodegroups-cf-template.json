@@ -1,0 +1,159 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "EKS Managed Nodes (SSH access: false) [created by eksctl]",
+  "Mappings": {
+    "ServicePrincipalPartitionMap": {
+      "aws": {
+        "EC2": "ec2.amazonaws.com",
+        "EKS": "eks.amazonaws.com",
+        "EKSFargatePods": "eks-fargate-pods.amazonaws.com"
+      },
+      "aws-cn": {
+        "EC2": "ec2.amazonaws.com.cn",
+        "EKS": "eks.amazonaws.com",
+        "EKSFargatePods": "eks-fargate-pods.amazonaws.com"
+      },
+      "aws-us-gov": {
+        "EC2": "ec2.amazonaws.com",
+        "EKS": "eks.amazonaws.com",
+        "EKSFargatePods": "eks-fargate-pods.amazonaws.com"
+      }
+    }
+  },
+  "Resources": {
+    "LaunchTemplate": {
+      "Type": "AWS::EC2::LaunchTemplate",
+      "Properties": {
+        "LaunchTemplateData": {
+          "BlockDeviceMappings": [
+            {
+              "DeviceName": "/dev/xvda",
+              "Ebs": {
+                "Iops": 3000,
+                "Throughput": 125,
+                "VolumeSize": 80,
+                "VolumeType": "gp3"
+              }
+            }
+          ],
+          "MetadataOptions": {
+            "HttpPutResponseHopLimit": 2,
+            "HttpTokens": "optional"
+          },
+          "SecurityGroupIds": [
+            {
+              "Fn::ImportValue": "eksctl-poc-orchestration-microservices-cluster::ClusterSecurityGroupId"
+            }
+          ],
+          "TagSpecifications": [
+            {
+              "ResourceType": "instance",
+              "Tags": [
+                {
+                  "Key": "Name",
+                  "Value": "poc-orchestration-microservices-ng-poc-1-Node"
+                },
+                {
+                  "Key": "alpha.eksctl.io/nodegroup-name",
+                  "Value": "ng-poc-1"
+                },
+                {
+                  "Key": "alpha.eksctl.io/nodegroup-type",
+                  "Value": "managed"
+                }
+              ]
+            }
+          ]
+        },
+        "LaunchTemplateName": {
+          "Fn::Sub": "${AWS::StackName}"
+        }
+      }
+    },
+    "ManagedNodeGroup": {
+      "Type": "AWS::EKS::Nodegroup",
+      "Properties": {
+        "AmiType": "AL2_x86_64",
+        "ClusterName": "poc-orchestration-microservices",
+        "InstanceTypes": ["m5.xlarge"],
+        "Labels": {
+          "alpha.eksctl.io/cluster-name": "poc-orchestration-microservices",
+          "alpha.eksctl.io/nodegroup-name": "ng-poc-1"
+        },
+        "LaunchTemplate": {
+          "Id": {
+            "Ref": "LaunchTemplate"
+          }
+        },
+        "NodeRole": {
+          "Fn::GetAtt": ["NodeInstanceRole", "Arn"]
+        },
+        "NodegroupName": "ng-poc-1",
+        "ScalingConfig": {
+          "DesiredSize": 2,
+          "MaxSize": 3,
+          "MinSize": 1
+        },
+        "Subnets": {
+          "Fn::Split": [
+            ",",
+            {
+              "Fn::ImportValue": "eksctl-poc-orchestration-microservices-cluster::SubnetsPublic"
+            }
+          ]
+        },
+        "Tags": {
+          "alpha.eksctl.io/nodegroup-name": "ng-poc-1",
+          "alpha.eksctl.io/nodegroup-type": "managed"
+        }
+      }
+    },
+    "NodeInstanceRole": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": ["sts:AssumeRole"],
+              "Effect": "Allow",
+              "Principal": {
+                "Service": [
+                  {
+                    "Fn::FindInMap": [
+                      "ServicePrincipalPartitionMap",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      "EC2"
+                    ]
+                  }
+                ]
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Sub": "arn:${AWS::Partition}:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
+          },
+          {
+            "Fn::Sub": "arn:${AWS::Partition}:iam::aws:policy/AmazonEKSWorkerNodePolicy"
+          },
+          {
+            "Fn::Sub": "arn:${AWS::Partition}:iam::aws:policy/AmazonEKS_CNI_Policy"
+          }
+        ],
+        "Path": "/",
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": {
+              "Fn::Sub": "${AWS::StackName}/NodeInstanceRole"
+            }
+          }
+        ]
+      }
+    }
+  }
+}
