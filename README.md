@@ -259,6 +259,12 @@ Enable kubectl connection
 aws eks update-kubeconfig --name poc-orchestration-microservices --region us-east-1
 ```
 
+#### Links:
+
+[Private subnets 1](https://github.com/hashicorp/terraform-provider-aws/issues/13071)
+[Private subnets 2](https://aws.amazon.com/pt/blogs/containers/upcoming-changes-to-ip-assignment-for-eks-managed-node-groups/)
+[Private subnets 3](https://docs.aws.amazon.com/eks/latest/userguide/create-public-private-vpc.html)
+
 #### Commands:
 
 Force container recreation:
