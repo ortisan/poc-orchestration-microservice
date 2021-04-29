@@ -6,3 +6,8 @@ data.csv
 grpc-spring-boot-starter/
 
 .idea/
+
+AWS/.terraform/
+AWS/.terraform*
+AWS/terraform.tfstate
+AWS/terraform.tfstate.backup

@@ -241,6 +241,16 @@ aws cloudformation create-stack --stack-name poc-eks-cluster --template-body fil
 aws cloudformation create-stack --stack-name poc-eks-cluster-nodegroup --template-body file://AWS/eks-nodegroups-cf-template.json --capabilities CAPABILITY_IAM
 ```
 
+Or Terraform
+
+```sh
+cd AWS
+# Init terraform state
+terraform init
+# Create infra
+terraform apply
+```
+
 ![image](images/eks.png)
 
 Enable kubectl connection
