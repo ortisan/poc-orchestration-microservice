@@ -19,7 +19,7 @@
         <grpc-springboot.version>2.11.0-SNAPSHOT</grpc-springboot.version>
         <mysql.version>8.0.23</mysql.version>
         <org.mapstruct.version>1.4.1.Final</org.mapstruct.version>
-        <org.projectlombok.version>1.18.12</org.projectlombok.version>
+        <org.projectlombok.version>1.18.20</org.projectlombok.version>
         <spring-cloud.version>2020.0.1</spring-cloud.version>
         <rx.version>3.0.9</rx.version>
 

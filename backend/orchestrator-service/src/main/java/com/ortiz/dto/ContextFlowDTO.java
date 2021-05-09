@@ -1,5 +1,6 @@
-package com.ortiz.com.ortiz.business;
+package com.ortiz.dto;
 
+import com.ortiz.com.ortiz.business.StateEnum;
 import com.ortiz.dto.DataDTO;
 import com.ortiz.poc.dto.PersonDTO;
 import com.ortiz.poc.dto.ValidationFieldDTO;
@@ -10,7 +11,7 @@ import java.util.List;
 
 @Data
 @Builder
-public class ContextFlow {
+public class ContextFlowDTO {
 
     private StateEnum stateEnum;
 

@@ -1,5 +1,6 @@
 package com.ortiz.com.ortiz.business;
 
+import com.ortiz.dto.ContextFlowDTO;
 import com.ortiz.dto.DataDTO;
 import com.ortiz.grpc.services.DataServiceGrpc;
 import com.ortiz.grpc.services.Person;
@@ -52,7 +53,7 @@ public class FlowableFactory {
     @Autowired
     private RabbitTemplate rabbitTemplate;
 
-    public Single<DataDTO> getPersistenceFlow(AtomicReference<ContextFlow> atomicReference) {
+    public Single<DataDTO> getPersistenceFlow(AtomicReference<ContextFlowDTO> atomicReference) {
         return just(atomicReference)
                 .map(validateValidationFields())
                 // retry when network errors
@@ -74,8 +75,8 @@ public class FlowableFactory {
                 });
     }
 
-    public Single<DataDTO> getUndoFlowableByState(AtomicReference<ContextFlow> atomicReference) {
-        Single<AtomicReference<ContextFlow>> single = just(atomicReference);
+    public Single<DataDTO> getUndoFlowableByState(AtomicReference<ContextFlowDTO> atomicReference) {
+        Single<AtomicReference<ContextFlowDTO>> single = just(atomicReference);
         StateEnum stateEnum = atomicReference.get().getStateEnum();
         switch (stateEnum) {
             case DO_PERSIST_PERSON:
@@ -88,7 +89,7 @@ public class FlowableFactory {
         return single
                 .map(transformResult(StateEnum.UNDONE))
                 .onErrorResumeNext(throwable -> {
-                    ContextFlow contextFlow = atomicReference.get();
+                    ContextFlowDTO contextFlow = atomicReference.get();
                     log.error("Error to undo operations. Please try later.", throwable);
                     // sending to dlq
                     rabbitTemplate.convertAndSend(TOPIC_EXCHANGE_NAME, "flow-with-error", atomicReference.get());
@@ -97,9 +98,9 @@ public class FlowableFactory {
     }
 
 
-    public Function<AtomicReference<ContextFlow>, AtomicReference<ContextFlow>> validateValidationFields() {
-        return (AtomicReference<ContextFlow> atomicReference) -> {
-            ContextFlow contextFlow = atomicReference.get();
+    public Function<AtomicReference<ContextFlowDTO>, AtomicReference<ContextFlowDTO>> validateValidationFields() {
+        return (AtomicReference<ContextFlowDTO> atomicReference) -> {
+            ContextFlowDTO contextFlow = atomicReference.get();
             contextFlow.setStateEnum(StateEnum.DO_VALIDATE_FIELDS);
             ValidationFields validationFieldsRequest = toValidationFieldsGRPC(contextFlow.getData().getValidationFields());
             ValidationFields validatedFields = validationFieldsServiceStub.validateFields(validationFieldsRequest);
@@ -111,9 +112,9 @@ public class FlowableFactory {
         };
     }
 
-    public Function<AtomicReference<ContextFlow>, AtomicReference<ContextFlow>> filterPersonData() {
-        return (AtomicReference<ContextFlow> atomicReference) -> {
-            ContextFlow contextFlow = atomicReference.get();
+    public Function<AtomicReference<ContextFlowDTO>, AtomicReference<ContextFlowDTO>> filterPersonData() {
+        return (AtomicReference<ContextFlowDTO> atomicReference) -> {
+            ContextFlowDTO contextFlow = atomicReference.get();
             List<ValidationFieldDTO> invalidFields = contextFlow.getValidatedFields().stream().filter(validationFieldDTO -> !validationFieldDTO.getServerValidated()).collect(Collectors.toList());
             PersonDTO personValidateFieldsFiltered = dataFilteringService.filterData(contextFlow.getData().getPerson(), invalidFields);
             contextFlow.setPersonValidateFieldsFiltered(personValidateFieldsFiltered);
@@ -123,9 +124,9 @@ public class FlowableFactory {
         };
     }
 
-    public Function<AtomicReference<ContextFlow>, AtomicReference<ContextFlow>> validatePersonData() {
-        return (AtomicReference<ContextFlow> atomicReference) -> {
-            ContextFlow contextFlow = atomicReference.get();
+    public Function<AtomicReference<ContextFlowDTO>, AtomicReference<ContextFlowDTO>> validatePersonData() {
+        return (AtomicReference<ContextFlowDTO> atomicReference) -> {
+            ContextFlowDTO contextFlow = atomicReference.get();
             contextFlow.setStateEnum(StateEnum.DO_VALIDATE_PERSON_DATA);
             Person person = toPersonGRPC(contextFlow.getPersonValidateFieldsFiltered());
             Person personValidated = dataServiceStub.validateSavePerson(person);
@@ -137,9 +138,9 @@ public class FlowableFactory {
         };
     }
 
-    public Function<AtomicReference<ContextFlow>, AtomicReference<ContextFlow>> persistPersonData() {
-        return (AtomicReference<ContextFlow> atomicReference) -> {
-            ContextFlow contextFlow = atomicReference.get();
+    public Function<AtomicReference<ContextFlowDTO>, AtomicReference<ContextFlowDTO>> persistPersonData() {
+        return (AtomicReference<ContextFlowDTO> atomicReference) -> {
+            ContextFlowDTO contextFlow = atomicReference.get();
             contextFlow.setStateEnum(StateEnum.DO_PERSIST_PERSON);
             Person personValidated = toPersonGRPC(contextFlow.getPersonValidated());
             Person personPersisted = dataServiceStub.savePerson(personValidated);
@@ -151,15 +152,15 @@ public class FlowableFactory {
         };
     }
 
-    public Function<AtomicReference<ContextFlow>, AtomicReference<ContextFlow>> undoPersistPersonData() {
-        return (AtomicReference<ContextFlow> atomicReference) -> {
+    public Function<AtomicReference<ContextFlowDTO>, AtomicReference<ContextFlowDTO>> undoPersistPersonData() {
+        return (AtomicReference<ContextFlowDTO> atomicReference) -> {
 
 //            if (true) {
 //                throw new RuntimeException("Testing DLQ");
 //            }
 
             log.info("Undoing persisted person data...");
-            ContextFlow contextFlow = atomicReference.get();
+            ContextFlowDTO contextFlow = atomicReference.get();
             contextFlow.setStateEnum(StateEnum.UNDO_PERSIST_PERSON);
 
             if (contextFlow.getPersonPersisted() == null) {
@@ -176,9 +177,9 @@ public class FlowableFactory {
         };
     }
 
-    public Function<AtomicReference<ContextFlow>, AtomicReference<ContextFlow>> persistValidationFields() {
-        return (AtomicReference<ContextFlow> atomicReference) -> {
-            ContextFlow contextFlow = atomicReference.get();
+    public Function<AtomicReference<ContextFlowDTO>, AtomicReference<ContextFlowDTO>> persistValidationFields() {
+        return (AtomicReference<ContextFlowDTO> atomicReference) -> {
+            ContextFlowDTO contextFlow = atomicReference.get();
             contextFlow.setStateEnum(StateEnum.DO_PERSIST_VALIDATED_FIELDS);
 
 //            if (true) {
@@ -200,10 +201,10 @@ public class FlowableFactory {
         };
     }
 
-    public Function<AtomicReference<ContextFlow>, AtomicReference<ContextFlow>> undoPersistValidationFields() {
-        return (AtomicReference<ContextFlow> atomicReference) -> {
+    public Function<AtomicReference<ContextFlowDTO>, AtomicReference<ContextFlowDTO>> undoPersistValidationFields() {
+        return (AtomicReference<ContextFlowDTO> atomicReference) -> {
             log.info("Undoing persisted validated person data...");
-            ContextFlow contextFlow = atomicReference.get();
+            ContextFlowDTO contextFlow = atomicReference.get();
             contextFlow.setStateEnum(StateEnum.DO_PERSIST_VALIDATED_FIELDS);
 
             if (CollectionUtils.isEmpty(contextFlow.getValidationFieldsPersisted())) {
@@ -221,9 +222,9 @@ public class FlowableFactory {
         };
     }
 
-    public Function<AtomicReference<ContextFlow>, DataDTO> transformResult(final StateEnum stateEnum) {
-        return (AtomicReference<ContextFlow> atomicReference) -> {
-            ContextFlow contextFlow = atomicReference.get();
+    public Function<AtomicReference<ContextFlowDTO>, DataDTO> transformResult(final StateEnum stateEnum) {
+        return (AtomicReference<ContextFlowDTO> atomicReference) -> {
+            ContextFlowDTO contextFlow = atomicReference.get();
             contextFlow.setStateEnum(stateEnum);
             return DataDTO.builder().state(stateEnum).person(contextFlow.getPersonPersisted()).validationFields(contextFlow.getValidationFieldsPersisted()).build();
         };

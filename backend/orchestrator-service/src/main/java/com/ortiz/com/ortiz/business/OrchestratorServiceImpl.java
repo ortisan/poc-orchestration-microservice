@@ -1,5 +1,6 @@
 package com.ortiz.com.ortiz.business;
 
+import com.ortiz.dto.ContextFlowDTO;
 import com.ortiz.dto.DataDTO;
 import com.ortiz.grpc.services.DataServiceGrpc;
 import com.ortiz.grpc.services.vfs.ValidationFieldsServiceGrpc;
@@ -56,7 +57,7 @@ public class OrchestratorServiceImpl {
     private FlowableFactory flowableFactory;
 
     public Single<DataDTO> saveDataGrpc(DataDTO dataDTO) {
-        ContextFlow contextFlow = ContextFlow.builder().data(dataDTO).build();
+        ContextFlowDTO contextFlow = ContextFlowDTO.builder().data(dataDTO).build();
         return flowableFactory.getPersistenceFlow(new AtomicReference<>(contextFlow));
     }
 
@@ -73,7 +74,7 @@ public class OrchestratorServiceImpl {
     @Deprecated // Just to test Rest X Grpc
     public DataDTO saveDataRest(DataDTO dataDTO) {
 
-        ContextFlow context = ContextFlow.builder().data(dataDTO).build();
+        ContextFlowDTO context = ContextFlowDTO.builder().data(dataDTO).build();
 
         return Single.just(context)
                 // validate fields on validation fields service
